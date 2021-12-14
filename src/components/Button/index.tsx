@@ -9,13 +9,24 @@ interface ButtonProp {
 
 export default function Button({ child, type, className }: ButtonProp) {
   return (
-    <div className="flex justify-center w-full mt-4  capitalize">
+    <div className="capitalize">
       <button
-        className={classNames(className && className, "rounded-sm capitalize font-dm-sans")}
+        className={classNames(
+          className && className,
+          "rounded-sm capitalize font-dm-sans"
+        )}
         type={type}
       >
         {child}
       </button>
+      
+      {/* <HookInput show type="text" label="First Name" name="firstName" />
+
+      <Button
+        child="sign up"
+        type="submit"
+        className="w-full py-7 bg-secondary font-sans text-white rounded"
+      /> */}
     </div>
   );
 }
