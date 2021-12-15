@@ -6,9 +6,11 @@ module.exports = {
       "dm-sans": ["DM Sans", "sans-serif"],
     },
     extend: {
+      width: {
+        '600': '36rem',
+       },
       colors: {
         secondary: "#35208C",
-      
       },
     },
   },
