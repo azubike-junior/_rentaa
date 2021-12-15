@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HookInput } from "../../components/BasicInputField";
 import Button from "../../components/Button";
 
-export default function Login() {
+export default function SignUp() {
   return (
     <div className="w-full py-10 my-12 lg:mt-24 flex items-center justify-center ">
       <div className="flex flex-col items-start ">

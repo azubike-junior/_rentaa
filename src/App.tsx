@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Button from "./components/Button/index";
 import { HookInput } from "./components/BasicInputField";
 import Header from "./components/Header";
-import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <div>
       <Router>
         <Header />
-        <Login />
+        <SignUp />
       </Router>
     </div>
   );
