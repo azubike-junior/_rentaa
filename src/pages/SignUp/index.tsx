@@ -2,19 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HookInput } from "../../components/BasicInputField";
 import Button from "../../components/Button";
+import FormTitle from "./../../components/FormTitle/index";
 
 export default function SignUp() {
   return (
     <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
       <div className="flex flex-col items-start ">
-        <h1 className="text-2xl pb-2 md:text-3xl lg:text-4xl text-black font-dm-sans lg:pb-4">
-          Let's Create your Account
-        </h1>
-        <p className="text-sm md:text-base text-center text-black font-dm-sans">
-          Welcome to the creative gateway
-        </p>
+        <FormTitle
+          title="Let's Create your Account"
+          instruction="Welcome to the creative gateway"
+        />
 
-        <div className="pt-12 w-full">
+        <div className="px-3 pt-12 w-full">
           <HookInput
             label="First Name"
             name="firstName"
@@ -69,11 +68,13 @@ export default function SignUp() {
             and Conditions
           </p>
 
-          <Button
-            child="Sign Up"
-            type="submit"
-            className="w-full bg-secondary mt-10 py-3 md:py-6 font-dm-sans text-white rounded"
-          />
+          <Link to="/login">
+            <Button
+              child="Login"
+              type="submit"
+              className="w-full bg-secondary md:text-lg mt-10 py-3 md:py-8 font-dm-sans text-white rounded"
+            />
+          </Link>
         </div>
       </div>
     </div>
