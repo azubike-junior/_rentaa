@@ -19,14 +19,6 @@ export default function Button({ child, type, className }: ButtonProp) {
       >
         {child}
       </button>
-      
-      {/* <HookInput show type="text" label="First Name" name="firstName" />
-
-      <Button
-        child="sign up"
-        type="submit"
-        className="w-full py-7 bg-secondary font-sans text-white rounded"
-      /> */}
     </div>
   );
 }
