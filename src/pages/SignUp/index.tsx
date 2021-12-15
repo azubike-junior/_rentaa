@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 
 export default function SignUp() {
   return (
-    <div className="w-full py-10 my-12 lg:mt-24 flex items-center justify-center ">
+    <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
       <div className="flex flex-col items-start ">
         <h1 className="text-2xl pb-2 md:text-3xl lg:text-4xl text-black font-dm-sans lg:pb-4">
           Let's Create your Account
