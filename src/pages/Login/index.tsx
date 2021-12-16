@@ -7,7 +7,7 @@ import Header from "../../components/Header";
 export default function Login() {
   return (
     <>
-    <Header/>
+      <Header />
       <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
         <div className="flex flex-col items-start ">
           <FormTitle
