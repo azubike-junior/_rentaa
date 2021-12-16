@@ -80,7 +80,11 @@ export default function SignUp() {
               />
             </Link>
             <span className="flex items-center justify-center font-dm-sans pt-8 text-xs">
-              Have an Account?{" "}<Link to="/login" className="text-secondary px-2"> Log in here </Link>{" "}
+              Have an Account?{" "}
+              <Link to="/login" className="text-secondary px-2">
+                {" "}
+                Log in here{" "}
+              </Link>{" "}
             </span>
           </div>
         </div>
