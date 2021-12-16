@@ -11,6 +11,7 @@ module.exports = {
        },
       colors: {
         secondary: "#35208C",
+        darkAsh: "#222229"
       },
     },
   },
