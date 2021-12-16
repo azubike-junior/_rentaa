@@ -4,14 +4,15 @@ module.exports = {
   theme: {
     fontFamily: {
       "dm-sans": ["DM Sans", "sans-serif"],
+      "poppins": ["Poppins", "sans-serif"],
     },
     extend: {
       width: {
-        '600': '36rem',
-       },
+        600: "36rem",
+      },
       colors: {
         secondary: "#35208C",
-        darkAsh: "#222229"
+        darkAsh: "#222229",
       },
     },
   },

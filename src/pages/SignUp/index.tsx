@@ -8,7 +8,6 @@ import FormTitle from "./../../components/FormTitle/index";
 export default function SignUp() {
   return (
     <>
-      <Header />
       <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
         <div className="flex flex-col items-start ">
           <FormTitle
@@ -80,7 +79,11 @@ export default function SignUp() {
               />
             </Link>
             <span className="flex items-center justify-center font-dm-sans pt-8 text-xs">
-              Have an Account?{" "}<Link to="/login" className="text-secondary px-2"> Log in here </Link>{" "}
+              Have an Account?{" "}
+              <Link to="/login" className="text-secondary px-2">
+                {" "}
+                Log in here{" "}
+              </Link>{" "}
             </span>
           </div>
         </div>

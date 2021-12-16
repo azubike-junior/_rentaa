@@ -1,23 +1,46 @@
 import React from "react";
-import rentaa from "../../images/rentaa_white.svg";
+import rentaa from "../../images/rentaa_w.svg";
 import instagram from "../../images/instagram.svg";
 import facebook from "../../images/facebook.svg";
 import twitter from "../../images/twitter.svg";
 
 export default function Footer() {
   return (
-    <div className="w-full text-white bg-darkAsh">
-      <div>
-        <img src={rentaa} alt="rentaa" />
-        <div>
-          <img src={instagram} alt="" />
-          <img src={facebook} alt="" />
-          <img src={twitter} alt="" />
+    <div className="w-full text-white bg-darkAsh py-4 md:py-10 flex font-poppins justify-center items-center">
+      <div className="max-w-7xl py-9 block md:grid grid-cols-2 md:gap-0 lg:gap-10 md:px-8">
+        <div className="pb-10">
+          <img
+            src={rentaa}
+            alt="rentaa"
+            className="pb-4 md:pb-6 w-24 md:w-32 lg::w-36 "
+          />
+          <div className="flex space-x-4 md:space-x-7">
+            <img src={instagram} alt="" className="w-4 md:w-6" />
+            <img src={facebook} alt="" className="w-2 md:w-4" />
+            <img src={twitter} alt="" className="w-4 md:w-6" />
+          </div>
         </div>
-      </div>
 
-      <div>
-          
+        <div className="space-x-5 md:space-y-0 flex justify-between items-center md:space-x-14 lg:space-x-20 font-poppins ">
+          <div className="space-y-3 text-xs lg:text-base ">
+            <p className=" font-black">Company</p>
+            <p>About Us</p>
+            <p>Contact Us</p>
+            <p>Careers</p>
+          </div>
+          <div className="space-y-3 text-xs lg:text-base">
+            <p className="font-black">Legal</p>
+            <p>Terms and Conditions</p>
+            <p>Privacy Policy</p>
+            <p>Cookies Policy</p>
+          </div>
+          <div className="space-y-3 text-xs lg:text-base">
+            <p className=" font-black">Resources</p>
+            <p>Blog</p>
+            <p>Media</p>
+            <p>FAQs</p>
+          </div>
+        </div>
       </div>
     </div>
   );
