@@ -12,7 +12,6 @@ function App() {
   return (
     <div>
       <Router>
-        <Header />
         <Route exact path={"/"} component={SignUp} />
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
