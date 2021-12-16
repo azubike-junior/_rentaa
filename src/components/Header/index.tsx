@@ -11,7 +11,7 @@ export default function Header() {
   const user = true;
   return (
     <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full">
-      <div className="px-6 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-6 md:pt-8">
+      <div className="px-6 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-8 md:pt-8">
         <img src={rentaa} className=" w-20 md:w-32" alt="" />
         {!user ? (
           <div className="hidden md:flex space-x-36 font-dm-sans text-base text-black">
@@ -21,7 +21,7 @@ export default function Header() {
             <span>About</span>
           </div>
         ) : (
-          <div className="bg-primary w-700 rounded-full py-4 flex px-4">
+          <div className=" hidden bg-primary md:w-96 lg:w-700 rounded-full py-4 md:flex px-4">
             <img
               src={searchIcon}
               className="w-10 h-6 mt-2 pl-3 flex items-center justify-center"
@@ -43,10 +43,10 @@ export default function Header() {
             />
           </Link>
         ) : (
-          <div className="flex space-x-10">
-            <img className="w-8" src={notifyIcon} alt="notify" />
-            <img className="w-8" src={bookmark} alt="notify" />
-            <img className="w-8" src={avatar} alt="notify" />
+          <div className="flex space-x-4 md:space-x-7 lg::space-x-10">
+            <img className="w-6 md:w-8" src={notifyIcon} alt="notify" />
+            <img className="w-6 md:w-8" src={bookmark} alt="notify" />
+            <img className="w-6 md:w-8" src={avatar} alt="notify" />
           </div>
         )}
       </div>
