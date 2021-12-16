@@ -5,8 +5,8 @@ import { HookInput } from "./components/BasicInputField";
 import Header from "./components/Header";
 import SignUp from "./pages/SignUp";
 import ForgetPassword from "./pages/ForgetPassword";
-import Login from './pages/Login';
-import ChangePassword from './pages/ChangePassword/index';
+import Login from "./pages/Login";
+import ChangePassword from "./pages/ChangePassword/index";
 
 function App() {
   return (

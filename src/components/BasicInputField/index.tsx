@@ -1,6 +1,6 @@
 import React from "react";
 import { classNames } from "../../utils/classNames";
-import eye from "../../images/eye.svg"
+import eye from "../../images/eye.svg";
 
 type HookInputProps = {
   label?: string;
@@ -9,11 +9,10 @@ type HookInputProps = {
   className?: string;
   required?: boolean;
   errors?: any;
-  name: string;
+  name?: string;
   type?: string;
-  show?: boolean
+  show?: boolean;
 };
-
 
 export function HookInput({
   label,

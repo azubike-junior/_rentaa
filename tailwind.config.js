@@ -7,10 +7,12 @@ module.exports = {
     },
     extend: {
       width: {
-        '600': '36rem',
-       },
+        600: "36rem",
+        700: "40rem",
+      },
       colors: {
         secondary: "#35208C",
+        primary: "#EFECEC",
       },
     },
   },
