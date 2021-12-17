@@ -8,12 +8,14 @@ import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword/index";
 import Footer from "./components/Footer/index";
+import ProductSection from "./components/ProductSection";
 
 function App() {
   return (
     <div>
       <Router>
         <Header />
+        <ProductSection />
         <Route exact path={"/"} component={SignUp} />
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
