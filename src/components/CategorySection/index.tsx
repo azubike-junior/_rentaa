@@ -1,11 +1,12 @@
 import Button from "../Button";
 import Category from "../Category";
+import '../../styles/homeGrid.css'
 
 export default function CategorySection() {
     return (
-        <div className="container px-8 mx-auto text-center">
+        <div className="container homeContainer px-8 mx-auto text-center">
             <h1 className="text-left text-xl font-medium md:text-3xl py-7">Browse Product Categories</h1>
-            <div className="flex flex-wrap">
+            <div className="gridContainer flex-wrap">
             <Category imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg" categoryName="Cameras"/>
             <Category imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg" categoryName="Cameras"/>
             <Category imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg" categoryName="Cameras"/>

@@ -14,7 +14,6 @@ function App() {
     <div>
       <Router>
         <Route exact path={"/"} component={SignUp} />
-        <Route exact path={"/categorySection"} component={CategorySection} />
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
         <Route exact path={"/change_password"} component={ChangePassword} />
