@@ -15,7 +15,6 @@ function App() {
     <div>
       <Router>
         <Header />
-        <ProductSection />
         <Route exact path={"/"} component={SignUp} />
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
