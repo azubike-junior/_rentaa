@@ -7,7 +7,9 @@ import SignUp from "./pages/SignUp";
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword/index";
-import Footer from "./components/Footer/index";
+import CategorySection from "./components/CategorySection";
+import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage/index";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
         <Route exact path={"/change_password"} component={ChangePassword} />
+        <Route exact path={"/home"} component={HomePage} />
+
         <Footer />
       </Router>
     </div>
