@@ -4,3 +4,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+._purpleBg {
+  background: url("../images/purpleBackground.svg");
+  background-position: ;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+
