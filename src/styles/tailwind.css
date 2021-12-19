@@ -7,9 +7,14 @@
 
 ._purpleBg {
   background: url("../images/purpleBackground.svg");
-  background-position: ;
+  background-position: cover;
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.absolutee {
+  position: absolute;
+  left: 20;
 }
 
 
