@@ -7,8 +7,8 @@ import SignUp from "./pages/SignUp";
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword/index";
-import CategorySection from "./components/CategorySection";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/index";
+import ProductSection from "./components/ProductSection";
 import HomePage from "./pages/HomePage/index";
 
 function App() {
