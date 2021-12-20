@@ -4,7 +4,7 @@ import '../../styles/homeGrid.css'
 
 export default function CategorySection() {
     return (
-      <div className="max-w-7xl px-8 mx-auto font-dm-sans text-center mt-10 md:mt-20">
+      <div className="max-w-7xl px-8 mx-auto font-dm-sans text-center mt-10 md:pb-24 md:my-20 ">
         <h1 className="text-left xs:text-base sm:text-xl font-medium  md:text-3xl py-7">
           Browse Product Categories
         </h1>
@@ -53,10 +53,11 @@ export default function CategorySection() {
         <Button
           child="List Gadgets for rent"
           type="button"
-          className="xxs:w-44 xxs:text-sm md:w-96 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-7 font-dm-sans md:text-lg text-white rounded"
+          className="xxs:w-44 xxs:text-sm md:w-500 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-7 font-dm-sans md:text-lg text-white rounded"
         />
       </div>
     );
+    
 };
 
 export {};

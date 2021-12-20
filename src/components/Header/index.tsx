@@ -30,7 +30,7 @@ export default function Header() {
             <input
               className="px-6 py-2 bg-transparent flex-1 outline-none"
               type="text"
-              placeholder="search"
+              placeholder="Search for Gadgets and  Locations around you"
             />
           </div>
         )}

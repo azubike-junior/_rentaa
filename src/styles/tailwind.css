@@ -4,3 +4,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+._purpleBg {
+  background: url("../images/purpleBackground.svg");
+  background-position: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.absolutee {
+  position: absolute;
+  left: 20;
+}
+
+
+

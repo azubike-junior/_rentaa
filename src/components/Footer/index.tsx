@@ -6,7 +6,7 @@ import twitter from "../../images/twitter.svg";
 
 export default function Footer() {
   return (
-    <div className="w-full text-white bg-darkAsh py-4 md:py-10 flex font-poppins justify-center items-center">
+    <div className="w-full text-white bg-darkAsh py-4 md:py-16 flex font-poppins justify-center items-center">
   <div className="max-w-7xl py-9 block md:grid grid-cols-2 md:gap-0 lg:gap-10 md:px-14 lg:px-10 xl:gap-20">
         <div className="pb-10">
           <img
