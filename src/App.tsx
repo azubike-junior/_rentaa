@@ -10,6 +10,7 @@ import ChangePassword from "./pages/ChangePassword/index";
 import Footer from "./components/Footer";
 import AccessMore from './components/AccessMore'
 import HomePage from './pages/HomePage/index';
+import EmptyGadgetSection from './components/EmptyGadgetSection/index';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route exact path={"/login"} component={Login} />
         <Route exact path={"/change_password"} component={ChangePassword} />
         <Route exact path={"/home"} component={HomePage} />
+        <Route exact path={"/gadget"} component={EmptyGadgetSection} />
 
      
         <Footer />
