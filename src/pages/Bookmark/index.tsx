@@ -3,7 +3,9 @@ import SingleBookMark from "./../../components/SingleBookMark/index";
 import bookImg from "../../images/bookmarkImg.svg";
 import bookImg2 from "../../images/bookmarkImg2.svg";
 import searchIcon from "../../images/searchIcon.svg";
+import EmptyBookmark from "./../../components/EmptyBookmark/index";
 
+const bookmark = false;
 
 export default function Bookmark() {
   return (
@@ -20,28 +22,32 @@ export default function Bookmark() {
           placeholder="Search for Gadgets and  Locations around you"
         />
       </div>
-      <div className="max-w-7xl mx-auto pl-5 md:px-5 lg:pl-10 my-20">
-        <h1 className="text-xl md:text-3xl font-dm-sans">Your Bookmarks</h1>
-        <p className="font-dm-sans text-sm md:text-base pt-2">
-          All bookmarks are automatically removed after 21 days
-        </p>
+      {bookmark ? (
+        <div className="max-w-7xl mx-auto pl-5 md:px-5 lg:pl-10 my-20">
+          <h1 className="text-xl md:text-3xl font-dm-sans">Your Bookmarks</h1>
+          <p className="font-dm-sans text-sm md:text-base pt-2">
+            All bookmarks are automatically removed after 21 days
+          </p>
 
-        <div className=" md:mt-14 mb-20">
-          <SingleBookMark
-            img={bookImg}
-            price="#20,000/week"
-            name="Olaotan Faji"
-            product="Canon 5D Mark IV"
-          />
+          <div className=" md:mt-14 mb-20">
+            <SingleBookMark
+              img={bookImg}
+              price="#20,000/week"
+              name="Olaotan Faji"
+              product="Canon 5D Mark IV"
+            />
 
-          <SingleBookMark
-            img={bookImg2}
-            price="#20,000/week"
-            name="Blessing kamar"
-            product="Canon 5D Mark IV"
-          />
+            <SingleBookMark
+              img={bookImg2}
+              price="#20,000/week"
+              name="Blessing kamar"
+              product="Canon 5D Mark IV"
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        <EmptyBookmark />
+      )}{" "}
     </>
   );
 }

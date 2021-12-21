@@ -14,15 +14,17 @@ import Bookmark from "./pages/Bookmark/index";
 
 function App() {
   return (
-    <div>
+    <div className="relative">
       <Router>
         <Header />
-        <Route exact path={"/"} component={SignUp} />
-        <Route exact path={"/forget_password"} component={ForgetPassword} />
-        <Route exact path={"/login"} component={Login} />
-        <Route exact path={"/change_password"} component={ChangePassword} />
-        <Route exact path={"/home"} component={HomePage} />
-        <Route exact path={"/bookmark"} component={Bookmark} />
+        <main>
+          <Route exact path={"/"} component={SignUp} />
+          <Route exact path={"/forget_password"} component={ForgetPassword} />
+          <Route exact path={"/login"} component={Login} />
+          <Route exact path={"/change_password"} component={ChangePassword} />
+          <Route exact path={"/home"} component={HomePage} />
+          <Route exact path={"/bookmark"} component={Bookmark} />
+        </main>
         <Footer />
       </Router>
     </div>
