@@ -22,7 +22,6 @@ function App() {
         <Route exact path={"/login"} component={Login} />
         <Route exact path={"/change_password"} component={ChangePassword} />
         <Route exact path={"/home"} component={HomePage} />
-        <Route exact path={"/gadget"} component={EmptyGadgetSection} />
 
      
         <Footer />
