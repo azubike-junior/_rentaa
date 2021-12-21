@@ -5,19 +5,22 @@ interface ButtonProp {
   child: string;
   className: string;
   type: "button" | "submit";
+  img?: string
 }
 
-export default function Button({ child, type, className }: ButtonProp) {
+export default function Button({ child, type, className, img}: ButtonProp) {
   return (
     <div className="capitalize">
       <button
         className={classNames(
           className && className,
-          "rounded-sm capitalize font-dm-sans"
+          "rounded capitalize font-dm-sans"
         )}
         type={type}
       >
-        {child}
+        <div className="flex justify-center items-center">
+          {img && <img src={img} className="xs:hidden pr-3"/>} {child}
+        </div>
       </button>
     </div>
   );

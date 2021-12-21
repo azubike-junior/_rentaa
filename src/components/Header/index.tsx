@@ -10,7 +10,7 @@ import avatar from "../../images/avatar.svg";
 export default function Header() {
   const user = true;
   return (
-    <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full">
+    <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full sticky top-0">
       <div className="px-6 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-8 md:pt-8">
         <img src={rentaa} className=" w-20 md:w-32" alt="" />
         {!user ? (
