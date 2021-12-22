@@ -12,6 +12,8 @@ import HomePage from "./pages/HomePage";
 import Bookmark from "./pages/Bookmark";
 import PostProduct from "./pages/PostProduct";
 import Profile from './pages/Profile';
+import EmptyGadgetSection from './components/EmptyGadgetSection/index';
+import ProductDesc from './pages/ProductDesc/index';
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
           <Route exact path={"/bookmark"} component={Bookmark} />
           <Route exact path={"/post_product"} component={PostProduct} />
           <Route exact path={"/profile"} component={Profile} />
+          <Route exact path={"/product_desc"} component={ProductDesc} />
         </main>
         <Footer />
       </Router>

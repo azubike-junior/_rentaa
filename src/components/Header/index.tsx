@@ -45,8 +45,12 @@ export default function Header() {
         ) : (
           <div className="flex space-x-4 md:space-x-7 lg::space-x-10">
             <img className="w-6 md:w-8" src={notifyIcon} alt="notify" />
-            <img className="w-6 md:w-8" src={bookmark} alt="notify" />
-            <img className="w-6 md:w-8" src={avatar} alt="notify" />
+            <Link to="/bookmark">
+              <img className="w-6 md:w-8" src={bookmark} alt="notify" />
+            </Link>
+            <Link to="/profile">
+              <img className="w-6 md:w-8" src={avatar} alt="notify" />
+            </Link>
           </div>
         )}
       </div>

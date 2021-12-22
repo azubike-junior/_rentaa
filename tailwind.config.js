@@ -5,7 +5,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      xxs: {min: "320px", max: "374px"},
+      xxs: { min: "320px", max: "374px" },
       xs: { min: "374px", max: "427px" },
       ...defaultTheme.screens,
       "2xl": { min: "2560px" },
@@ -23,6 +23,7 @@ module.exports = {
         1000: "70rem",
       },
       width: {
+        400: "25rem",
         500: "30rem",
         550: "32rem",
 
