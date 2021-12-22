@@ -6,12 +6,12 @@ import Header from "./components/Header";
 import SignUp from "./pages/SignUp";
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
-import ChangePassword from "./pages/ChangePassword/index";
+import ChangePassword from "./pages/ChangePassword";
 import Footer from "./components/Footer";
-import AccessMore from "./components/AccessMore";
-import HomePage from "./pages/HomePage/index";
-import Bookmark from "./pages/Bookmark/index";
-import PostProduct from './pages/PostProduct/index';
+import HomePage from "./pages/HomePage";
+import Bookmark from "./pages/Bookmark";
+import PostProduct from "./pages/PostProduct";
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -25,10 +25,9 @@ function App() {
           <Route exact path={"/change_password"} component={ChangePassword} />
           <Route exact path={"/home"} component={HomePage} />
           <Route exact path={"/bookmark"} component={Bookmark} />
-        <Route exact path={"/post_product"} component={PostProduct} />
-
+          <Route exact path={"/post_product"} component={PostProduct} />
+          <Route exact path={"/profile"} component={Profile} />
         </main>
-       
         <Footer />
       </Router>
     </div>
