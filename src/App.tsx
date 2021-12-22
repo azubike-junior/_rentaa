@@ -8,7 +8,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword/index";
 import Footer from "./components/Footer";
-import AccessMore from './components/AccessMore/index2'
+import AccessMore from './components/AccessMore'
 
 function App() {
   return (
