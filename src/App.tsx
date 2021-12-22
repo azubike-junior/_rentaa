@@ -8,21 +8,23 @@ import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword/index";
 import Footer from "./components/Footer";
-import AccessMore from './components/AccessMore'
-import HomePage from './pages/HomePage/index';
+import AccessMore from "./components/AccessMore";
+import HomePage from "./pages/HomePage/index";
+import Bookmark from "./pages/Bookmark/index";
 
 function App() {
   return (
-    <div>
+    <div className="relative">
       <Router>
         <Header />
-        <Route exact path={"/"} component={SignUp} />
-        <Route exact path={"/forget_password"} component={ForgetPassword} />
-        <Route exact path={"/login"} component={Login} />
-        <Route exact path={"/change_password"} component={ChangePassword} />
-        <Route exact path={"/home"} component={HomePage} />
-
-     
+        <main>
+          <Route exact path={"/"} component={SignUp} />
+          <Route exact path={"/forget_password"} component={ForgetPassword} />
+          <Route exact path={"/login"} component={Login} />
+          <Route exact path={"/change_password"} component={ChangePassword} />
+          <Route exact path={"/home"} component={HomePage} />
+          <Route exact path={"/bookmark"} component={Bookmark} />
+        </main>
         <Footer />
       </Router>
     </div>
