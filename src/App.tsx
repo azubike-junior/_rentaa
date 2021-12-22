@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import AccessMore from "./components/AccessMore";
 import HomePage from "./pages/HomePage/index";
 import Bookmark from "./pages/Bookmark/index";
+import PostProduct from './pages/PostProduct/index';
 
 function App() {
   return (
@@ -24,7 +25,10 @@ function App() {
           <Route exact path={"/change_password"} component={ChangePassword} />
           <Route exact path={"/home"} component={HomePage} />
           <Route exact path={"/bookmark"} component={Bookmark} />
+        <Route exact path={"/post_product"} component={PostProduct} />
+
         </main>
+       
         <Footer />
       </Router>
     </div>
