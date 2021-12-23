@@ -3,7 +3,7 @@ import React from "react";
 
 interface ButtonProp {
   child: string;
-  className: string;
+  className: any;
   type: "button" | "submit";
   img?: string
 }

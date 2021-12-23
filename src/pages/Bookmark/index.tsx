@@ -5,7 +5,7 @@ import bookImg2 from "../../images/bookmarkImg2.svg";
 import searchIcon from "../../images/searchIcon.svg";
 import EmptyBookmark from "./../../components/EmptyBookmark/index";
 
-const bookmark = false;
+const bookmark = true;
 
 export default function Bookmark() {
   return (
@@ -32,16 +32,24 @@ export default function Bookmark() {
           <div className=" md:mt-14 mb-20">
             <SingleBookMark
               img={bookImg}
+              imgClass="xxs:pb-2 w-40 mr-6 md:w-72 md:pr-10"
               price="#20,000/week"
               name="Olaotan Faji"
               product="Canon 5D Mark IV"
+              divClass="block md:flex flex-row pt-4 md xxs: place-items-center:pt-9 font-dm-sans"
+              buttonClass="bg-secondary mb-3 md:mb-0 text-sm md:text-lg py-2 md:py-5 text-white px-4 md:px-10 mr-6"
+              buttonClass2="border-2 text-sm md:text-lg border-secondary py-2 md:py-4 text-secondary px-6 xs:px-3"
             />
 
             <SingleBookMark
               img={bookImg2}
+              imgClass="xxs:pb-2 w-40 mr-6 md:w-72 md:pr-10"
               price="#20,000/week"
               name="Blessing kamar"
+              divClass="block md:flex flex-row pt-4 md xxs: place-items-center:pt-9 font-dm-sans"
               product="Canon 5D Mark IV"
+              buttonClass="bg-secondary mb-3 md:mb-0 text-sm md:text-lg py-2 md:py-5 text-white px-4 md:px-10 mr-6"
+              buttonClass2="border-2 text-sm md:text-lg border-secondary py-2 md:py-4 text-secondary px-6 xs:px-3"
             />
           </div>
         </div>

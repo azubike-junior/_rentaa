@@ -7,6 +7,10 @@ interface BookmarkProp {
   product: string;
   price: string;
   name: string;
+  buttonClass?: string;
+  buttonClass2?: string;
+  imgClass: any
+  divClass: any
 }
 
 export default function SingleBookMark({
@@ -14,10 +18,14 @@ export default function SingleBookMark({
   product,
   price,
   name,
+  buttonClass,
+  buttonClass2,
+  imgClass,
+  divClass
 }: BookmarkProp) {
   return (
-    <div className=" xxs:grid xxs:place-items-center  xs:flex sm:flex flex flex-row my-20">
-      <img src={img} alt="" className="xxs:pb-2 w-40 mr-6 md:w-72 md:pr-10" />
+    <div className=" xxs:grid xxs:place-items-center  xs:flex sm:flex flex flex-row my-12">
+      <img src={img} alt="" className={imgClass} />
       <div className="md:pt-6 xxs:pl-4">
         <h1 className=" text-black text-lg md:text-2xl font-dm-sans">
           {product}
@@ -26,14 +34,10 @@ export default function SingleBookMark({
         <p className="text-gray-400 pt-2 md:pt-5 text-sm md:text-lg font-dm-sans">
           Posted by <span className=" text-secondary">{name}</span>
         </p>
-        <div className="block md:flex flex-row pt-4 md xxs: place-items-center:pt-9 font-dm-sans">
+        <div className={divClass}>
+          <Button className={buttonClass} child="View More" type="button" />
           <Button
-            className=" bg-secondary mb-3 md:mb-0 text-sm md:text-lg py-2 md:py-5 text-white px-4 md:px-7 mr-6"
-            child="View More"
-            type="button"
-          />
-          <Button
-            className=" border-2 text-sm md:text-lg border-secondary py-2 md:py-4 text-secondary px-6 xs:px-3"
+            className={buttonClass2}
             child="View Contact Info"
             type="button"
             img={phoneImg}
