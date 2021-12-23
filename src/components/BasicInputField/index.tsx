@@ -3,8 +3,6 @@ import { classNames } from "../../utils/classNames";
 import eye from "../../images/eye.svg";
 import arrowDown from "../../images/arrow-down.svg";
 
-
-
 type HookInputProps = {
   label?: string;
   placeholder?: string;
@@ -17,6 +15,7 @@ type HookInputProps = {
   show?: boolean;
   select?: boolean;
   textArea?: boolean;
+  textAreaClass?: any;
 };
 
 export function HookInput({
@@ -31,6 +30,7 @@ export function HookInput({
   show,
   type = "text",
   textArea,
+  textAreaClass,
 }: HookInputProps) {
   return (
     <div className={className}>
@@ -47,7 +47,8 @@ export function HookInput({
               className={classNames(
                 !errors && "focus:border-primary-blue",
                 errors && "border-red-500 focus:border-red-500",
-                "py-2 h-36 md:h-96 text-sm md:text-base md:px-2 bg-opacity-0 w-full rounded-lg focus:outline-none font-dm-sans"
+                textAreaClass && textAreaClass,
+                "py-2 text-sm md:text-base md:px-2 bg-opacity-0 w-full rounded-lg focus:outline-none font-dm-sans"
               )}
             />
           ) : (

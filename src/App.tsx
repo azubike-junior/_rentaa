@@ -14,6 +14,7 @@ import PostProduct from "./pages/PostProduct";
 import Profile from './pages/Profile';
 import ProductDesc from './pages/ProductDesc/index';
 import ViewCategory from './pages/ViewCategory';
+import Contact from './pages/ContactUs';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route exact path={"/profile"} component={Profile} />
           <Route exact path={"/product_desc"} component={ProductDesc} />
           <Route exact path={"/view_categories"} component={ViewCategory} />
+          <Route exact path={"/contact_us"} component={Contact} />
         </main>
         <Footer />
       </Router>

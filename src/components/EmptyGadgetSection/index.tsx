@@ -2,6 +2,8 @@ import NoGadgetImage from "../../images/NoGadgets.png";
 import Button from "../Button";
 import MyGadgets from "../MyGadgets";
 
+
+
 export default function EmptyGadgetSection() {
   return (
     <>
