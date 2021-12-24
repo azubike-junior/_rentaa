@@ -4,7 +4,7 @@ import mobilePurpleBackground from "../../images/mobPurpleBg.svg";
 
 export default function AccessMore() {
   return (
-    <div className="block my-16 md:block lg:grid md:my-20 lg:my-0  md:px-5 grid-col gap-0 grid-cols-2 w-full lg:px-0 lg:mt-44 xl:mt-48 2xl:hidden">
+    <div className="block my-16 md:block lg:grid md:my-20 lg:my-0  md:px-5 grid-col gap-0 grid-cols-2 w-full lg:px-0 lg:mt-44 xl:mt-48 2xl:hidden z-10">
       <div className="relative px-4 md:px-0 ">
         <img
           src={purpleBackground}

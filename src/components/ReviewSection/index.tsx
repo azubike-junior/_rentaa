@@ -1,6 +1,8 @@
 import Review from "../Review";
+import Button from "./../Button/index";
 
-export default function ReviewSection() {
+export default function ReviewSection({toggleReviewModal}:any) {
+  const user = true;
   return (
     <div className="container max-w-7xl mx-auto pb-14">
       <h1 className="text-2xl md:px-8 font-medium mt-5">Reviews</h1>
@@ -22,6 +24,15 @@ export default function ReviewSection() {
                 very transparent'"
         authorName="John Okafor"
       />
+
+      <div className="grid place-content-center">
+        <Button
+          child="Leave a Review"
+          className=" bg-secondary mb-3 mt-7 px-8 py-4 text-white"
+          type="button"
+          onClick={toggleReviewModal}
+        />
+      </div>
     </div>
   );
 }

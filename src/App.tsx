@@ -11,10 +11,10 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import Bookmark from "./pages/Bookmark";
 import PostProduct from "./pages/PostProduct";
-import Profile from './pages/Profile';
-import ProductDesc from './pages/ProductDesc/index';
-import ViewCategory from './pages/ViewCategory';
-import Contact from './pages/ContactUs';
+import Profile from "./pages/Profile";
+import ProductDesc from "./pages/ProductDesc/index";
+import ViewCategory from "./pages/ViewCategory";
+import Contact from "./pages/ContactUs";
 
 function App() {
   return (
@@ -22,11 +22,11 @@ function App() {
       <Router>
         <Header />
         <main>
-          <Route exact path={"/"} component={SignUp} />
+          <Route exact path={"/"} component={HomePage} />
+          <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
           <Route exact path={"/login"} component={Login} />
           <Route exact path={"/change_password"} component={ChangePassword} />
-          <Route exact path={"/home"} component={HomePage} />
           <Route exact path={"/bookmark"} component={Bookmark} />
           <Route exact path={"/post_product"} component={PostProduct} />
           <Route exact path={"/profile"} component={Profile} />

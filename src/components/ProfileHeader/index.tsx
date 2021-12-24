@@ -1,13 +1,30 @@
 import React from "react";
 import gadgetImg from "../../images/soundEquipment.png";
 import Button from "../Button";
+import Modal from "./../Modal/index";
 
-export default function ProfileHeader() {
+type ProfileHeaderProps = {
+  toggleContactModal?: any;
+  toggleEditModal?: any;
+  toggleReviewModal?: any;
+};
+
+const user = false;
+
+export default function ProfileHeader({
+  toggleContactModal,
+  toggleEditModal,
+  toggleReviewModal,
+}: ProfileHeaderProps) {
   return (
     <div className="px-6 max-w-7xl my-20 mx-auto">
       <div className="md:flex">
         <div className="pr-8 pb-2">
-          <img src={gadgetImg} alt="" className=" w-24 h-28 md:w-40 md:h-40 rounded-full" />
+          <img
+            src={gadgetImg}
+            alt=""
+            className=" w-28 h-28 md:w-40 md:h-40 rounded-full"
+          />
         </div>
         <div>
           <h1 className="text-xl font-dm-sans pb-2">Daniel Segun</h1>
@@ -22,15 +39,27 @@ export default function ProfileHeader() {
           </p>
           <div className="xs:flex sm:flex pt-7">
             <Button
-              child="Post a Gadget"
+              child="View Contact Info"
               className=" bg-secondary mb-3 px-6 py-4 mr-3 text-white"
               type="button"
+              onClick={toggleContactModal}
             />
-            <Button
-              child="Edit Profile"
-              className="border-2 border-secondary text-secondary px-9 py-3.5"
-              type="button"
-            />
+
+            {user ? (
+              <Button
+                child="Edit Profile"
+                className="border-2 border-secondary text-secondary px-9 py-3.5"
+                type="button"
+                onClick={toggleEditModal}
+              />
+            ) : (
+              <Button
+                child="Post Review"
+                className="border-2 border-secondary text-secondary px-9 py-3.5"
+                type="button"
+                onClick={toggleReviewModal}
+              />
+            )}
           </div>
         </div>
       </div>

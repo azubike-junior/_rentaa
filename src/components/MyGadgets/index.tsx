@@ -21,7 +21,6 @@ export default function MyGadgets() {
         <SingleGadget img={gadgetImg} />
         <SingleGadget img={gadget} />
       </div>
-      )
     </div>
   );
 }

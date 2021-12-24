@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import NoGadgetImage from "../../images/NoGadgets.png";
 import Button from "../Button";
 import MyGadgets from "../MyGadgets";
@@ -14,11 +15,13 @@ export default function EmptyGadgetSection() {
       <p className="md:hidden my-3 text-center md:text-xl">
         Nothing to see here...
       </p>
+      <Link to="/post_product">
       <Button
         child="Post a gadget"
         type="button"
         className="px-4 bg-secondary mb-8 mt-6 md:mt-9 py-4 font-dm-sans md:text-lg text-white rounded"
       />
+      </Link>
     </>
   );
 }

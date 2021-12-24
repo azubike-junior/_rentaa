@@ -6,11 +6,12 @@ interface ButtonProp {
   className: any;
   type: "button" | "submit";
   img?: string
+  onClick?: any
 }
 
-export default function Button({ child, type, className, img}: ButtonProp) {
+export default function Button({ child, type, className, img, onClick}: ButtonProp) {
   return (
-    <div className="capitalize">
+    <div className="capitalize" onClick={onClick}>
       <button
         className={classNames(
           className && className,

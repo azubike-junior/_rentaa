@@ -53,7 +53,7 @@ export default function PostProduct() {
               <HookInput
                 label="Description"
                 className="lg:w-700 pt-12  "
-                textAreaClass="md:h-96  h-36"
+                textAreaClass="md:h-96  h-36 rounded-lg"
                 name="email"
                 textArea
               />

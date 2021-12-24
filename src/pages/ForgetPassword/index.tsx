@@ -2,6 +2,7 @@ import Button from "../../components/Button";
 import { HookInput } from "../../components/BasicInputField/index";
 import FormTitle from "../../components/FormTitle/index";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 
 export default function ForgetPassword() {
   return (
@@ -13,7 +14,7 @@ export default function ForgetPassword() {
             instruction="Input your email address and check mail for password reset link"
           />
 
-          <div className="pt-12 w-full px-3">
+          <div className="pt-10 w-full px-3">
             <HookInput
               label="Email Address"
               className="lg:w-600 pt-10"
