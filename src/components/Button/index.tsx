@@ -20,7 +20,7 @@ export default function Button({ child, type, className, img, onClick}: ButtonPr
         type={type}
       >
         <div className="flex justify-center items-center">
-          {img && <img src={img} className="xs:hidden pr-3"/>} {child}
+          {img && <img src={img} className="xs:hidden  pr-3"/>} {child}
         </div>
       </button>
     </div>

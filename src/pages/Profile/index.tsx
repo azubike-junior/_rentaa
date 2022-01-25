@@ -16,18 +16,21 @@ export default function Profile() {
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   const toggleContactModal = () => {
-    setContactModalOpen(!contactModalOpen)
-  }
+    setContactModalOpen(!contactModalOpen);
+    // if (typeof window != "undefined" && window.document) {
+    //   document.body.style.overflow = "hidden";
+    // }
+    //  document.body.style.overflow = "unset";
+  };
 
-   const toggleReviewtModal = () => {
-     setReviewModalOpen(!reviewModalOpen);
-   };
+  const toggleReviewtModal = () => {
+    setReviewModalOpen(!reviewModalOpen);
+  };
 
-    const toggleEditModal = () => {
-      setEditModalOpen(!editModalOpen);
-    };
+  const toggleEditModal = () => {
+    setEditModalOpen(!editModalOpen);
+  };
 
-  
   return (
     <div>
       <ProfileHeader
@@ -36,7 +39,7 @@ export default function Profile() {
         toggleReviewModal={toggleReviewtModal}
       />
       <div className="container max-w-7xl flex flex-col items-center my-16 mx-auto px-2 ">
-        <h1 className="text-3xl font-medium mb-9 md:mb-4 w-full mx-auto px-6">
+        <h1 className="text-lg md:text-3xl font-medium md:mb-4 w-full mx-auto px-6">
           My Gadgets
         </h1>
         {noGadget ? <EmptyGadgetSection /> : <MyGadgets />}

@@ -9,7 +9,7 @@ interface ModalProps {
 export default function Modal({ children, isOpen }: ModalProps) {
   return (
     <div className={classNames(!isOpen ? "hidden" : "block")}>
-      <div className="fixed w-full h-full left-0 top-0 bg-bgAsh z-10 flex items-center justify-center">
+      <div className="fixed w-full h-full left-0 top-0 bg-bgAsh z-40 flex items-center justify-center">
         <div className="fixed">{children}</div>
       </div>
     </div>

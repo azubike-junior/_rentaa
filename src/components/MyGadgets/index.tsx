@@ -11,7 +11,7 @@ export default function MyGadgets() {
   const gadgets = true;
   return (
     <div className="container max-w-7xl mx-auto px-8 py-10">
-      <div className="px-7 grid grid-flow-row md:gap-y-6 md:pb-6 md:px-7 md:gap-x-7  md:grid-cols-2 gap-y-2 lg:gap-y-7 lg:px-0 lg:grid-cols-4">
+      <div className="px-0 grid xs:grid-cols-2 xs:gap-x-5 grid-flow-row md:gap-y-6 md:pb-6 md:px-0 md:gap-x-7  md:grid-cols-3 gap-y-2 lg:gap-y-7 lg:px-0 lg:grid-cols-4">
         <SingleGadget img={gadgetImg} />
         <SingleGadget img={gadgetImg} />
         <SingleGadget img={gadgetImg} />

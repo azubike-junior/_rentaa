@@ -51,10 +51,9 @@ export default function ProductSection() {
         <Button
         child="View more"
         type="button"
-        className="xxs:w-44 md:w-64 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-6 font-dm-sans md:text-lg text-white rounded"
+        className="xxs:w-44 xs:px-7 md:w-64 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-6 font-dm-sans md:text-lg text-white rounded"
       />
       </Link>
-      
     </div>
   );
 }

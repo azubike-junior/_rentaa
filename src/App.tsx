@@ -8,13 +8,14 @@ import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword";
 import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
+import Dashboard from "./pages/Dashboard";
 import Bookmark from "./pages/Bookmark";
 import PostProduct from "./pages/PostProduct";
 import Profile from "./pages/Profile";
 import ProductDesc from "./pages/ProductDesc/index";
 import ViewCategory from "./pages/ViewCategory";
 import Contact from "./pages/ContactUs";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
       <Router>
         <Header />
         <main>
-          <Route exact path={"/"} component={HomePage} />
+          <Route exact path={"/"} component={Homepage} />
+          <Route exact path={"/dashboard"} component={Dashboard} />
           <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
           <Route exact path={"/login"} component={Login} />
