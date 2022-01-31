@@ -16,7 +16,6 @@ module.exports = {
     },
     extend: {
       height: {
-  
         600: "30rem",
         700: "40rem",
         800: "48rem",
@@ -43,6 +42,8 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
+        greyish: "#595959",
+        border: " #9E9494",
       },
     },
   },

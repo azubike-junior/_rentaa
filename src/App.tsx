@@ -16,12 +16,13 @@ import ProductDesc from "./pages/ProductDesc/index";
 import ViewCategory from "./pages/ViewCategory";
 import Contact from "./pages/ContactUs";
 import Homepage from "./pages/HomePage";
+import ConfirmEmail from "./pages/confirmEmail";
 
 function App() {
   return (
     <div className="relative">
       <Router>
-        <Header />
+        {/* <Header /> */}
         <main>
           <Route exact path={"/"} component={Homepage} />
           <Route exact path={"/dashboard"} component={Dashboard} />
@@ -35,8 +36,9 @@ function App() {
           <Route exact path={"/product_desc"} component={ProductDesc} />
           <Route exact path={"/view_categories"} component={ViewCategory} />
           <Route exact path={"/contact_us"} component={Contact} />
+          <Route exact path={"/confirm_email"} component={ConfirmEmail} />
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );
