@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export default function Homepage() {
-  return <div>
-      hello from Rentaa homePage
-  </div>;
+  return <div>hello from Re ntaa homePage</div>;
 }
