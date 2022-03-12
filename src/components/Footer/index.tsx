@@ -32,7 +32,7 @@ export default function Footer() {
             <p className="font-black">Legal</p>
             <p>Terms and Conditions</p>
             <p>Privacy Policy</p>
-            <p>Cookies Policy</p>
+          <p>Cookies Policy</p>
           </div>
           <div className="space-y-3 text-xs lg:text-base">
             <p className=" font-black">Resources</p>

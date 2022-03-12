@@ -16,12 +16,12 @@ module.exports = {
     },
     extend: {
       height: {
-  
         600: "30rem",
         700: "40rem",
         800: "48rem",
         900: "55rem",
         1000: "70rem",
+        1300: "90rem",
       },
       width: {
         400: "25rem",
@@ -43,6 +43,7 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
+        borderGreen: "#32C50D",
       },
     },
   },

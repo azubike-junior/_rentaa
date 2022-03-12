@@ -2,8 +2,11 @@ import React from "react";
 import closeIcon from "../../images/closeIcon.svg";
 import { HookInput } from "../BasicInputField";
 import Button from "../Button";
+import { useDispatch } from "react-redux";
+import { toggleReviewModal } from "../../services/Mutations/Modal";
 
-export default function ReviewModal({ toggleReviewModal }: any) {
+export default function ReviewModal() {
+  const dispatch = useDispatch();
   return (
     <div className="xxs:w-72 md:w-550 lg:w-900 font-dm-sans bg-white  text-white rounded-lg">
       <div className="w-full lg:w-900 flex items-center justify-between bg-secondary h-16 md:h-20 px-6 md:px-7 lg:px-10 rounded-t md:rounded-t-lg">
@@ -11,7 +14,7 @@ export default function ReviewModal({ toggleReviewModal }: any) {
         <img
           src={closeIcon}
           className="w-7 cursor-pointer"
-          onClick={toggleReviewModal}
+          onClick={() => dispatch(toggleReviewModal())}
           alt=""
         />
       </div>

@@ -2,14 +2,20 @@ import { classNames } from "./../../utils/classNames";
 import React from "react";
 
 interface ButtonProp {
-  child: string;
+  child: any;
   className: any;
   type: "button" | "submit";
-  img?: string
-  onClick?: any
+  img?: string;
+  onClick?: any;
 }
 
-export default function Button({ child, type, className, img, onClick}: ButtonProp) {
+export default function Button({
+  child,
+  type,
+  className,
+  img,
+  onClick,
+}: ButtonProp) {
   return (
     <div className="capitalize" onClick={onClick}>
       <button
@@ -20,7 +26,7 @@ export default function Button({ child, type, className, img, onClick}: ButtonPr
         type={type}
       >
         <div className="flex justify-center items-center">
-          {img && <img src={img} className="xs:hidden  pr-3"/>} {child}
+          {img && <img src={img} className="xs:hidden  pr-3" />} {child}
         </div>
       </button>
     </div>
