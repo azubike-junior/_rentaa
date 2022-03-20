@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { toggleContactModal } from "../../services/Mutations/Modal";
 import { Link } from "react-router-dom";
 import { classNames } from "../../utils/classNames";
+import { IContact } from "../../services/Queries/findUserContact";
 
 type CopyProps = {
   title: string;
@@ -67,7 +68,11 @@ export function CopyField({
   );
 }
 
-export default function ViewContactModal() {
+export default function ViewContactModal({
+  phone_number,
+  twitter,
+  instagram,
+}: IContact) {
   const [isCopied, setIsCopied] = useState({
     noCopied: false,
     igCopied: false,
@@ -118,29 +123,29 @@ export default function ViewContactModal() {
       <div className="py-7 px-4 md:px-7">
         <CopyField
           title="Copy “Phone Number”"
-          input={text.number}
-          onClick={() => copy(text.number, "noCopied")}
+          input={phone_number}
+          onClick={() => copy(phone_number, "noCopied")}
           img2
           classname={isCopied.noCopied ? " w-10" : ""}
           link={""}
         />
         <CopyField
           title="Copy “Instagram”"
-          input={text.IG}
-          onClick={() => copy(text.IG, "igCopied")}
+          input={instagram}
+          onClick={() => copy(instagram, "igCopied")}
           img
           classname={isCopied.igCopied ? " w-7" : " bg-none"}
           img2
-          link={`https://${text.IG}`}
+          link={`https://${instagram}`}
         />
         <CopyField
           title="Copy “Twitter”"
-          input={text.twit}
+          input={twitter}
           classname={isCopied.twitCopied ? "" : ""}
           img
           img2
           onClick={() => copy(text.twit, "twitCopied")}
-          link={`https://${text.twit}`}
+          link={`https://${twitter}`}
         />
       </div>
     </div>

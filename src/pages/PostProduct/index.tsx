@@ -61,10 +61,6 @@ export default function PostProduct() {
     },
   });
 
-  console.log("=============error=======================");
-  console.log(error);
-  console.log("====================================");
-
   const { data: productCategories } = useGetCategoriesQuery("");
   const categories: [] = productCategories?.items?.map((item: any) => {
     return {
@@ -73,6 +69,10 @@ export default function PostProduct() {
     };
   });
 
+
+  /**
+   * Package returns 
+   */
   const lga = NaijaStates.lgas(
     getValues("state") ? getValues("state") : "lagos"
   );
@@ -105,6 +105,12 @@ export default function PostProduct() {
     setFileError("");
   };
 
+
+  /**
+   * deletes image from state(interface)
+   * @param id 
+   * 
+   */
   const deleteFile = (id: string) => {
     const newPhotos = photos.filter((photo) => photo.id !== id);
     const newDocs = docs.filter((doc: any) => doc.id !== id);
@@ -117,6 +123,12 @@ export default function PostProduct() {
     setState(newState);
   };
 
+
+  /**
+   * 
+   * @param data 
+   * @returns 
+   */
   const postProductHandler = (data: IProductInputs) => {
     if (photos.length === 0) {
       return setFileError("Please upload Gadgets to continue");
@@ -131,6 +143,7 @@ export default function PostProduct() {
       contact_info,
       description,
     } = data;
+    console.log(">>>>data", data)
     let images = docs.map((item: any) => item.file);
     const formData = new FormData();
     formData.append("name", name);

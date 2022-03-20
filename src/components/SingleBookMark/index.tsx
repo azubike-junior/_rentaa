@@ -24,9 +24,9 @@ export default function SingleBookMark({
   divClass
 }: BookmarkProp) {
   return (
-    <div className=" xxs:grid xxs:place-items-center  xs:flex sm:flex flex flex-row my-12">
+    <div className=" xxs:grid xxs:place-items-center xs:flex sm:flex flex flex-row my-12">
       <img src={img} alt="" className={imgClass} />
-      <div className="md:pt-6 xxs:pl-4">
+      <div className="md:pt-6 xxs:pl-4 ">
         <h1 className=" text-black text-lg md:text-2xl font-dm-sans">
           {product}
         </h1>

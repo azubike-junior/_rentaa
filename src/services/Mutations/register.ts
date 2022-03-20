@@ -29,10 +29,6 @@ export const registerUser = createAsyncThunk(
         rest
       );
 
-      // const response = await axiosInstance.post("/auth/registration", rest);
-
-      // console.log(">>>>>>RESPONSE ", response.data.data);
-
       if (response.data.statusCode === 201) {
         history.push("/verify_email");
         return response.data;

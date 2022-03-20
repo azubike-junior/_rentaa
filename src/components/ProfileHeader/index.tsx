@@ -28,11 +28,8 @@ export default function ProfileHeader() {
   const { data: avatarData, loading: profileAvatarLoading } = useSelector(
     (state: RootState) => state.getProfileAvatarReducer
   );
-  const { profile } = data;
 
-  console.log("====================================");
-  console.log(data);
-  console.log("====================================");
+  const { profile } = data;
 
   const avatarId = localStorage.getItem("avatarId");
 
@@ -40,10 +37,21 @@ export default function ProfileHeader() {
     ? profile?.description.split(".")
     : "";
 
+  /**
+   * when the getUserById func is called after a user logs in
+   * it get a response (Profile: avatarId), the response is set to the local storage
+   *
+   */
   useEffect(() => {
     dispatch(getUserById());
   }, []);
 
+
+  /**
+   * the value(avatarId) in the localStorage Is used to get an image
+   * in the getProfileAvatar func, the user image is fetched by the avatarId
+   * the setImage func is used to set the buffer response returned from the getProfileAvatar.
+   */
   useEffect(() => {
     if (avatarId) {
       dispatch(getProfileAvatar({ avatarId, setImage }));
@@ -56,15 +64,15 @@ export default function ProfileHeader() {
         <Loader />
       ) : (
         <div className="md:flex">
-          <div className="md:pr-8 pb-2 ">
+          <div className="pb-2 ">
             <img
               src={!image ? domAvatar : image}
               alt=""
-              className=" w-28 h-28 md:w-40 md:h-40 rounded-full mx-auto md:mx-0"
+              className=" w-28 h-28 md:w-40 md:h-40 rounded-full mx-auto md:mx-0 border-2"
             />
           </div>
 
-          <div>
+          <div className="md:pl-14">
             <h1 className="text-base md:text-xl font-dm-sans pb-2 text-center md:text-left">
               {data?.first_name && capitalizeFirstLetter(data?.first_name)}{" "}
               {data?.last_name && capitalizeFirstLetter(data?.last_name)}

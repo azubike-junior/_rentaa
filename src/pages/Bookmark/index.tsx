@@ -32,24 +32,24 @@ export default function Bookmark() {
           <div className=" md:mt-14 mb-20">
             <SingleBookMark
               img={bookImg}
-              imgClass="xxs:pb-2 w-40 mr-6 md:w-60 lg:w-72 md:pr-10"
+              imgClass="xxs:pb-2 xs:mr-6 w-40 h-44 md:w-60 md:h-60 lg:w-72 lg:h-72 md:pr-10"
               price="#20,000/week"
               name="Olaotan Faji"
               product="Canon 5D Mark IV"
               divClass="block md:flex flex-row pt-4 md xxs: place-items-center md:pt-5 lg:pt-12 font-dm-sans"
-              buttonClass="bg-secondary mb-3 md:mb-0 text-sm md:text-base py-2 md:py-4 text-white px-4 md:px-6 mr-6"
-              buttonClass2="border-2 text-sm md:text-base border-secondary py-2 md:py-3.5 text-secondary px-6 xs:px-3"
+              buttonClass="xs:mx-auto bg-secondary mb-3 md:mb-0 text-xs md:text-base py-2 md:py-4 text-white px-4 md:px-6 mr-6"
+              buttonClass2="px-2 xs:px-2 border-2 text-xs md:text-base border-secondary py-1.5 md:py-3.5 md:px-3 text-secondary "
             />
 
             <SingleBookMark
               img={bookImg2}
-              imgClass="xxs:pb-2 w-40 mr-6 md:w-60 lg:w-72 md:pr-10"
+              imgClass="xxs:pb-2 xs:mr-6 w-40 h-44 md:w-60 md:h-60 lg:w-72 lg:h-72 md:pr-10"
               price="#20,000/week"
               name="Blessing kamar"
               product="Canon 5D Mark IV"
-              divClass="block md:flex flex-row pt-4 md xxs: place-items-center md:pt-5 lg:pt-12 font-dm-sans"
-              buttonClass="bg-secondary mb-3 md:mb-0 text-sm md:text-base py-2 md:py-4 text-white px-4 md:px-6 mr-6"
-              buttonClass2="border-2 text-sm md:text-base border-secondary py-2 md:py-3.5 text-secondary px-6 xs:px-3"
+              divClass="block md:flex flex-row pt-4 md place-items-center md:pt-5 lg:pt-12 font-dm-sans"
+              buttonClass="xs:mx-auto bg-secondary mb-3 md:mb-0 text-xs md:text-base py-2 md:py-4 text-white px-4 md:px-6 mr-6"
+              buttonClass2="px-2 xs:px-2 border-2 text-xs md:text-base  border-secondary py-1.5 md:py-3.5 md:px-3 text-secondary "
             />
           </div>
         </div>

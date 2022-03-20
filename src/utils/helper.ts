@@ -139,4 +139,9 @@ export const setAllValues = (setValue: any, user: any) => {
 
 };
 
+export const baseUrl = "http://localhost:3002/api/v1";
+
+export const REGION = "us-east-1";
+export const bucketName: string = "rentaa-gadgets";
+
 export { validateFileSize, validateFileType };

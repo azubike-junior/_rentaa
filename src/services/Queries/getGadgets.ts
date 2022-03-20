@@ -28,8 +28,6 @@ const initialState: initState = {
 };
 
 export const getGadgets = createAsyncThunk("getGadgets", async () => {
-  const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
-  const user: ITokenDecode = jwt_decode(accessToken);
   try {
     const response = await axiosInstance.get(`/gadgets?cover=true`);
     if (response.status === 200) {

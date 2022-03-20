@@ -30,8 +30,6 @@ const initialState: initState = {
 export const getProfileAvatar = createAsyncThunk(
   "getProfileAvatar",
   async ({ avatarId, setImage }: DataProps) => {
-    //   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>it got here ooooo");
-
     const token = JSON.parse(localStorage.getItem("accessToken") || "{}");
     const defaultOptions = {
       method: "get",
@@ -74,7 +72,6 @@ export const getProfileAvatar = createAsyncThunk(
         return response.statusText;
       }
     } catch (e: any) {
-      console.log(">>>>>>RESPONSE 2 ", e.response.data);
       return e.response.data;
     }
   }

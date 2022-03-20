@@ -9,12 +9,14 @@ interface initState {
   contactModalOpen: boolean;
   reviewModalOpen: boolean;
   editModalOpen: boolean;
+  showNotification: boolean;
 }
 
 const initialState: initState = {
   contactModalOpen: false,
   reviewModalOpen: false,
   editModalOpen: false,
+  showNotification: false,
 };
 
 const modalSlice = createSlice({
@@ -30,9 +32,20 @@ const modalSlice = createSlice({
     toggleEditModal(state) {
       state.editModalOpen = !state.editModalOpen;
     },
+    openNotification(state) {
+      state.showNotification = true;
+    },
+    closeNotification(state) {
+      state.showNotification = true;
+    },
   },
 });
 
-export const { toggleContactModal, toggleEditModal, toggleReviewModal } =
-  modalSlice.actions;
+export const {
+  toggleContactModal,
+  toggleEditModal,
+  toggleReviewModal,
+  openNotification,
+  closeNotification
+} = modalSlice.actions;
 export default modalSlice.reducer;

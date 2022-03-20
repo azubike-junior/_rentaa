@@ -1,14 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
+import { baseUrl } from "./helper";
 
 interface User {
   user_id: string;
   iat: number;
   exp: number;
 }
-
-const baseURL = "http://localhost:3002/api/v1";
 
 let accessToken: string = JSON.parse(
   localStorage.getItem("accessToken") || "{}"
@@ -22,7 +21,7 @@ let refresh_token: string = JSON.parse(
   : "";
 
 export const axiosInstance = axios.create({
-  baseURL,
+  baseURL: baseUrl,
   headers: { Authorization: `Bearer ${accessToken}` },
 });
 
@@ -38,7 +37,7 @@ axiosInstance.interceptors.request.use(async (req: any) => {
 
   if (!expired) return req;
 
-  const response = await axios.post(`${baseURL}/auth/refresh-token`, {
+  const response = await axios.post(`${baseUrl}/auth/refresh-token`, {
     refresh_token,
   });
 

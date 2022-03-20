@@ -13,15 +13,10 @@ import { getUserById } from "../../services/Queries/getUser";
 import { RootState } from "../../store/store";
 import { getGadgets } from "../../services/Queries/getGadgets";
 import { useParams } from "react-router-dom";
-const REGION = "us-east-1";
-const bucketName: string = "rentaa-gadgets";
+import { bucketName, REGION } from "../../utils/helper";
 
 export default function Profile() {
   const { user_name }: any = useParams();
-
-  // console.log("==============username======================");
-  // console.log(user_name);
-  // console.log("====================================");
 
   let { data: gadgets, loading: gadgetLoading } = useSelector(
     (state: RootState) => state.getGadgetReducer
@@ -30,6 +25,9 @@ export default function Profile() {
   let imageUrls;
   let gadgetKeys;
 
+  /**
+   * 
+   */
   if (gadgets?.length > 0) {
     gadgetKeys = gadgets?.map((gadget) => {
       return gadget.photos[0].key;
@@ -81,9 +79,9 @@ export default function Profile() {
         <ReviewSection />
       </div>
 
-      <Modal isOpen={contactModalOpen}>
+      {/* <Modal isOpen={contactModalOpen}>
         <ViewContactModal />
-      </Modal>
+      </Modal> */}
 
       <Modal isOpen={reviewModalOpen}>
         <ReviewModal />

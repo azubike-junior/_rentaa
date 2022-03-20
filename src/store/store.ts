@@ -9,6 +9,11 @@ import getUserById from "./../services/Queries/getUser";
 import modalReducer from "./../services/Mutations/Modal";
 import editProfileReducer from "./../services/Mutations/editProfile";
 import getProfileAvatarReducer from "../services/Queries/getProfileAvatar";
+import forgetPasswordReducer from './../services/Mutations/forgetPassword';
+import getGadgetsByCategoryReducer from './../services/Queries/getGadgetsByCategory';
+import verifyEmailReducer from './../services/Queries/verifyEmail';
+import findContactReducer from './../services/Queries/findUserContact';
+
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +26,10 @@ export const store = configureStore({
     editProfileReducer,
     getGadgetReducer,
     getProfileAvatarReducer,
+    forgetPasswordReducer,
+    getGadgetsByCategoryReducer,
+    verifyEmailReducer,
+    findContactReducer
   },
   // middleware: (gdm) => gdm().concat(openAccountApi.middleware),
   devTools: true,

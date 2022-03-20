@@ -10,6 +10,12 @@ import { RootState } from "../../store/store";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileAvatar } from "../../services/Queries/getProfileAvatar";
 import { getUserById } from "../../services/Queries/getUser";
+import {
+  closeNotification,
+  openNotification,
+} from "../../services/Mutations/Modal";
+import { motion } from "framer-motion/dist/framer-motion";
+import Notification from "./../Notification/index";
 
 export default function Header() {
   const location = useLocation();
@@ -18,10 +24,20 @@ export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+   const [isMouse, toggleMouse] = useState(false);
+     const toggleMouseMenu = () => {
+       toggleMouse(!isMouse);
+     };
+
   let avatarId: any;
 
   const user = localStorage.getItem("accessToken");
   avatarId = localStorage.getItem("avatarId");
+
+  /**
+   * same approach from the ProfileHeader Component is used to set the avatar image
+   * in the header
+   */
 
   useEffect(() => {
     if (user) {
@@ -69,11 +85,24 @@ export default function Header() {
           </Link>
         ) : (
           <div className="flex space-x-4 md:space-x-7 xl:space-x-10 pt-6 md:pt-2">
-            <img
-              className="w-6  md:w-8 lg:w-10"
-              src={notifyIcon}
-              alt="notify"
-            />
+            <motion.div
+              // className="menu-item"
+              onMouseEnter={toggleMouseMenu}
+              onMouseLeave={toggleMouseMenu}
+            >
+              <Link to="#">
+                <img
+                  className="w-6  md:w-8 lg:w-10 cursor-pointer"
+                  src={notifyIcon}
+                  alt="notify"
+                />
+              </Link>
+
+              <Notification isMouse={isMouse}/>
+            </motion.div>
+
+            {/* </motion.div> */}
+
             <Link to="/bookmark">
               <img
                 className="w-6  md:w-8 lg:w-10"

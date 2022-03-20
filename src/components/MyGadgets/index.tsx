@@ -5,7 +5,7 @@ import EmptyGadgetSection from "../EmptyGadgetSection";
 import Loader from "./../Loader/index";
 
 function SingleGadget({ img }: any) {
-  return <img src={img} className=" w-72 h-48 rounded-lg" alt="name" />;
+  return <img src={img} className=" w-64 h-40 xs:w-52 xs:h-36 md:w-72 md:h-48 rounded-lg" alt="name" />;
 }
 
 export default function MyGadgets({ gadgets, gadgetLoading }: any) {
@@ -14,8 +14,8 @@ export default function MyGadgets({ gadgets, gadgetLoading }: any) {
       {gadgetLoading ? (
         <Loader />
       ) : (
-        <div className="container max-w-7xl mx-auto px-8 py-10 my-10">
-          <div className="px-0 grid xs:grid-cols-2 xs:gap-x-5 grid-flow-row md:gap-y-6 md:pb-6 md:px-0 md:gap-x-7  md:grid-cols-3 gap-y-2 lg:gap-y-7 lg:px-0 lg:grid-cols-4">
+        <div className="container max-w-7xl mx-auto px-8 py-10 my-4">
+          <div className="px-0 grid gap-y-8 xs:grid-cols-2 xs:gap-y-9 xs:gap-x-5 grid-flow-row md:gap-y-6 md:pb-6 md:px-0 md:gap-x-7  md:grid-cols-3 lg:gap-y-7 lg:px-0 lg:grid-cols-4">
             {gadgets?.map((item: any) => {
               return <SingleGadget img={item} />;
             })}

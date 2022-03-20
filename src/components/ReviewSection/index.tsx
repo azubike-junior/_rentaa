@@ -15,11 +15,11 @@ export default function ReviewSection({ toggleReviewModal }: any) {
 
   return (
     <div className="container max-w-7xl mx-auto pb-14">
-      <h1 className="text-2xl md:px-8 font-medium mt-5">{user ? "Your Reviews" : "Reviews"}</h1>
+      <h1 className="text-base md:text-2xl px-8 md:px-8 font-medium mt-5">{user ? "Your Reviews" : "Reviews"}</h1>
 
       {profile?.reviews.length === 0 ? (
-        <p className="pt-5">
-          <i className="md:px-8 pt-5">No Reviews yet</i>
+        <p className="pt-2 md:pt-5">
+          <i className="text-sm md:text-xl px-8 md:px-8 pt-5">No Reviews yet</i>
         </p>
       ) : (
         <>
