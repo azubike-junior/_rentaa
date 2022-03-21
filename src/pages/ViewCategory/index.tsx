@@ -49,7 +49,7 @@ export default function ViewCategory() {
     (category: any) => category.id === id
   )?.name;
 
-  console.log(">>>>>contactData", contactData);
+  // console.log(">>>>>contactData", contactData);
 
   //modify the gadgets response in categories to fit into the components
   const gadgetsData = categoryGadgets?.map((gadget: any) => {
@@ -105,7 +105,9 @@ export default function ViewCategory() {
                   <p className="text-gray-400 pt-2 md:pt-5 text-sm md:text-lg font-dm-sans">
                     Posted by{" "}
                     <span className=" text-secondary">
-                      <Link to="/profile">{`${firstName}  ${lastName}`}</Link>
+                      <Link
+                        to={`/user_profile/${userId}`}
+                      >{`${firstName}  ${lastName}`}</Link>
                     </span>
                   </p>
                   <div className="block md:flex flex-row pt-4 md xxs: place-items-center:pt-9 font-dm-sans">

@@ -31,6 +31,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 // import VerifyEmailSuccess from "./pages/VerifyEmailSuccess";
 import VerifyEmailSuccess from "./pages/VerifyEmailSuccess/index";
+import UserProfile from './pages/UserProfile/index';
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -77,6 +78,7 @@ function App() {
           component={VerifyPasswordSuccess}
         />
         <Route exact path={"/dashboard"} component={Dashboard} />
+        <Route exact path={"/user_profile/:id"} component={UserProfile} />
         <Route exact path={"/sign_up"} component={SignUp} />
         <Route exact path={"/forget_password"} component={ForgetPassword} />
         <Route exact path={"/login"} component={Login} />
@@ -84,7 +86,11 @@ function App() {
         <Route exact path={"/bookmark"} component={Bookmark} />
         <Route exact path={"/post_product"} component={PostProduct} />
         <Route exact path={"/profile/"} component={Profile} />
-        <Route exact path={"/product_description/:id"} component={ProductDesc} />
+        <Route
+          exact
+          path={"/product_description/:id"}
+          component={ProductDesc}
+        />
         <Route exact path={"/view_categories/:id"} component={ViewCategory} />
         <Route exact path={"/contact_us"} component={Contact} />
         <Route
