@@ -23,12 +23,12 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-    "typescript": "^4.4.4", 
+    "typescript": "^4.4.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start:dev": "concurrently \"react-scripts --openssl-legacy-provider start\" \"cd node_modules/cors-anywhere/lib/ && npm run start",
-    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && craco start",
+    "start": " craco start",
     "build": "npm run build:css && react-scripts build",
     "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css",

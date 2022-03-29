@@ -16,7 +16,6 @@ module.exports = {
     },
     extend: {
       height: {
-  
         600: "30rem",
         700: "40rem",
         800: "48rem",
@@ -36,10 +35,15 @@ module.exports = {
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
       },
+      outline: {
+        blue: ["2px solid  rgba(53, 32, 140, 0.3)", "10px"],
+        secondary: ["1px solid  #35208C"],
+      },
       colors: {
         secondary: "#35208C",
         primary: "#EFECEC",
         darkAsh: "#222229",
+        home: "#252525",
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",

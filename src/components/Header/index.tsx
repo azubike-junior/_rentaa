@@ -13,10 +13,16 @@ export default function Header() {
   const pathName = location.pathname;
 
   return (
-    <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full sticky top-0 z-30">
-      <div className="px-2 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-8 md:pt-5">
+    <div
+      className={
+        pathName === "/"
+          ? "bg-white sticky top-0 "
+          : "bg-white shadow-lg sticky top-0"
+      }
+    >
+      <div className="px-4 flex flex-row justify-between items-center mx-auto md:max-w-7xl py-3 md:py-4">
         <Link to={user ? "/dashboard" : "/"}>
-          <img src={rentaa} className=" mt-3 w-20 md:w-32" alt="" />
+          <img src={rentaa} className=" my-2 w-20 md:w-32" alt="" />
         </Link>
         {!user ? (
           <div className="hidden md:flex pt-4 space-x-36 font-dm-sans text-base text-black">
@@ -44,7 +50,7 @@ export default function Header() {
             <Button
               type="button"
               child={pathName === "/login" ? "Create An Account" : "Login"}
-              className="text-secondary border border-secondary rounded px-6 md:px-9 py-3 mt-4"
+              className="text-secondary border border-secondary rounded px-6 md:px-9 py-2 my-2"
             />
           </Link>
         ) : (
