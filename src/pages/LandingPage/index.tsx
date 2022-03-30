@@ -1,7 +1,10 @@
 import React from 'react';
+import LandingPageNavBar from '../../components/LandingPageNavBar';
 
 const LandingPage : React.FC = () => {
-    return <></>
+    return (
+        <LandingPageNavBar />
+    )
 }
 
 export default LandingPage;
