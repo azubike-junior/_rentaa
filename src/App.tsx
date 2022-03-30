@@ -15,7 +15,7 @@ import Profile from "./pages/Profile";
 import ProductDesc from "./pages/ProductDesc/index";
 import ViewCategory from "./pages/ViewCategory";
 import Contact from "./pages/ContactUs";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/HomePage";
 
 function App() {
   return (
