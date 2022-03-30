@@ -16,6 +16,7 @@ import ProductDesc from "./pages/ProductDesc/index";
 import ViewCategory from "./pages/ViewCategory";
 import Contact from "./pages/ContactUs";
 import Homepage from "./pages/HomePage";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Header />
         <main>
           <Route exact path={"/"} component={Homepage} />
+          <Route exact path={"/landingPage"} component={LandingPage} />
           <Route exact path={"/dashboard"} component={Dashboard} />
           <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
