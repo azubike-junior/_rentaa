@@ -3,10 +3,15 @@ import rentaa from "../../images/rentaa_w.svg";
 import instagram from "../../images/instagram.svg";
 import facebook from "../../images/facebook.svg";
 import twitter from "../../images/twitter.svg";
+import { Link, useParams, useLocation } from "react-router-dom";
+
 
 export default function Footer() {
+  const location = useLocation();
+  const pathName = location.pathname;
+
   return (
-    <div className="w-full text-white bg-darkAsh py-4 md:py-16 flex font-poppins justify-center items-center">
+    <div className={pathName =="/" ? "hidden":" w-full text-white bg-darkAsh py-4 md:py-16 flex font-poppins justify-center items-center"}>
   <div className="max-w-7xl py-9 block md:grid grid-cols-2 md:gap-0 lg:gap-10 md:px-14 lg:px-10 xl:gap-20">
         <div className="pb-10">
           <img

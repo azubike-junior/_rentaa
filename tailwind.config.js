@@ -10,6 +10,20 @@ module.exports = {
       ...defaultTheme.screens,
       "2xl": { min: "2560px" },
     },
+    fontSize: {
+      xs: ".67rem",
+      sm: ".875rem",
+      tiny: ".875rem",
+      base: "1rem",
+      lg: "1.125rem",
+      xl: "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "4rem",
+      "7xl": "5rem",
+    },
     fontFamily: {
       "dm-sans": ["DM Sans", "sans-serif"],
       poppins: ["Poppins", "sans-serif"],
@@ -36,7 +50,7 @@ module.exports = {
         "purple-bg": "url('../images/purpleBackground.svg')",
       },
       outline: {
-        blue: ["2px solid  rgba(53, 32, 140, 0.3)", "10px"],
+        blue: ["10px solid  rgba(53, 32, 140, 0.3)", "10px"],
         secondary: ["1px solid  #35208C"],
       },
       colors: {
@@ -47,6 +61,7 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
+        homesec: "#BFB9D9",
       },
     },
   },
