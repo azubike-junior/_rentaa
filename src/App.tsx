@@ -22,10 +22,10 @@ function App() {
   return (
     <div className="relative">
       <Router>
-        <Header />
+          <Route exact path={"/landingPage"} component={LandingPage} />
+        {/* <Header /> */}
         <main>
           <Route exact path={"/"} component={Homepage} />
-          <Route exact path={"/landingPage"} component={LandingPage} />
           <Route exact path={"/dashboard"} component={Dashboard} />
           <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
