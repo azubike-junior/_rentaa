@@ -6,7 +6,7 @@ import TopLeft from '../../images/topLeft.svg';
 
 const AccessPossibilities : React.FC = () => {
     return (
-        <section className="mt-12 lg:flex lg:items-center">
+        <section className="mt-12 lg:flex lg:items-center flex-row-reverse">
             <figure className='relative xxs:w-64 xs:mx-auto xs:w-72 xs:h-72 w-90 mx-auto md:w-96 md:h-96'>
                 <img className='w-full' src={LandingPageImage} />
                 <img className='absolute xxs:w-18 xs:w-18 w-26 -bottom-7 -left-4' src={BottomLeft} />
@@ -22,6 +22,7 @@ const AccessPossibilities : React.FC = () => {
                 </div>
             {/* Set the line hieght of the second paragraph to 18px */}
             {/* Remember to change the line height of the first paragraph to 65.1px */}
+            {/* Rewmber to change the z-index of some items in the figure element */}
             </article>
         </section>
     )
