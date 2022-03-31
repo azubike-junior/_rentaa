@@ -1,9 +1,12 @@
 import React from 'react';
+import AccessPossibilities from '../../components/AccessPossibilities';
 import LandingPageNavBar from '../../components/LandingPageNavBar';
 
 const LandingPage : React.FC = () => {
-    return (
+    return (<>
         <LandingPageNavBar />
+        <AccessPossibilities />
+    </>
     )
 }
 
