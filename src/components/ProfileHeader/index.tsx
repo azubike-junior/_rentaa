@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import domAvatar from "../../images/avatar.jpg";
 import {
   toggleContactModal,
   toggleEditModal,
   toggleReviewModal,
+  toggleChangePasswordModal,
 } from "../../services/Mutations/Modal";
 import { RootState } from "../../store/store";
 import { capitalizeFirstLetter } from "../../utils/helper";
@@ -13,21 +14,23 @@ import Button from "../Button";
 import { AiOutlineEdit } from "react-icons/ai";
 import { getUserById } from "./../../services/Queries/getUser";
 import { getProfileAvatar } from "./../../services/Queries/getProfileAvatar";
+import settingIcon from "../../images/settingIcons.svg";
 import Loader from "../Loader";
 
 export default function ProfileHeader() {
   const access = localStorage.getItem("accessToken");
   const [user, setUser] = useState(access);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<any>();
+  const [openSettings, setOpenSettings] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { loading: userLoading, data } = useSelector(
     (state: RootState) => state.getUserById
   );
 
-  const { data: avatarData, loading: profileAvatarLoading } = useSelector(
-    (state: RootState) => state.getProfileAvatarReducer
-  );
+  localStorage.setItem("first_name", data?.first_name);
+  localStorage.setItem("last_name", data?.last_name);
 
   const { profile } = data;
 
@@ -37,15 +40,22 @@ export default function ProfileHeader() {
     ? profile?.description.split(".")
     : "";
 
+  const showSettings = () => {
+    setOpenSettings(true);
+  };
+
+  const closeSettings = () => {
+    setOpenSettings(false);
+  };
+
   /**
    * when the getUserById func is called after a user logs in
    * it get a response (Profile: avatarId), the response is set to the local storage
    *
    */
   useEffect(() => {
-    dispatch(getUserById());
+    dispatch(getUserById({setImage}));
   }, []);
-
 
   /**
    * the value(avatarId) in the localStorage Is used to get an image
@@ -59,7 +69,14 @@ export default function ProfileHeader() {
   }, []);
 
   return (
-    <div className="px-6 max-w-7xl my-16 mb-32 mx-auto">
+    <div
+      className="px-6 max-w-7xl my-16 mb-32 mx-auto"
+      onClick={() => {
+        if (openSettings) {
+          closeSettings();
+        }
+      }}
+    >
       {userLoading ? (
         <Loader />
       ) : (
@@ -96,7 +113,7 @@ export default function ProfileHeader() {
                 <Link to="/post_product">
                   <Button
                     child="Post a Gadget"
-                    className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-3 text-white"
+                    className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-8 text-white"
                     type="button"
                   />
                 </Link>
@@ -110,15 +127,48 @@ export default function ProfileHeader() {
               )}
 
               {user ? (
-                <Button
-                  child="Edit Profile"
-                  className="px-8 border-2 border-secondary text-xs md:text-sm lg:text-base text-secondary sm:px-9 py-3.5"
-                  type="button"
-                  onClick={() => {
-                    dispatch(getUserById());
-                    dispatch(toggleEditModal());
-                  }}
-                />
+               
+                <div className="">
+                  <div
+                    onClick={() => showSettings()}
+                    className="cursor-pointer flex font-dm-sans md:justify-center md:items-center pt-2"
+                  >
+                    <img src={settingIcon} className="w-6 ml-4 md:ml-0 md:w-10 mr-2" alt="" />
+                    <p className="text-base md:text-xl text-secondary">
+                      Settings
+                    </p>
+                  </div>
+                  {openSettings && (
+                    <div className="font-dm-sans ml-1 mt-4 px-4 md:px-6 py-5 cursor-pointer shadow-xl text-sm md:text-base">
+                      <ul className=" space-y-3">
+                        <li
+                          onClick={() => {
+                            dispatch(getUserById({}));
+                            dispatch(toggleEditModal());
+                          }}
+                        >
+                          Edit Profile
+                        </li>
+                        <li
+                          onClick={() => {
+                            dispatch(toggleChangePasswordModal());
+                          }}
+                        >
+                          Change Password
+                        </li>
+                        <li
+                          className="text-red-700"
+                          onClick={() => {
+                            localStorage.clear();
+                            history.push("/");
+                          }}
+                        >
+                          Log out
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <Button
                   child="Post Review"

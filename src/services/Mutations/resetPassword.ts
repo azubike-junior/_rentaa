@@ -1,8 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
-import { IRegistration, UserResponse } from "../../interfaces";
-import { axiosInstance } from "./../../utils/axiosInstance";
+import { UserResponse } from "../../interfaces";
+import { axiosInstance } from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/helper";
+
+interface DataProps {
+  password: any;
+  history: any;
+  token: string;
+}
 
 interface initState {
   error: any;
@@ -20,51 +26,56 @@ const initialState: initState = {
   isSuccessful: false,
 };
 
-export const registerUser = createAsyncThunk(
-  "register",
-  async ({ history, ...rest }: IRegistration, { rejectWithValue }) => {
+export const resetPassword = createAsyncThunk(
+  "resetPassword",
+  async ({ password, history, token }: DataProps, { rejectWithValue }) => {
+    console.log(password);
     try {
       const response = await axios.post(
-        `http://localhost:3002/api/v1/auth/registration`,
-        rest
+        `${baseUrl}/auth/reset-password/${token}`,
+        {
+          password,
+        }
       );
-      console.log(">>>>response", response)
+      console.log(">>>>>response", response.status);
 
       if (response.status === 201) {
-        history.push("/verify_email");
+        history.push("/forget_password_success_response");
+        return response.data;
+      }
+      if (response.data.status === 404) {
         return response.data;
       }
     } catch (e: any) {
-      console.log(">>>>>>RESPONSE 2 ", e.response.data);
       return rejectWithValue(e.response.data);
     }
   }
 );
 
-export const RegisterSlice = createSlice({
+const resetPasswordSlice = createSlice({
   name: "bvn",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(registerUser.rejected, (state, action) => {
+    builder.addCase(resetPassword.rejected, (state, action) => {
+      console.log(">>>>>s", action.payload);
       state.error = action.payload;
       state.error2 = action.error.name;
       state.loading = false;
       state.isSuccessful = false;
     });
-    builder.addCase(registerUser.fulfilled, (state, action) => {
+    builder.addCase(resetPassword.fulfilled, (state, action) => {
       state.loading = true;
       state.data = action.payload;
       state.loading = false;
       state.isSuccessful = true;
       state.error = "";
     });
-    builder.addCase(registerUser.pending, (state, action) => {
+    builder.addCase(resetPassword.pending, (state, action) => {
       state.loading = true;
       state.error = action.payload;
     });
   },
 });
 
-// export const { useRegisterMutation } = AuthHandler;
-export default RegisterSlice.reducer;
+export default resetPasswordSlice.reducer;

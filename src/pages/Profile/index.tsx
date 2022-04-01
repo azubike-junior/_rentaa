@@ -11,37 +11,53 @@ import EditProfileModal from "./../../components/EditProfileModal/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../services/Queries/getUser";
 import { RootState } from "../../store/store";
-import { getGadgets } from "../../services/Queries/getGadgets";
+// import { getGadgets } from "../../services/Queries/getGadgets";
 import { useParams } from "react-router-dom";
 import { bucketName, REGION } from "../../utils/helper";
+import { getGadgets } from "./../../services/Queries/getGadgets";
+import { useGetGadgetsQuery } from "../../services/Queries/queries";
+import { IGadgets } from "./../../interfaces/index";
+import ChangePasswordModal from "./../../components/ChangePasswordModal/index";
+import ChangePasswordSuccessModal from "./../../components/changePasswordSuccessModal/index";
 
 export default function Profile() {
-  const { user_name }: any = useParams();
-
   let { data: gadgets, loading: gadgetLoading } = useSelector(
     (state: RootState) => state.getGadgetReducer
   );
 
+  const { loading: userLoading, data } = useSelector(
+    (state: RootState) => state.getUserById
+  );
+
+  // console.log(">>>>>>data from profile", data)
+
   let imageUrls;
-  let gadgetKeys;
+  let gadgetData;
 
   /**
-   * 
+   *
    */
   if (gadgets?.length > 0) {
-    gadgetKeys = gadgets?.map((gadget) => {
-      return gadget.photos[0].key;
+    gadgetData = gadgets?.map((gadget) => {
+      return { gadgetKey: gadget.photos[0].key, id: gadget.id };
     });
     const href = "https://s3." + REGION + ".amazonaws.com/";
     const bucketUrl = href + bucketName + "/";
-    imageUrls = gadgetKeys?.map((key: any) => {
-      return bucketUrl + encodeURIComponent(key);
+    imageUrls = gadgetData?.map((gadget: any) => {
+      return {
+        image: bucketUrl + encodeURIComponent(gadget.gadgetKey),
+        id: gadget.id,
+      };
     });
   }
 
-  const { editModalOpen, reviewModalOpen, contactModalOpen } = useSelector(
-    (state: RootState) => state.modalReducer
-  );
+  const {
+    editModalOpen,
+    reviewModalOpen,
+    changePasswordSuccessOpen,
+    changePasswordOpen,
+    contactModalOpen,
+  } = useSelector((state: RootState) => state.modalReducer);
 
   const dispatch = useDispatch();
 
@@ -76,15 +92,20 @@ export default function Profile() {
         ) : (
           <MyGadgets gadgets={imageUrls} gadgetLoading={gadgetLoading} />
         )}
-        <ReviewSection />
+
+        <ReviewSection reviews={data?.profile?.reviews} />
       </div>
 
       {/* <Modal isOpen={contactModalOpen}>
         <ViewContactModal />
       </Modal> */}
 
-      <Modal isOpen={reviewModalOpen}>
-        <ReviewModal />
+      <Modal isOpen={changePasswordOpen}>
+        <ChangePasswordModal />
+      </Modal>
+
+      <Modal isOpen={changePasswordSuccessOpen}>
+        <ChangePasswordSuccessModal />
       </Modal>
 
       <Modal isOpen={editModalOpen}>

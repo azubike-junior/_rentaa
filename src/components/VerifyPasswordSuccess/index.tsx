@@ -17,20 +17,20 @@ export default function VerifyPasswordSuccess() {
           </Link>
         </div>
 
-        <div className="flex flex-col text-left container uppercase bg-white md:pb-20 md:w-900 text-sm rounded-lg">
+        <div className="flex flex-col text-left container bg-white md:pb-20 md:w-900 text-sm rounded-lg">
           <img
             src={verifyImage}
             className=" h-48 md:h-64 container round-t-lg md:rounded-none"
             alt="verifyImage"
           />
 
-          <h1 className="text-center mb-6 text-xl md:text-3xl pt-32 capitalize bolder">
+          <h1 className="text-center mb-6 text-xl md:text-3xl pt-32 uppercase bolder">
             Password Reset Request
           </h1>
-          <p className="text-center md:text-xl lowercase">
+          <p className="text-center md:text-xl ">
             A password reset link has been sent to your email.
           </p>
-          <p className="pb-4 text-center md:text-xl lowercase ">
+          <p className="pb-4 text-center md:text-xl ">
             You can also check your spam, if you dont see the email
           </p>
 

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 /**
  * method to get all categories.
  */
-export const category = createApi({
+export const queries = createApi({
   reducerPath: "categoryPath",
   baseQuery: fetchBaseQuery({
     baseUrl: `http://localhost:3002/api/v1/`,
@@ -20,7 +20,10 @@ export const category = createApi({
     getCategories: build.query({
       query: () => `categories`,
     }),
+    getGadgets: build.query({
+      query: () => `/gadgets?cover=true`,
+    }),
   }),
 });
 
-export const { useGetCategoriesQuery } = category;
+export const { useGetCategoriesQuery, useGetGadgetsQuery } = queries;

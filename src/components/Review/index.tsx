@@ -1,5 +1,5 @@
 type ReviewProps = {
-    imageUrl : string;
+    imageUrl : any;
     reviewText : string;
     authorName : string;
 }

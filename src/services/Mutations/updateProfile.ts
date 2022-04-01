@@ -5,6 +5,7 @@ import { axiosInstance } from "../../utils/axiosInstance";
 interface DataProps {
   formData: any;
   history: any;
+  photoId: string
 }
 
 interface initState {
@@ -23,11 +24,11 @@ const initialState: initState = {
   isSuccessful: false,
 };
 
-export const postGadget = createAsyncThunk(
+export const updateGadget = createAsyncThunk(
   "register",
-  async ({ formData, history }: DataProps, { rejectWithValue }) => {
+  async ({ formData, history, photoId }: DataProps, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post("/gadgets", formData);
+      const response = await axiosInstance.patch(`/gadgets/${photoId}`, formData);
       console.log(">>>>>response", response);
 
       if (response.data.status === 201) {
@@ -40,29 +41,29 @@ export const postGadget = createAsyncThunk(
   }
 );
 
-const postGadgetSlice = createSlice({
+const updateGadgetSlice = createSlice({
   name: "bvn",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(postGadget.rejected, (state, action) => {
+    builder.addCase(updateGadget.rejected, (state, action) => {
       state.error = action.payload;
       state.error2 = action.error.name;
       state.loading = false;
       state.isSuccessful = false;
     });
-    builder.addCase(postGadget.fulfilled, (state, action) => {
+    builder.addCase(updateGadget.fulfilled, (state, action) => {
       state.loading = true;
       state.data = action.payload;
       state.loading = false;
       state.isSuccessful = true;
       state.error = "";
     });
-    builder.addCase(postGadget.pending, (state, action) => {
+    builder.addCase(updateGadget.pending, (state, action) => {
       state.loading = true;
       state.error = action.payload;
     });
   },
 });
 
-export default postGadgetSlice.reducer;
+export default updateGadgetSlice.reducer;

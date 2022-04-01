@@ -185,7 +185,7 @@ export function InputField({
           className={classNames(
             !errors && "focus:border-green-600",
             errors && "border-red-500 focus:border-red-500",
-            disabled && "px-0 border-0 ",
+            disabled && "bg-lightCream w-full  border-0 ",
             "flex justify-center border-2 px-4 rounded "
           )}
         >
@@ -193,12 +193,15 @@ export function InputField({
             <textarea
               {...register(name, {
                 required,
+                minLength,
+                maxLength
               })}
               value={value}
+              placeholder={placeholder}
               className={classNames(
                 disabled && " bg-lightCream w-full px-6",
                 textAreaClass && textAreaClass,
-                "py-3 text-sm md:text-base md:px-4 w-full focus:outline-none font-dm-sans"
+                "py-3 text-black text-sm md:text-base md:px-4 w-full focus:outline-none font-dm-sans"
               )}
             />
           ) : (

@@ -10,6 +10,9 @@ interface initState {
   reviewModalOpen: boolean;
   editModalOpen: boolean;
   showNotification: boolean;
+  deleteModalOpen: boolean;
+  changePasswordOpen: boolean
+  changePasswordSuccessOpen: boolean
 }
 
 const initialState: initState = {
@@ -17,6 +20,9 @@ const initialState: initState = {
   reviewModalOpen: false,
   editModalOpen: false,
   showNotification: false,
+  deleteModalOpen: false,
+  changePasswordOpen: false,
+  changePasswordSuccessOpen: false
 };
 
 const modalSlice = createSlice({
@@ -38,6 +44,15 @@ const modalSlice = createSlice({
     closeNotification(state) {
       state.showNotification = true;
     },
+    toggleDeleteModal(state) {
+      state.deleteModalOpen = !state.deleteModalOpen;
+    },
+    toggleChangePasswordModal(state) {
+      state.changePasswordOpen = !state.changePasswordOpen
+    },
+    toggleChangePasswordSuccessModal(state) {
+      state.changePasswordSuccessOpen = !state.changePasswordSuccessOpen
+    }
   },
 });
 
@@ -46,6 +61,9 @@ export const {
   toggleEditModal,
   toggleReviewModal,
   openNotification,
-  closeNotification
+  closeNotification,
+  toggleDeleteModal,
+  toggleChangePasswordModal,
+  toggleChangePasswordSuccessModal
 } = modalSlice.actions;
 export default modalSlice.reducer;

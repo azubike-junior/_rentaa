@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "../../interfaces/index";
+import { baseUrl } from "../../utils/helper";
 
 export interface IData {
   data: string;
@@ -29,9 +30,18 @@ const initialState: initState = {
 export const getGadgetsByCategory = createAsyncThunk(
   "getGadgetsByCategory",
   async (id: string) => {
+    // console.log(">>>>>>>>>got to getGadgetsByCategory")
     try {
-      const response = await axiosInstance.get(`/categories/${id}/gadgets`);
+      const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
 
+      // console.log(">>>>>> accessToken", accessToken)
+      const response = await axios.get(`${baseUrl}/categories/${id}/gadgets`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      // console.log(">>>>>>respoinse", response)
       if (response.status === 200) {
         return response?.data?.items;
       }

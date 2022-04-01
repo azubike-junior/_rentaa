@@ -14,7 +14,7 @@ export default function VerifyEmailSuccess() {
     (state: RootState) => state.verifyEmailReducer
   );
 
-  console.log(">>>>id", error);
+  console.log(">>>>id", response?.status);
   useEffect(() => {
     dispatch(verifyEmail(token));
   }, []);
@@ -39,7 +39,7 @@ export default function VerifyEmailSuccess() {
             alt="verifyImage"
           />
 
-          {response?.statusCode === 200 && (
+          {response?.status === 200 && (
             <h1 className="text-center mb-6 text-xl md:text-3xl pt-32 capitalize bolder">
               email verification successful
             </h1>

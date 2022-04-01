@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "../../interfaces/index";
+import { baseUrl } from "../../utils/helper";
 
 interface DataProps {
   formData: any;
@@ -29,7 +30,13 @@ const initialState: initState = {
 
 export const getGadgets = createAsyncThunk("getGadgets", async () => {
   try {
-    const response = await axiosInstance.get(`/gadgets?cover=true`);
+    const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
+
+    const response = await axios.get(`${baseUrl}/gadgets?cover=true`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     if (response.status === 200) {
       return response?.data?.items;
     }

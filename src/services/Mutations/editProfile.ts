@@ -7,6 +7,7 @@ import { axiosInstance } from "../../utils/axiosInstance";
 import { toggleEditModal } from "./Modal";
 import { getUserById } from "./../Queries/getUser";
 import { getProfileAvatar } from "../Queries/getProfileAvatar";
+import { baseUrl } from './../../utils/helper';
 
 interface DataProps {
   formData: any;
@@ -42,17 +43,22 @@ export const editProfile = createAsyncThunk(
     const user: ITokenDecode = jwt_decode(accessToken);
 
     try {
-      const response = await axiosInstance.patch(
-        `/users/${user?.user_id}`,
-        formData
+      const response = await axios.patch(
+        `${baseUrl}/users/${user?.user_id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
       );
-      // console.log(">>>>>>RESPONSE ", response.data.item);
+      console.log(">>>>>>RESPONSE ", response.data.item);
 
       if (response.data.status === 201) {
-        dispatch(getUserById());
+        dispatch(getUserById({}));
         dispatch(toggleEditModal());
         dispatch(getProfileAvatar({ avatarId, setImage }));
-        window.location.reload()
+        window.location.reload();
         return response.data;
       }
     } catch (e: any) {

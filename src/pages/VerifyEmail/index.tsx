@@ -1,17 +1,20 @@
 import React from "react";
 import verifyImage from "../../images/verifyImage.png";
 import logo from "../../images/rentaa_w.svg";
+import { Link } from 'react-router-dom';
 
 export default function VerifyEmail() {
   return (
     <div className="bg-secondary font-dm-sans">
       <div className="flex flex-col items-center">
         <div className="mb-8 mt-24">
-          <img
-            src={logo}
-            className="h-24 w-24 md:h-40 md:w-40"
-            alt="rentaa logo"
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              className="h-24 w-24 md:h-40 md:w-40"
+              alt="rentaa logo"
+            />
+          </Link>
         </div>
 
         <div className="flex flex-col text-left container uppercase bg-white md:pb-20 md:w-900 text-sm rounded-lg">

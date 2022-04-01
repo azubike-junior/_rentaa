@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import closeIcon from "../../images/closeIcon.svg";
 import { HookInput } from "../BasicInputField";
 import Button from "../Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleReviewModal } from "../../services/Mutations/Modal";
+import { useForm } from "react-hook-form";
+import { InputField } from "./../BasicInputField/index";
+import { leaveReview } from "./../../services/Mutations/leaveReview";
+import { RootState } from "../../store/store";
+import Loader from "./../Loader/index";
 
-export default function ReviewModal() {
+export default function ReviewModal({ id }: any) {
+  const first_name = localStorage.getItem("first_name");
+  const last_name = localStorage.getItem("last_name");
+  const [image, setImage] = useState("")
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+    defaultValues: {
+      reviewerName: `${first_name} ${last_name}`,
+    },
+  });
+
+  const { loading: reviewsLoading } = useSelector(
+    (state: RootState) => state.leaveReviewReducer
+  );
+
+  const handleReviewSubmit = (data: any) => {
+    const rev = {
+      reviewer: data.reviewerName,
+      review: data.review,
+    };
+    const newData = {
+      data: rev,
+      id,
+      dispatch,
+      setImage
+    };
+    dispatch(leaveReview(newData));
+  };
+
   const dispatch = useDispatch();
   return (
     <div className="xxs:w-72 md:w-550 lg:w-900 font-dm-sans bg-white  text-white rounded-lg">
@@ -19,27 +59,35 @@ export default function ReviewModal() {
         />
       </div>
 
-      <div className="py-7 px-5 lg:px-9">
-        <HookInput
+      <form
+        className="py-7 px-5 lg:px-9"
+        onSubmit={handleSubmit(handleReviewSubmit)}
+      >
+        <InputField
+          register={register}
           label="Your Name"
+          name="reviewerName"
           className="w-full lg:w-700 text-gray-400"
-          name="name"
-          value="Daniel Olodo"
+          value={`${first_name} ${last_name}`}
           disabled
         />
-        <HookInput
+        <InputField
+          register={register}
           label="Give a review of this user (Max. 1000 words)"
           className="w-full text-black mt-4 lg:w-700"
           textArea
+          required
+          name="review"
+          // errors={errors?.review}
           textAreaClass="h-72"
         />
 
         <Button
-          child="Submit Review"
+          child={reviewsLoading ? <Loader /> : "Submit Review"}
+          type="submit"
           className="w-full lg:w-44 text-white mt-6 text-sm md:text-base py-4 bg-secondary"
-          type="button"
         />
-      </div>
+      </form>
     </div>
   );
 }

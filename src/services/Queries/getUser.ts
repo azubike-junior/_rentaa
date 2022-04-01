@@ -4,12 +4,15 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/helper";
 import { getUserResponse } from "./../../interfaces/index";
+import { getProfileAvatar } from "./getProfileAvatar";
 
-interface DataProps {
-  formData: any;
-  history: any;
-}
+type dataProps = {
+  id?: string;
+  setImage?: any;
+  dispatch?: any;
+};
 
 interface initState {
   error: any;
@@ -27,21 +30,85 @@ const initialState: initState = {
   isSuccessful: false,
 };
 
-export const getUserById = createAsyncThunk("getUser", async () => {
-  const accessToken: string = localStorage.getItem("accessToken") || "";
-  const user: ITokenDecode = jwt_decode(accessToken);
+export const getUserById = createAsyncThunk(
+  "getUser",
+  async (params: dataProps) => {
+    // console.log(">>>>id", id);
+    const { id, dispatch, setImage } = params;
+    const accessToken: string = JSON.parse(
+      localStorage.getItem("accessToken") || "{}"
+    );
+    const user: ITokenDecode = jwt_decode(accessToken);
 
-  try {
-    const response = await axiosInstance.get(`/users/${user?.user_id}`);
-    console.log(">>>>>>>it called getUser in dashboard");
-    if (response.data.statusCode === 200) {
-      return response?.data?.user;
+    const defaultOptions = {
+      method: "get",
+      headers: {
+        "Content-Type": "image",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    try {
+      const response = await axios.get(
+        id ? `${baseUrl}/users/${id}` : `${baseUrl}/users/${user?.user_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (response.data.statusCode === 200) {
+        /**
+           if an id is passed when calling the getUserById function, this means we want to get an
+           external user image
+           * so we get the avatarId from the response, then use it to get the image picture of the external user
+          */
+        if (id) {
+          const response2 = await fetch(
+            `http://localhost:3002/api/v1/users/profile-avatar?avatarID=${response.data.user.profile.avatarId}`,
+            { ...defaultOptions }
+          );
+
+          if (response.status === 200) {
+            const reader = response2?.body?.getReader();
+            // window.location.reload()
+
+            let chunks: any = [];
+            reader
+              ?.read()
+              .then(function processText({ done, value }: any): any {
+                if (done) {
+                  const blob = new Blob([chunks], { type: "image" });
+
+                  setImage(URL.createObjectURL(blob));
+
+                  // console.log(">>>>>url", URL.createObjectURL(blob));
+                  return URL.createObjectURL(blob);
+                }
+                const tempArray = new Uint8Array(chunks.length + value.length);
+                tempArray.set(chunks);
+                tempArray.set(value, chunks.length);
+                chunks = tempArray;
+
+                return reader.read().then(processText);
+              });
+          }
+        } else {
+          localStorage.setItem(
+            "avatarId",
+            response.data.user.profile?.avatarId
+          );
+        }
+
+        return response?.data?.user;
+      }
+    } catch (e: any) {
+      // console.log(">>>>>>RESPONSE 2 ", e.response.data);
+      return e.response.data;
     }
-  } catch (e: any) {
-    console.log(">>>>>>RESPONSE 2 ", e.response.data);
-    return e.response.data;
   }
-});
+);
 
 const getUserSlice = createSlice({
   name: "bvn",
@@ -57,8 +124,6 @@ const getUserSlice = createSlice({
     builder.addCase(getUserById.fulfilled, (state, action) => {
       state.loading = true;
       state.data = action.payload;
-      // console.log(">>>>>>state", action?.payload?.profile?.avatarId);
-      localStorage.setItem("avatarId", action?.payload?.profile?.avatarId);
       state.loading = false;
       state.isSuccessful = true;
       state.error = "";

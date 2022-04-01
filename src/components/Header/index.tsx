@@ -16,6 +16,7 @@ import {
 } from "../../services/Mutations/Modal";
 import { motion } from "framer-motion/dist/framer-motion";
 import Notification from "./../Notification/index";
+import { getGadgets } from "./../../services/Queries/getGadgets";
 
 export default function Header() {
   const location = useLocation();
@@ -24,10 +25,10 @@ export default function Header() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-   const [isMouse, toggleMouse] = useState(false);
-     const toggleMouseMenu = () => {
-       toggleMouse(!isMouse);
-     };
+  const [isMouse, toggleMouse] = useState(false);
+  const toggleMouseMenu = () => {
+    toggleMouse(!isMouse);
+  };
 
   let avatarId: any;
 
@@ -40,12 +41,15 @@ export default function Header() {
    */
 
   useEffect(() => {
-    if (user) {
-      dispatch(getUserById());
-      console.log(">>>>>>>>>.user oo", avatarId);
+    dispatch(getGadgets());
+  }, []);
 
-      dispatch(getProfileAvatar({ avatarId, setImage }));
-    }
+  useEffect(() => {
+    // if (user) {
+    //   dispatch(getUserById());
+    //   console.log(">>>>>>>>>.user oo", avatarId);
+
+    dispatch(getProfileAvatar({ avatarId, setImage }));
   }, [user, avatarId]);
 
   return (
@@ -98,7 +102,7 @@ export default function Header() {
                 />
               </Link>
 
-              <Notification isMouse={isMouse}/>
+              <Notification isMouse={isMouse} />
             </motion.div>
 
             {/* </motion.div> */}
@@ -113,7 +117,7 @@ export default function Header() {
             <span
               onClick={() => {
                 history.push("/profile");
-                window.location.reload();
+                // window.location.reload();
               }}
               className="cursor-pointer"
             >

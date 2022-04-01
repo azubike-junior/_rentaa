@@ -4,18 +4,19 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
-import { baseUrl } from "../../utils/helper";
+import { getUserResponse } from "../../interfaces/index";
+import { getGadgets } from "./getGadgets";
 
-interface IResponse {
-  status: number
-  message: string;
+interface DataProps {
+  formData: any;
+  history: any;
 }
 
 interface initState {
   error: any;
   loading: boolean;
   error2: any;
-  data: IResponse;
+  data: any;
   isSuccessful: boolean;
 }
 
@@ -23,48 +24,47 @@ const initialState: initState = {
   error: "",
   loading: false,
   error2: "",
-  data: <IResponse>{},
+  data: [],
   isSuccessful: false,
 };
 
-export const verifyEmail = createAsyncThunk(
-  "verifyEmail",
-  async (token: string, { rejectWithValue }) => {
+export const getCategories = createAsyncThunk(
+  "getCategories",
+  async (dispatch: any) => {
     try {
-      const response = await axios.get(`${baseUrl}/auth/verify-email/${token}`);
-      console.log(">>>>>tokn", response);
+      const response = await axiosInstance.get(`/categories`);
+
       if (response.status === 200) {
-        return response?.data;
-      }
-      if (response.status === 400) {
-        return response?.data;
+        console.log(">>>>respomse", response.data.items);
+
+        dispatch(getGadgets());
+        return response?.data?.items;
       }
     } catch (e: any) {
-      //   console.log(e.response);
-      return rejectWithValue(e.response.data);
+      return e.response.data;
     }
   }
 );
 
-const verifyEmailSlice = createSlice({
+const getCategoriesSlice = createSlice({
   name: "bvn",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(verifyEmail.rejected, (state, action) => {
+    builder.addCase(getCategories.rejected, (state, action) => {
       state.error = action.payload;
       state.error2 = action.error.name;
       state.loading = false;
       state.isSuccessful = false;
     });
-    builder.addCase(verifyEmail.fulfilled, (state, action) => {
+    builder.addCase(getCategories.fulfilled, (state, action) => {
       state.loading = true;
       state.data = action.payload;
       state.loading = false;
       state.isSuccessful = true;
       state.error = "";
     });
-    builder.addCase(verifyEmail.pending, (state, action) => {
+    builder.addCase(getCategories.pending, (state, action) => {
       state.loading = true;
       state.error = action.payload;
     });
@@ -72,4 +72,4 @@ const verifyEmailSlice = createSlice({
 });
 
 // export const { useRegisterMutation } = AuthHandler;
-export default verifyEmailSlice.reducer;
+export default getCategoriesSlice.reducer;

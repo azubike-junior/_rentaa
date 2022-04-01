@@ -44,6 +44,7 @@ module.exports = {
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
         borderGreen: "#32C50D",
+        darkerAsh: "#8A8892",
       },
     },
   },

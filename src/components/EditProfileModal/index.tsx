@@ -71,6 +71,9 @@ export default function EditProfileModal() {
 
   useEffect(() => {
     if (userData) {
+      /**
+       * set all the values in there fields
+       */
       setAllValues(setValue, userData);
     }
   }, [userData]);
@@ -115,6 +118,7 @@ export default function EditProfileModal() {
 
   const editProfileHandler = (data: IEditProfile) => {
     const pic = doc ? doc : photo.image;
+
     const {
       first_name,
       last_name,
@@ -259,11 +263,14 @@ export default function EditProfileModal() {
               className="xl:w-700  pt-7 text-xs md:text-base rounded-none "
               textAreaClass="md:h-96 px-4  text-xs md:text-base text-gray-400 h-36 "
               name="description"
+              placeholder="Description should not be lesser than 30 Chars, we want our users to know you"
               textArea
               register={register}
               required
+              minLength={30}
+              maxLength={400}
               errors={errors?.description}
-              message="required"
+              message="Description should not be lesser than 30 chars and more than 400 chars"
             />
 
             <div className="block md:flex space-x-2">
@@ -271,15 +278,6 @@ export default function EditProfileModal() {
                 child={loadingHandler ? <Loader /> : "Save Changes"}
                 className="w-48 lg:w-52 px-4 py-3 md:py-5 text-white mt-3 md:mt-5 md:mb-10 bg-secondary"
                 type="submit"
-              />
-              <Button
-                child="Change Password"
-                className="w-48 lg:w-52 py-3 md:py-5 text-red-500 mt-3 md:mt-5 mb-10 bg-transparent"
-                type="button"
-                onClick={() => {
-                  dispatch(toggleEditModal());
-                  history.push("/change_password");
-                }}
               />
             </div>
           </div>

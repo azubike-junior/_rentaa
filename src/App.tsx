@@ -13,9 +13,8 @@ import Header from "./components/Header";
 import SignUp from "./pages/Register";
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
-import ChangePassword from "./pages/ChangePassword";
 import Footer from "./components/Footer";
-import Dashboard from "./pages/Dashboard";
+// import Dashboard from "./pages/Dashboard";
 import Bookmark from "./pages/Bookmark";
 import PostProduct from "./pages/PostProduct";
 import Profile from "./pages/Profile";
@@ -31,7 +30,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
 // import VerifyEmailSuccess from "./pages/VerifyEmailSuccess";
 import VerifyEmailSuccess from "./pages/VerifyEmailSuccess/index";
-import UserProfile from './pages/UserProfile/index';
+import ExternalUserProfile from "./pages/ExternalUserProfile/index";
+import EditGadget from "./pages/EditGadget/index";
+import Loader from "./components/Loader";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -60,6 +62,8 @@ function App() {
   //   };
   // }, []);
 
+  const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+
   return (
     <div className="relative">
       {pathname === "/verify_email" ||
@@ -70,34 +74,45 @@ function App() {
         <Header />
       )}
       <main>
-        <Route exact path={"/"} component={Homepage} />
-        <Route exact path={"/verify_email"} component={VerifyEmail} />
-        <Route
-          exact
-          path={"/forget_password_success_response"}
-          component={VerifyPasswordSuccess}
-        />
-        <Route exact path={"/dashboard"} component={Dashboard} />
-        <Route exact path={"/user_profile/:id"} component={UserProfile} />
-        <Route exact path={"/sign_up"} component={SignUp} />
-        <Route exact path={"/forget_password"} component={ForgetPassword} />
-        <Route exact path={"/login"} component={Login} />
-        <Route exact path={"/change_password"} component={ChangePassword} />
-        <Route exact path={"/bookmark"} component={Bookmark} />
-        <Route exact path={"/post_product"} component={PostProduct} />
-        <Route exact path={"/profile/"} component={Profile} />
-        <Route
-          exact
-          path={"/product_description/:id"}
-          component={ProductDesc}
-        />
-        <Route exact path={"/view_categories/:id"} component={ViewCategory} />
-        <Route exact path={"/contact_us"} component={Contact} />
-        <Route
-          exact
-          path={"/verify_email_success/:token"}
-          component={VerifyEmailSuccess}
-        />
+        <Suspense fallback={<Loader />}>
+          <Route exact path={"/"} component={Homepage} />
+          <Route exact path={"/verify_email"} component={VerifyEmail} />
+          <Route
+            exact
+            path={"/forget_password_success_response"}
+            component={VerifyPasswordSuccess}
+          />
+          <Route exact path={"/dashboard"} component={Dashboard} />
+          <Route
+            exact
+            path={"/user_profile/:id"}
+            component={ExternalUserProfile}
+          />
+          <Route
+            exact
+            path={"/reset_password_success/:token"}
+            component={ResetPassword}
+          />
+          <Route exact path={"/sign_up"} component={SignUp} />
+          <Route exact path={"/forget_password"} component={ForgetPassword} />
+          <Route exact path={"/login"} component={Login} />
+          <Route exact path={"/bookmark"} component={Bookmark} />
+          <Route exact path={"/post_product"} component={PostProduct} />
+          <Route exact path={"/edit_gadget/:id"} component={EditGadget} />
+          <Route exact path={"/profile"} component={Profile} />
+          <Route
+            exact
+            path={"/product_description/:id"}
+            component={ProductDesc}
+          />
+          <Route exact path={"/view_categories/:id"} component={ViewCategory} />
+          <Route exact path={"/contact_us"} component={Contact} />
+          <Route
+            exact
+            path={"/verify_email_success/:token"}
+            component={VerifyEmailSuccess}
+          />
+        </Suspense>
       </main>
       {pathname === "/verify_email" ||
       pathname === "/forget_password_success_response" ||

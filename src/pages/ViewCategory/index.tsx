@@ -7,7 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getGadgetsByCategory } from "./../../services/Queries/getGadgetsByCategory";
 import { RootState } from "../../store/store";
-import { useGetCategoriesQuery } from "../../services/Queries/category";
+import { useGetCategoriesQuery } from "../../services/Queries/queries";
 import { bucketName, REGION } from "../../utils/helper";
 import phoneImg from "../../images/phone.svg";
 import Button from "../../components/Button";
@@ -15,6 +15,7 @@ import { toggleContactModal } from "../../services/Mutations/Modal";
 import ViewContactModal from "../../components/ViewContactModal";
 import Modal from "../../components/Modal";
 import { findContact } from "../../services/Queries/findUserContact";
+import { getUserById } from "./../../services/Queries/getUser";
 
 interface IGadget {
   gadgetId: string;
@@ -43,6 +44,8 @@ export default function ViewCategory() {
   const { data: categoryGadgets, loading: categoryGadgetsLoading } =
     useSelector((state: RootState) => state.getGadgetsByCategoryReducer);
 
+  // console.log(">>>>>>>contactData", contactData);
+
   const { data: categories } = useGetCategoriesQuery("");
 
   const categoryName = categories?.items.find(
@@ -70,8 +73,9 @@ export default function ViewCategory() {
   });
 
   useEffect(() => {
+    console.log("got to view Category page");
     dispatch(getGadgetsByCategory(id));
-  }, []);
+  }, [id]);
 
   return (
     <div className="py-16 mx-auto max-w-7xl px-5">
@@ -89,14 +93,14 @@ export default function ViewCategory() {
               lastName,
             } = gadget;
             return (
-              <div className=" xxs:grid xxs:place-items-center xs:flex sm:flex flex flex-row my-12">
+              <div className=" my-16 xxs:grid xxs:place-items-center xs:flex sm:flex flex flex-row md:my-12">
                 <img
                   src={image}
                   alt=""
-                  className="xxs:pb-2 w-40 mr-2 md:w-52 md:h-52 md:pr-4"
+                  className="xxs:pb-2 w-40 mr-8 md:mr-0 md:w-52 md:h-52 md:pr-4"
                 />
                 <div className="md:pt-6 xxs:pl-4 ">
-                  <h1 className=" text-black text-lg md:text-2xl font-dm-sans">
+                  <h1 className=" text-black text-base md:text-2xl font-dm-sans">
                     {gadgetName}
                   </h1>
                   <p className=" text-gray-400 text-xs md:text-base">

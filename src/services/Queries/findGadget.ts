@@ -4,18 +4,19 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
+import { getUserResponse } from "../../interfaces/index";
 import { baseUrl } from "../../utils/helper";
 
-interface IResponse {
-  status: number
-  message: string;
+interface DataProps {
+  formData: any;
+  history: any;
 }
 
 interface initState {
   error: any;
   loading: boolean;
   error2: any;
-  data: IResponse;
+  data: any;
   isSuccessful: boolean;
 }
 
@@ -23,48 +24,46 @@ const initialState: initState = {
   error: "",
   loading: false,
   error2: "",
-  data: <IResponse>{},
+  data: {},
   isSuccessful: false,
 };
 
-export const verifyEmail = createAsyncThunk(
-  "verifyEmail",
-  async (token: string, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`${baseUrl}/auth/verify-email/${token}`);
-      console.log(">>>>>tokn", response);
-      if (response.status === 200) {
-        return response?.data;
-      }
-      if (response.status === 400) {
-        return response?.data;
-      }
-    } catch (e: any) {
-      //   console.log(e.response);
-      return rejectWithValue(e.response.data);
-    }
-  }
-);
+export const findGadget = createAsyncThunk("getGadgets", async (id: string) => {
+  try {
+    const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
 
-const verifyEmailSlice = createSlice({
+    const response = await axios.get(`${baseUrl}/gadgets/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 200) {
+      return response?.data?.item;
+    }
+  } catch (e: any) {
+    return e.response.data;
+  }
+});
+
+const findGadgetSlice = createSlice({
   name: "bvn",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(verifyEmail.rejected, (state, action) => {
+    builder.addCase(findGadget.rejected, (state, action) => {
       state.error = action.payload;
       state.error2 = action.error.name;
       state.loading = false;
       state.isSuccessful = false;
     });
-    builder.addCase(verifyEmail.fulfilled, (state, action) => {
+    builder.addCase(findGadget.fulfilled, (state, action) => {
       state.loading = true;
       state.data = action.payload;
       state.loading = false;
       state.isSuccessful = true;
       state.error = "";
     });
-    builder.addCase(verifyEmail.pending, (state, action) => {
+    builder.addCase(findGadget.pending, (state, action) => {
       state.loading = true;
       state.error = action.payload;
     });
@@ -72,4 +71,4 @@ const verifyEmailSlice = createSlice({
 });
 
 // export const { useRegisterMutation } = AuthHandler;
-export default verifyEmailSlice.reducer;
+export default findGadgetSlice.reducer;

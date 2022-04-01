@@ -36,7 +36,7 @@ export default function Login() {
   const handleLogin = (data: ILogin) => {
     const { email, password } = data;
     const newData = {
-      email,
+      email: email.trim(),
       password,
       history,
     };
@@ -78,7 +78,7 @@ export default function Login() {
               type={passwordEye ? "text" : "password"}
               className="lg:w-600 md:w-500 pt-10"
               required
-              maxLength={8}
+              // maxLength={8}
               minLength={8}
               register={register}
               errors={errors?.password}

@@ -7,8 +7,8 @@ import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "./../../interfaces/index";
 
 interface DataProps {
-  avatarId: string;
-  setImage: any;
+  avatarId: any;
+  setImage?: any;
 }
 
 interface initState {
@@ -30,6 +30,7 @@ const initialState: initState = {
 export const getProfileAvatar = createAsyncThunk(
   "getProfileAvatar",
   async ({ avatarId, setImage }: DataProps) => {
+    console.log(">>>>>>avatarIdin prof ", avatarId, setImage);
     const token = JSON.parse(localStorage.getItem("accessToken") || "{}");
     const defaultOptions = {
       method: "get",
@@ -45,12 +46,9 @@ export const getProfileAvatar = createAsyncThunk(
         { ...defaultOptions }
       );
 
-      // console.log("====================================");
-      // console.log(response);
-      // console.log("====================================");
-
       if (response.status === 200) {
         const reader = response?.body?.getReader();
+        // window.location.reload()
 
         let chunks: any = [];
         reader?.read().then(function processText({ done, value }: any): any {
@@ -58,7 +56,9 @@ export const getProfileAvatar = createAsyncThunk(
             const blob = new Blob([chunks], { type: "image" });
 
             setImage(URL.createObjectURL(blob));
-            return;
+
+            // console.log(">>>>>url", URL.createObjectURL(blob));
+            return URL.createObjectURL(blob);
           }
           const tempArray = new Uint8Array(chunks.length + value.length);
           tempArray.set(chunks);

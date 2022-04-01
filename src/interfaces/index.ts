@@ -26,7 +26,7 @@ export interface IHookInputProps {
   message?: string;
   textArea?: boolean;
   textAreaClass?: any;
-  selectArray?: CategoryValue[];
+  selectArray?: any;
   disabled?: boolean;
   ref?: React.MutableRefObject<HTMLInputElement>;
   onClick?: any;
@@ -53,6 +53,16 @@ export interface IRegistrationResponse {
   updated_at: string;
   status: string;
   email_verified: boolean;
+}
+
+export interface IReview {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
+  avatarId: string;
+  reviewer: string;
+  review: string;
 }
 
 export interface Profile {
@@ -102,6 +112,18 @@ export interface UserResponse {
   message: any;
 }
 
+export interface IUser {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  status: string;
+  email_verified: boolean;
+}
+
 export interface getUserResponse {
   statusCode: number;
   id: string;
@@ -143,10 +165,11 @@ interface IProfile {
   description: string;
   twitter: string;
   instagram: string;
-  reviews: [];
+  reviews: IReview[]
 }
 
 interface IGadget {
+  photos: any;
   id: string;
   created_at: string;
   updated_at: string;
@@ -195,6 +218,7 @@ export interface ITokenDecode {
   user_id: string;
   iat: number;
   exp: number;
+  avatar_id: string;
 }
 
 export interface IGadgets {
@@ -223,5 +247,5 @@ export interface IPhoto {
   size: string;
   cover: boolean;
   bucketname: string;
-  key:string;
+  key: string;
 }

@@ -5,9 +5,10 @@ import CategorySection from "../../components/CategorySection/index";
 import Loader from "../../components/Loader";
 import Notification from "../../components/Notification";
 import ProductSection from "../../components/ProductSection/index";
-import { useGetCategoriesQuery } from "../../services/Queries/category";
+import { useGetCategoriesQuery } from "../../services/Queries/queries";
 import { RootState } from "../../store/store";
 import { getUserById } from "./../../services/Queries/getUser";
+import { getCategories } from "./../../services/Queries/getCategories";
 
 export default function Dashboard() {
   // const { data } = useSelector((state: RootState) => state.getUserById);
@@ -16,12 +17,22 @@ export default function Dashboard() {
   /**
    * in the getUserById function, an avatarId is set to the localStorage.
    */
-  useEffect(() => {
-    dispatch(getUserById());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getUserById());
+  // }, []);
+
+  // const { data: categories, loading: categoriesLoading } = useSelector(
+  //   (state: RootState) => state.getCategoriesReducer
+  // );
+
+  // console.log(">>>>>>categories", categories)
 
   const { data: categories, isLoading: categoriesLoading } =
     useGetCategoriesQuery("");
+
+  // useEffect(() => {
+  //   dispatch(getCategories(dispatch));
+  // }, []);
 
   return (
     <div>

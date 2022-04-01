@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import { v1 as uuid } from "uuid";
 import {
   HookInput,
@@ -19,9 +19,12 @@ import { useGetCategoriesQuery } from "../../services/Queries/queries";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  bucketName,
   FileService,
   getLga,
   getStates,
+  REGION,
+  setGadgetValues,
   validateFileSize,
   validateFileType,
 } from "../../utils/helper";
@@ -29,20 +32,20 @@ import { postGadget } from "../../services/Mutations/postGadget";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../store/store";
 import Loader from "../../components/Loader";
+import { FaRegEdit } from "react-icons/fa";
 
 interface ImageProp {
   id: string;
-  image: string;
+  image: any;
 }
 
-export default function PostProduct() {
+export default function EditGadget() {
   const [state, setState] = useState("");
   const [docs, setDocs] = useState<any>([]);
   const [photos, setPhotos] = useState<any[]>([]);
   const [fileError, setFileError] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const id = uuid();
 
   const { data, error, loading } = useSelector(
     (state: RootState) => state.postGadgetReducer
@@ -53,6 +56,7 @@ export default function PostProduct() {
     handleSubmit,
     getValues,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<IProductInputs>({
     mode: "onTouched",
@@ -60,6 +64,17 @@ export default function PostProduct() {
       contact_info: "08393038303",
     },
   });
+
+  const { data: gadgetData, loading: gadgetLoading } = useSelector(
+    (state: RootState) => state.findGadgetReducer
+  );
+
+  const href = "https://s3." + REGION + ".amazonaws.com/";
+  const bucketUrl = href + bucketName + "/";
+
+  useEffect(() => {
+    setGadgetValues(setValue, gadgetData);
+  }, []);
 
   const { data: productCategories } = useGetCategoriesQuery("");
   const categories: [] = productCategories?.items?.map((item: any) => {
@@ -69,11 +84,11 @@ export default function PostProduct() {
     };
   });
 
-  let allCategories;
+   let allCategories;
 
-  if (categories) {
-    allCategories = [{ value: "", text: "-Select-" }, ...categories];
-  }
+   if (categories) {
+     allCategories = [{ value: "", text: "-Select-" }, ...categories];
+   }
 
   /**
    * Package returns
@@ -82,7 +97,7 @@ export default function PostProduct() {
     getValues("state") ? getValues("state") : "lagos"
   );
 
-  const handleFiles = async (e: any) => {
+  const handleFiles = async (e: any, id: string) => {
     const file = e.target.files[0];
     const validFileSize = await validateFileSize(file?.size);
 
@@ -99,27 +114,13 @@ export default function PostProduct() {
       setFileError(validFileType.errorMessage);
       return;
     }
+
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setPhotos((prev) => [{ image: reader.result, id }, ...prev]);
       }
     };
     reader.readAsDataURL(file);
-    setDocs((prev: any) => [{ file, id }, ...prev]);
-    setFileError("");
-  };
-
-  /**
-   * deletes image from state(interface)
-   * @param id
-   *
-   */
-  const deleteFile = (id: string) => {
-    const newPhotos = photos.filter((photo) => photo.id !== id);
-    const newDocs = docs.filter((doc: any) => doc.id !== id);
-    setPhotos([...newPhotos]);
-    setDocs([...newDocs]);
   };
 
   const handleClick = () => {
@@ -167,10 +168,12 @@ export default function PostProduct() {
     dispatch(postGadget(newData));
   };
 
+  const imageUrls: [] = [];
+
   return (
     <div className="mx-auto font-dm-sans max-w-7xl my-20 px-4">
       <div className="mt-10">
-        <h1 className="text-lg md:text-3xl pb-2 text-center">Post Gadget</h1>
+        <h1 className="text-lg md:text-3xl pb-2 text-center">Edit Gadget</h1>
         <p className="text-xs md:text-base text-center font-extralight">
           Fill the forms with Gadget Information, Details and Product specs. Be
           sure to remain honest and transparent
@@ -228,7 +231,7 @@ export default function PostProduct() {
                 name="name"
                 required
                 errors={errors?.name}
-                message="name is required"
+                message="category is required"
               />
               <SelectInput
                 register={register}
@@ -246,12 +249,9 @@ export default function PostProduct() {
                 className="lg:w-700 pt-12  "
                 textAreaClass="md:h-96  h-36 rounded-lg"
                 name="description"
-                maxLength={400}
-                minLength={30}
-                required
                 textArea
                 errors={errors?.description}
-                message="description must be more than 30 chars"
+                message="description is required"
               />
               <InputField
                 register={register}
@@ -277,40 +277,35 @@ export default function PostProduct() {
                 {fileError && (
                   <p className="text-sm pt-7 text-red-500">{fileError}</p>
                 )}
-                Add Gadget Photo <span className=" ml-1 text-red-600">*</span>
+                Edit Gadget Photo <span className=" ml-1 text-red-600">*</span>
               </p>
               <p className="text-xs text-gray-300 md:text-sm pt-1">
-                Each picture must not be larger than 6MB. We recommend you
+                Each picture must not be larger than 2MB. We recommend you
                 upload between 3-5 pictures
               </p>
 
               <div className="pt-4 flex">
-                <label>
-                  <img
-                    src={addPhoto}
-                    alt=""
-                    className="w-20 md:w-28 pr-4 md:pr-6 cursor-pointer"
-                  />
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    onChange={handleFiles}
-                    name="photos"
-                  />
-                </label>
-                {photos?.map((photo: ImageProp) => {
+                {imageUrls.map((photo: any) => {
                   return (
-                    <div className="border mx-2 relative">
-                      <MdDeleteForever
-                        onClick={() => deleteFile(photo.id)}
-                        className="absolute right-1 cursor-pointer"
+                    <label>
+                      <div className="border mx-2 relative">
+                        <FaRegEdit
+                          // onClick={() => editSetter()}
+                          className="absolute right-1 cursor-pointer"
+                        />
+                        <img
+                          src={photo.image}
+                          alt=""
+                          className="w-16 h-16 md:h-20 md:w-20 mx-2"
+                        />
+                      </div>
+                      <input
+                        type="file"
+                        style={{ display: "none" }}
+                        onChange={(e) => handleFiles(e, photo.id)}
+                        name="photos"
                       />
-                      <img
-                        src={photo.image}
-                        alt=""
-                        className="w-16 h-16 md:h-20 md:w-20 mx-2"
-                      />
-                    </div>
+                    </label>
                   );
                 })}
               </div>

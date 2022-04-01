@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "../../interfaces/index";
+import { baseUrl } from './../../utils/helper';
 
 export interface IContact {
   phone_number: string
@@ -30,10 +31,15 @@ const initialState: initState = {
 
 export const findContact = createAsyncThunk("findContact", async (userId: string) => {
   try {
-    const response = await axiosInstance.get(
-      `users/findContact?userID=${userId}`
+    const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
+    const response = await axios.get(
+      `${baseUrl}/users/findContact?userID=${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
     );
-    console.log(">>>>>>.contact", response)
+    // console.log(">>>>>>.contact", response)
     if (response.status === 200) {
       return response?.data?.item;
     }

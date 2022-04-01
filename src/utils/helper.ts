@@ -136,8 +136,19 @@ export const setAllValues = (setValue: any, user: any) => {
   setValue("twitter", user?.profile?.twitter);
   setValue("instagram", user?.profile?.instagram);
   setValue("description", user?.profile?.description);
-
 };
+
+export const setGadgetValues = (setValue: any, gadget: any) => {
+  setValue("category", gadget?.category);
+  setValue("lga", gadget?.lga);
+  setValue("state", gadget?.state);
+  setValue("name", gadget?.name);
+  setValue("condition", gadget?.condition);
+  setValue("description", gadget?.description);
+  setValue("price", gadget?.price);
+  setValue("contact_info", gadget?.contact_info);
+  setValue("photos", gadget?.photos);
+}
 
 export const baseUrl = "http://localhost:3002/api/v1";
 

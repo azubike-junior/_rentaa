@@ -109,7 +109,7 @@ export default function ViewContactModal({
   const dispatch = useDispatch();
 
   return (
-    <div className="xxs:w-72 font-dm-sans bg-white  text-white rounded-lg">
+    <div className="xxs:w-72 xs:w-96 xs:mx-4 font-dm-sans bg-white  text-white rounded-lg">
       <div className="md:w-700 flex items-center justify-between bg-secondary h-16 md:h-20 px-5 rounded-t md:rounded-t-lg">
         <p className="text-base=">View Contact Info</p>
         <img
