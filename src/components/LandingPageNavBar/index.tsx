@@ -4,17 +4,17 @@ import star from '../../images/star.svg';
 
 const LandingPageNavBar : React.FC = () => {
     return (<>
-    <nav className='hidden md:block container mx-auto'>
+    <nav className='hidden md:block container mx-auto px-6'>
         <div className="flex flex-row justify-between items-center mx-2">
             <div className="flex flex-row items-center">
                 <figure className="mr-24">
                     <img className="sm:h-6 md:h-9" src={RentaaLogo} />
                 </figure>
                 <ul className="flex flex-row">
-                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-14 hover:text-black cursor-pointer">Home</li>
-                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-14 hover:text-black cursor-pointer">Our Story</li>
-                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-14 hover:text-black cursor-pointer">Contact Us</li>
-                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-14 hover:text-black cursor-pointer">FAQs</li>
+                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">Home</li>
+                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">Our Story</li>
+                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">Contact Us</li>
+                    <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">FAQs</li>
                 </ul>
             </div>
             <button className="relative lg:px-7 md:px-5 lg:py-4 md:py-4 md:text-xs lg:text-lg rounded-md bg-secondary text-white text-lg">
@@ -24,7 +24,7 @@ const LandingPageNavBar : React.FC = () => {
         </div>
     </nav>
     <nav className="md:hidden w-full mx-auto">
-        <div className='mt-5 mx-7 flex items-center justify-between'>
+        <div className='mx-7 flex items-center justify-between'>
             <figure>
                 <img className="h-6" src={RentaaLogo} />
             </figure>

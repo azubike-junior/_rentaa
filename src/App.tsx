@@ -24,7 +24,7 @@ function App() {
       <Router>
           <Route exact path={"/landingPage"} component={LandingPage} />
         {/* <Header /> */}
-        <main>
+        {/* <main> */}
           <Route exact path={"/"} component={Homepage} />
           <Route exact path={"/dashboard"} component={Dashboard} />
           <Route exact path={"/sign_up"} component={SignUp} />
@@ -37,8 +37,8 @@ function App() {
           <Route exact path={"/product_desc"} component={ProductDesc} />
           <Route exact path={"/view_categories"} component={ViewCategory} />
           <Route exact path={"/contact_us"} component={Contact} />
-        </main>
-        <Footer />
+        {/* </main> */}
+        {/* <Footer /> */}
       </Router>
     </div>
   );

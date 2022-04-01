@@ -2,7 +2,7 @@ import React from 'react';
 import Speaker from '../../images/stereoSpeaker.svg';
 const OptimizedForYou : React.FC = () => {
     return (
-        <section className='mt-8 xl:mt-24'>
+        <section className='mt-8 xl:mt-52'>
             <h3 className="xs:text-2xl xxs:text-2xl text-3xl md:text-4xl font-medium text-center mb-10 md:text-left md:ml-16 xl:ml-28 xl:text-6xl">Optimized for <span className="text-secondary">YOU</span></h3>
             <div className="relative md:flex md:h-650 xl:h-900 items-center">
                 <article className='flex flex-col items-center md:ml-12 z-10 xl:ml-20'>

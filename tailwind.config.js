@@ -29,7 +29,8 @@ module.exports = {
       },
       maxWidth: {
         'xmd': '488px', 
-        'xxs': '274px', 
+        'xxs': '274px',
+        'btn': '689px', 
         'form': '748px'
       },
       width: {
