@@ -28,7 +28,9 @@ module.exports = {
         1000: "70rem",
       },
       maxWidth: {
-        'xmd': '488px'
+        'xmd': '488px', 
+        'xxs': '274px', 
+        'form': '748px'
       },
       width: {
         18: "75px",
@@ -53,6 +55,7 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
+        greyishWhite: "#FAFAFA"
       },
     },
   },

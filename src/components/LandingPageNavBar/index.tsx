@@ -4,7 +4,7 @@ import star from '../../images/star.svg';
 
 const LandingPageNavBar : React.FC = () => {
     return (<>
-    <nav className='hidden md:block container mx-auto mt-12'>
+    <nav className='hidden md:block container mx-auto'>
         <div className="flex flex-row justify-between items-center mx-2">
             <div className="flex flex-row items-center">
                 <figure className="mr-24">
