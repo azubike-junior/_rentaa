@@ -7,7 +7,7 @@ import DesktopPanelImage3 from '../../images/desktopPanelImage3.svg';
 
 const ImagePanel : React.FC = () => {
     return (<>
-        <section className="lg:hidden w-full mt-20 flex">
+        <section className="lg:hidden w-full mt-20 flex overflow-hidden">
             <img className="ml-4" src={PanelImage1} />
             <img className='' src={PanelImage2} />
         </section>

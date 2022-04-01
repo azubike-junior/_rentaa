@@ -15,13 +15,20 @@ module.exports = {
       poppins: ["Poppins", "sans-serif"],
     },
     extend: {
+      borderWidth: {
+        '1': '0.5px'
+      },
       height: {
-  
+        98: "409px",
         600: "30rem",
+        650: "526px",
         700: "40rem",
         800: "48rem",
         900: "55rem",
         1000: "70rem",
+      },
+      maxWidth: {
+        'xmd': '488px'
       },
       width: {
         18: "75px",
