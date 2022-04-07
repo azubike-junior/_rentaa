@@ -3,7 +3,6 @@ import camera from "../../images/camera-2.svg";
 import Button from "./../Button/index";
 import phone from "../../images/whitePhone.svg";
 import Product from "../Product";
-import { bucketName, REGION } from "../../utils/helper";
 import { toggleContactModal } from "../../services/Mutations/Modal";
 import { findContact } from "../../services/Queries/findUserContact";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import ViewContactModal from "../ViewContactModal";
 import { ITokenDecode } from "../../interfaces";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
+import config from "../../utils/config";
 
 function SingleProduct({ img }: any) {
   return (
@@ -26,6 +26,13 @@ export default function ProductDescBody({ gadget }: any) {
   const access: string = localStorage.getItem("accessToken") || "";
   const decodedUser: ITokenDecode = jwt_decode(access);
 
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config;
+
   const dispatch = useDispatch();
   const { photos, user, description } = gadget;
 
@@ -38,8 +45,12 @@ export default function ProductDescBody({ gadget }: any) {
 
   let imageUrls;
 
-  const href = "https://s3." + REGION + ".amazonaws.com/";
-  const bucketUrl = href + bucketName + "/";
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`;
+
+  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
   imageUrls = photos?.map((photo: any) => {
     return bucketUrl + encodeURIComponent(photo.key);
   });

@@ -18,11 +18,7 @@ export default function ChangePasswordModal() {
   const [oldPasswordEye, setOldPasswordEye] = useState(false);
   const [confirmPasswordEye, setConfirmPasswordEye] = useState(false);
 
-
   const {data: changePasswordData, loading, error} = useSelector((state: RootState) => state.changePasswordReducer)
-
-
-//   console.log(">>>>>>chnage", changePasswordData, error)
 
   const dispatch = useDispatch();
   const {

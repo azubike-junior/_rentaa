@@ -94,7 +94,7 @@ export default function Login() {
             />
 
             <Link to="/forget_password">
-              <p className="text-center pt-7 pb-5 font-semibold">
+              <p className="text-center pt-7 pb-5 font-semibold text-secondary">
                 Forgot Password?
               </p>
             </Link>

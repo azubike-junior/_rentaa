@@ -1,5 +1,6 @@
 import NaijaStates from "naija-state-local-government";
 import { CategoryValue } from "../interfaces";
+import config from "./config";
 
 /**
  * looping through states array to get a particular state
@@ -148,11 +149,8 @@ export const setGadgetValues = (setValue: any, gadget: any) => {
   setValue("price", gadget?.price);
   setValue("contact_info", gadget?.contact_info);
   setValue("photos", gadget?.photos);
-}
+};
 
-export const baseUrl = "http://localhost:3002/api/v1";
-
-export const REGION = "us-east-1";
-export const bucketName: string = "rentaa-gadgets";
+export const baseUrl = `${config.REACT_APP_BASE_URL}`;
 
 export { validateFileSize, validateFileType };

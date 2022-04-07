@@ -13,17 +13,24 @@ import { getUserById } from "../../services/Queries/getUser";
 import { RootState } from "../../store/store";
 // import { getGadgets } from "../../services/Queries/getGadgets";
 import { useParams } from "react-router-dom";
-import { bucketName, REGION } from "../../utils/helper";
 import { getGadgets } from "./../../services/Queries/getGadgets";
 import { useGetGadgetsQuery } from "../../services/Queries/queries";
 import { IGadgets } from "./../../interfaces/index";
 import ChangePasswordModal from "./../../components/ChangePasswordModal/index";
 import ChangePasswordSuccessModal from "./../../components/changePasswordSuccessModal/index";
+import config from "../../utils/config";
 
 export default function Profile() {
   let { data: gadgets, loading: gadgetLoading } = useSelector(
     (state: RootState) => state.getGadgetReducer
   );
+
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config;
 
   const { loading: userLoading, data } = useSelector(
     (state: RootState) => state.getUserById
@@ -41,8 +48,13 @@ export default function Profile() {
     gadgetData = gadgets?.map((gadget) => {
       return { gadgetKey: gadget.photos[0].key, id: gadget.id };
     });
-    const href = "https://s3." + REGION + ".amazonaws.com/";
-    const bucketUrl = href + bucketName + "/";
+    const href =
+      `${REACT_APP_AWS_HTTP}` +
+      `${REACT_APP_AWS_REGION}` +
+      `${REACT_APP_AWS_AMAZON}`;
+
+    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
+
     imageUrls = gadgetData?.map((gadget: any) => {
       return {
         image: bucketUrl + encodeURIComponent(gadget.gadgetKey),

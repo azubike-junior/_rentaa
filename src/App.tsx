@@ -34,6 +34,7 @@ import ExternalUserProfile from "./pages/ExternalUserProfile/index";
 import EditGadget from "./pages/EditGadget/index";
 import Loader from "./components/Loader";
 import ResetPassword from "./pages/ResetPassword";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -67,6 +68,7 @@ function App() {
   return (
     <div className="relative">
       {pathname === "/verify_email" ||
+      pathname === "/landingPage" ||
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""
@@ -75,6 +77,9 @@ function App() {
       )}
       <main>
         <Suspense fallback={<Loader />}>
+          <Route exact path={"/landingPage"} component={LandingPage} />
+          {/* <Header /> */}
+          {/* <main> */}
           <Route exact path={"/"} component={Homepage} />
           <Route exact path={"/verify_email"} component={VerifyEmail} />
           <Route

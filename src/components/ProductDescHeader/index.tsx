@@ -4,7 +4,6 @@ import bookmark from "../../images/bookmarkGray.svg";
 import camera from "../../images/soundEquipment.png";
 import phone from "../../images/whitePhone.svg";
 import { Link, useParams } from "react-router-dom";
-import { bucketName, REGION } from "../../utils/helper";
 import { useDispatch, useSelector } from "react-redux";
 import {
   toggleContactModal,
@@ -19,10 +18,20 @@ import jwt_decode from "jwt-decode";
 import deleteIcon from "../../images/deleteIcon.svg";
 import DeleteModal from "./../deleteModal/index";
 import { findGadget } from "./../../services/Queries/findGadget";
+import config from "../../utils/config"
 
 export default function ProductDescHeader({ photoKey, gadget }: any) {
   const access: string = localStorage.getItem("accessToken") || "";
   const decodedUser: ITokenDecode = jwt_decode(access);
+
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config
+
+  
 
   const { id } = useParams<{ id: string }>();
 
@@ -44,8 +53,13 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
     description,
     photos,
   } = gadget;
-  const href = "https://s3." + REGION + ".amazonaws.com/";
-  const bucketUrl = href + bucketName + "/";
+
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`;
+
+  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
   const image = bucketUrl + encodeURIComponent(photoKey?.key);
 
   return (

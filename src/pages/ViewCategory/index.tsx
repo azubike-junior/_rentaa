@@ -8,14 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGadgetsByCategory } from "./../../services/Queries/getGadgetsByCategory";
 import { RootState } from "../../store/store";
 import { useGetCategoriesQuery } from "../../services/Queries/queries";
-import { bucketName, REGION } from "../../utils/helper";
 import phoneImg from "../../images/phone.svg";
 import Button from "../../components/Button";
 import { toggleContactModal } from "../../services/Mutations/Modal";
 import ViewContactModal from "../../components/ViewContactModal";
 import Modal from "../../components/Modal";
 import { findContact } from "../../services/Queries/findUserContact";
-import { getUserById } from "./../../services/Queries/getUser";
+import config from "../../utils/config";
 
 interface IGadget {
   gadgetId: string;
@@ -37,6 +36,13 @@ export default function ViewCategory() {
     (state: RootState) => state.modalReducer
   );
 
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config;
+
   const { data: contactData, loading } = useSelector(
     (state: RootState) => state.findContactReducer
   );
@@ -56,8 +62,12 @@ export default function ViewCategory() {
 
   //modify the gadgets response in categories to fit into the components
   const gadgetsData = categoryGadgets?.map((gadget: any) => {
-    const href = "https://s3." + REGION + ".amazonaws.com/";
-    const bucketUrl = href + bucketName + "/";
+    const href =
+      `${REACT_APP_AWS_HTTP}` +
+      `${REACT_APP_AWS_REGION}` +
+      `${REACT_APP_AWS_AMAZON}`;
+
+    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
     const { id, name, price, photos, user } = gadget;
     return {
       gadgetId: id,

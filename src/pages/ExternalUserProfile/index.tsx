@@ -5,7 +5,6 @@ import MyGadgets from "../../components/MyGadgets";
 import ProfileHeader from "../../components/ProfileHeader";
 import ReviewSection from "../../components/ReviewSection";
 import { RootState } from "../../store/store";
-import { bucketName, REGION } from "../../utils/helper";
 import { getGadgets } from "../../services/Queries/getGadgets";
 import { useParams } from "react-router-dom";
 import ExternalProfileHeader from "../../components/ExternalProfileHeader";
@@ -14,10 +13,18 @@ import ViewContactModal from "../../components/ViewContactModal";
 import ReviewModal from "../../components/ReviewModal";
 import EditProfileModal from "../../components/EditProfileModal";
 import { getUserById } from "../../services/Queries/getUser";
+import config from "../../utils/config";
 
 function ExternalUserProfile() {
   const dispatch = useDispatch();
   const [image, setImage] = useState();
+
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config;
 
   const { id } = useParams<{ id: string }>();
 
@@ -42,8 +49,12 @@ function ExternalUserProfile() {
       // console.log(gadget);
       return { gadgetKey: gadget.photos[0].key, id: gadget.id };
     });
-    const href = "https://s3." + REGION + ".amazonaws.com/";
-    const bucketUrl = href + bucketName + "/";
+    const href =
+      `${REACT_APP_AWS_HTTP}` +
+      `${REACT_APP_AWS_REGION}` +
+      `${REACT_APP_AWS_AMAZON}`;
+
+    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
     imageUrls = gadgetData?.map((gadget: any) => {
       return {
         image: bucketUrl + encodeURIComponent(gadget.gadgetKey),
@@ -67,7 +78,11 @@ function ExternalUserProfile() {
 
   return (
     <div>
-      <ExternalProfileHeader data={data} userLoading={userLoading} image={image} />
+      <ExternalProfileHeader
+        data={data}
+        userLoading={userLoading}
+        image={image}
+      />
       <div className="container max-w-7xl flex flex-col items-center my-16 mb-32 mx-auto px-2 ">
         <h1 className="text-lg md:text-3xl font-medium md:mb-4 w-full mx-auto px-6">
           Gadgets

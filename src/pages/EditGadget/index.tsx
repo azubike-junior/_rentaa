@@ -19,11 +19,9 @@ import { useGetCategoriesQuery } from "../../services/Queries/queries";
 import { MdDeleteForever } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  bucketName,
   FileService,
   getLga,
   getStates,
-  REGION,
   setGadgetValues,
   validateFileSize,
   validateFileType,
@@ -33,6 +31,7 @@ import { useHistory } from "react-router-dom";
 import { RootState } from "../../store/store";
 import Loader from "../../components/Loader";
 import { FaRegEdit } from "react-icons/fa";
+import config from "../../utils/config";
 
 interface ImageProp {
   id: string;
@@ -46,6 +45,13 @@ export default function EditGadget() {
   const [fileError, setFileError] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config;
 
   const { data, error, loading } = useSelector(
     (state: RootState) => state.postGadgetReducer
@@ -69,8 +75,12 @@ export default function EditGadget() {
     (state: RootState) => state.findGadgetReducer
   );
 
-  const href = "https://s3." + REGION + ".amazonaws.com/";
-  const bucketUrl = href + bucketName + "/";
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`;
+
+  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
 
   useEffect(() => {
     setGadgetValues(setValue, gadgetData);
@@ -84,11 +94,11 @@ export default function EditGadget() {
     };
   });
 
-   let allCategories;
+  let allCategories;
 
-   if (categories) {
-     allCategories = [{ value: "", text: "-Select-" }, ...categories];
-   }
+  if (categories) {
+    allCategories = [{ value: "", text: "-Select-" }, ...categories];
+  }
 
   /**
    * Package returns

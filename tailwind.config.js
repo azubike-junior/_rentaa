@@ -15,15 +15,29 @@ module.exports = {
       poppins: ["Poppins", "sans-serif"],
     },
     extend: {
+      borderWidth: {
+        '1': '0.5px'
+      },
       height: {
+        98: "409px",
         600: "30rem",
+        650: "526px",
         700: "40rem",
         800: "48rem",
         900: "55rem",
         1000: "70rem",
         1300: "90rem",
       },
+      maxWidth: {
+        'xmd': '488px', 
+        'xxs': '274px',
+        'btn': '689px', 
+        'form': '748px'
+      },
       width: {
+        18: "75px",
+        26: "104px",
+        90: "350px",
         400: "25rem",
         500: "30rem",
         550: "32rem",
@@ -32,6 +46,7 @@ module.exports = {
         800: "48rem",
         900: "55rem",
         1000: "65rem",
+        1500: "80rem"
       },
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
@@ -43,8 +58,7 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
-        borderGreen: "#32C50D",
-        darkerAsh: "#8A8892",
+        greyishWhite: "#FAFAFA"
       },
     },
   },
