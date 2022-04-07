@@ -21,7 +21,6 @@ import Profile from "./pages/Profile";
 import ProductDesc from "./pages/ProductDesc/index";
 import ViewCategory from "./pages/ViewCategory";
 import Contact from "./pages/ContactUs";
-import Homepage from "./pages/Homepage";
 import VerifyEmail from "./pages/VerifyEmail/index";
 import IdleTimer from "./utils/idleTimer";
 import VerifyPasswordSuccess from "./components/VerifyPasswordSuccess";
@@ -68,7 +67,7 @@ function App() {
   return (
     <div className="relative">
       {pathname === "/verify_email" ||
-      pathname === "/landingPage" ||
+      pathname === "/" ||
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""
@@ -77,10 +76,9 @@ function App() {
       )}
       <main>
         <Suspense fallback={<Loader />}>
-          <Route exact path={"/landingPage"} component={LandingPage} />
+          <Route exact path={"/"} component={LandingPage} />
           {/* <Header /> */}
           {/* <main> */}
-          <Route exact path={"/"} component={Homepage} />
           <Route exact path={"/verify_email"} component={VerifyEmail} />
           <Route
             exact

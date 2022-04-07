@@ -160,7 +160,7 @@ export default function ProfileHeader() {
                           className="text-red-700"
                           onClick={() => {
                             localStorage.clear();
-                            history.push("/landingPage");
+                            history.push("/");
                           }}
                         >
                           Log out

@@ -55,7 +55,7 @@ export default function Header() {
   return (
     <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full sticky top-0 z-30">
       <div className="px-8 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-2 md:pt-5">
-        <Link to={user ? "/dashboard" : "/landingPage"}>
+        <Link to={user ? "/dashboard" : "/"}>
           <img src={rentaa} className="mt-6 md:mt-3 w-20 md:w-32" alt="" />
         </Link>
         {!user ? (
