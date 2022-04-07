@@ -44,7 +44,7 @@
   },
   "scripts": {
     "start:dev": "concurrently \"craco --openssl-legacy-provider start\" \"cd node_modules/cors-anywhere/lib/ && craco start",
-    "start": " craco --openssl-legacy-provider start",
+    "start": " craco start",
     "build": "craco build",
     "eject": "react-scripts eject"
   },
