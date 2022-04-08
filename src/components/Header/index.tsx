@@ -84,7 +84,7 @@ export default function Header() {
             <Button
               type="button"
               child={pathName === "/login" ? "Sign Up" : "Login"}
-              className="text-secondary border border-secondary rounded px-6 md:px-9 py-3 mt-4"
+              className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-3 mt-5 md:mt-4"
             />
           </Link>
         ) : (
