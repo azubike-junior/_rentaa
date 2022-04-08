@@ -55,13 +55,13 @@ const LandingPageNavBar: React.FC = () => {
           <li className="transition-all duration-300 text-xs text-darkCream hover:text-black cursor-pointer">
             Home
           </li>
-          <li className="transition-all duration-300 text-xs text-darkCream hover:text-black cursor-pointer">
+          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             Our Story
           </li>
-          <li className="transition-all duration-300 text-xs text-darkCream hover:text-black cursor-pointer">
+          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             Contact Us
           </li>
-          <li className="transition-all duration-300 text-xs text-darkCream hover:text-black cursor-pointer">
+          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             FAQs
           </li>
         </ul>
