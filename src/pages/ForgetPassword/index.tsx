@@ -46,17 +46,20 @@ export default function ForgetPassword() {
           onSubmit={handleSubmit(postEmailHandler)}
           className="flex flex-col items-start "
         >
-          <FormTitle
-            title="Forgot your password?"
-            instruction="Input your email address and check mail for password reset link"
-          />
+          <div className="px-4 md:px-0">
+            <FormTitle
+              title="Forgot your password?"
+              instruction="Input your email address and check mail for password reset link"
+            />
+          </div>
+
           {error?.statusCode === 404 && (
             <p className=" text-red-500 pl-3 pt-5 text-base">
               Sorry, this email address does not exist on our system
             </p>
           )}
 
-          <div className="pt-10 w-full px-3">
+          <div className="pt-2 md:pt-10 w-full px-7 md:px-3">
             <InputField
               register={register}
               errors={errors?.email}

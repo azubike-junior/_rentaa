@@ -60,7 +60,14 @@ export default function ResetPassword() {
           />
           {error?.statusCode === 400 && (
             <p className=" text-red-500 pl-3 pt-5 text-base">
-              Sorry, Please this token has expired
+              Sorry, Please This token has expired
+            </p>
+          )}
+
+          {error?.statusCode === 403 && (
+            <p className=" text-red-500 pl-3 pt-5 text-base">
+              Sorry, You're already using this password. Please use a different
+              password
             </p>
           )}
 

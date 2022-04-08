@@ -18,13 +18,13 @@ const LandingPageNavBar: React.FC = () => {
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
                 Home
               </li>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">
+              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 Our Story
               </li>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">
+              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 Contact Us
               </li>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-darkCream mr-12 hover:text-black cursor-pointer">
+              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 FAQs
               </li>
             </ul>

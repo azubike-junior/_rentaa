@@ -37,7 +37,7 @@ export const resetPassword = createAsyncThunk(
           password,
         }
       );
-      console.log(">>>>>response", response.status);
+      console.log(">>>>>response", response);
 
       if (response.status === 201) {
         history.push("/forget_password_success_response");

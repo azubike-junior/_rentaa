@@ -15,7 +15,7 @@ const AccessPossibilities : React.FC = () => {
             </figure>
             <article className='mt-14'>
                 <p className="xs:w-64 xxs:w-64 xs:text-2xl xxs:text-2xl text-3xl md:text-4xl md:w-80 w-72 text-center lg:text-5xl lg:w-500 lg:text-left mx-auto lg:mx-0 font-medium">Access a <span className='text-secondary'>world</span> of creative <span className='text-secondary'>possibilties</span></p>
-                <p className="xs:w-80 xxs:w-80 xs:text-xs xxs:text-xs text-sm md:text-base lg:text-xl text-center lg:text-left w-400 md:w-500 xl:w-600 mx-auto lg:mx-0  font-normal mt-4 lg:mt-10">We’re building <span className="font-medium">faster</span> and stress- free ways to rent gadgets from, and to anyone without any hassle. Giving you complete <span className="font-medium">access</span> to work better, and earn better.</p>
+                <p className="xs:w-80 xxs:w-60 xs:text-xs xxs:text-xs text-sm md:text-base lg:text-xl text-center lg:text-left w-400 md:w-500 xl:w-600 mx-auto lg:mx-0  font-normal mt-4 lg:mt-10">We’re building <span className="font-medium">faster</span> and stress- free ways to rent gadgets from, and to anyone without any hassle. Giving you complete <span className="font-medium">access</span> to work better, and earn better.</p>
                 <div className='mt-6 lg:mt-16 text-center lg:text-left'>
                     <button className='xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-5 px-5 lg:px-7 bg-secondary text-white rounded-md mr-5'>Our story</button>
                     <button className='xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-5 px-5 lg:px-7 text-secondary border-2 rounded-md border-secondary'>Join Private Beta</button>
