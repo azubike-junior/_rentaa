@@ -35,7 +35,7 @@ export default function VerifyEmailSuccess() {
         <div className="flex flex-col text-left container uppercase bg-white md:pb-20 md:w-900 text-sm rounded-lg">
           <img
             src={verifyImage}
-            className=" h-48 md:h-64 container round-t-lg md:rounded-none"
+            className="w-30 h-48 md:h-64 container round-t-lg md:rounded-none"
             alt="verifyImage"
           />
 
