@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { baseUrl } from './../../utils/helper';
 
 /**
  * method to get all categories.
@@ -6,7 +7,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const queries = createApi({
   reducerPath: "categoryPath",
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://localhost:3002/api/v1/`,
+    baseUrl: `${baseUrl}/`,
     prepareHeaders: (headers) => {
       const token = JSON.parse(localStorage.getItem("accessToken") || "{}");
       // console.log(">>>>>>token1", token);

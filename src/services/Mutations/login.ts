@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 import { ILogin, ITokenDecode, UserResponse } from "../../interfaces";
 import jwt_decode from "jwt-decode";
+import { baseUrl } from './../../utils/helper';
 
 interface initState {
   error: any;
@@ -26,7 +27,7 @@ export const loginUser = createAsyncThunk(
     // const accessToken: string = localStorage.getItem("accessToken") || "";
     try {
       const response = await axios.post(
-        `http://localhost:3002/api/v1/auth/login`,
+        `${baseUrl}/auth/login`,
         rest
       );
 

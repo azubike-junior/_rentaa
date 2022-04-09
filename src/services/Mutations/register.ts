@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 import { IRegistration, UserResponse } from "../../interfaces";
 import { axiosInstance } from "./../../utils/axiosInstance";
+import { baseUrl } from './../../utils/helper';
 
 interface initState {
   error: any;
@@ -25,7 +26,7 @@ export const registerUser = createAsyncThunk(
   async ({ history, ...rest }: IRegistration, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `http://localhost:3002/api/v1/auth/registration`,
+        `${baseUrl}/auth/registration`,
         rest
       );
       console.log(">>>>response", response)

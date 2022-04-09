@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "./../../interfaces/index";
+import { baseUrl } from './../../utils/helper';
 
 interface DataProps {
   avatarId: any;
@@ -42,7 +43,7 @@ export const getProfileAvatar = createAsyncThunk(
 
     try {
       const response = await fetch(
-        `http://localhost:3002/api/v1/users/profile-avatar?avatarID=${avatarId}`,
+        `${baseUrl}/users/profile-avatar?avatarID=${avatarId}`,
         { ...defaultOptions }
       );
 

@@ -66,7 +66,7 @@ export const getUserById = createAsyncThunk(
           */
         if (id) {
           const response2 = await fetch(
-            `http://localhost:3002/api/v1/users/profile-avatar?avatarID=${response.data.user.profile.avatarId}`,
+            `${baseUrl}/users/profile-avatar?avatarID=${response.data.user.profile.avatarId}`,
             { ...defaultOptions }
           );
 

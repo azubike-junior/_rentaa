@@ -5,7 +5,7 @@ import { axiosInstance } from "../../utils/axiosInstance";
 interface DataProps {
   formData: any;
   history: any;
-  photoId: string
+  photoId: string;
 }
 
 interface initState {
@@ -28,7 +28,10 @@ export const updateGadget = createAsyncThunk(
   "register",
   async ({ formData, history, photoId }: DataProps, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.patch(`/gadgets/${photoId}`, formData);
+      const response = await axiosInstance.patch(
+        `/gadgets/${photoId}`,
+        formData
+      );
       console.log(">>>>>response", response);
 
       if (response.data.status === 201) {

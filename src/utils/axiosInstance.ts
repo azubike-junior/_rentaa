@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
-import { baseUrl } from "./helper";
+import { baseUrl } from './helper';
 
 interface User {
   user_id: string;
