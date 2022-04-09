@@ -52,7 +52,7 @@ const LandingPageNavBar: React.FC = () => {
           </Link>
         </div>
         <ul className="flex flex-row mx-auto xs:w-72 w-80 xxs:w-56 sm:w-400 justify-between mt-5">
-          <li className="transition-all duration-300 text-xs text-darkCream hover:text-black cursor-pointer">
+          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             Home
           </li>
           <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">

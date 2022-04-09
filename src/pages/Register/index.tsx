@@ -157,7 +157,7 @@ export default function SignUp() {
               />
               <span className="hidden md:flex items-center justify-center font-dm-sans pt-8 text-xs">
                 By clicking{" "}
-                <span className="text-secondary px-1">"Sign up" </span> you
+                <span className="text-secondary px-1">Sign up</span> you
                 agree to Rentaa's{" "}
                 <Link to="#" className="px-1 text-secondary">
                   Private Policy
@@ -168,8 +168,14 @@ export default function SignUp() {
                 </Link>
               </span>
               <p className="text-xs md:hidden text-center w-72 pt-6">
-                By clicking sign up you agree to Rentaa's Private Policy and
-                Terms and Conditions
+                By clicking sign up you agree to Rentaa's{" "}
+                <Link to="#" className="text-secondary">
+                  Private Policy
+                </Link>{" "}
+                and{" "}
+                <Link to="#" className="text-secondary">
+                  Terms and Conditions
+                </Link>
               </p>
 
               <Button
