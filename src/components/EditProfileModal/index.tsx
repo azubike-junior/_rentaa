@@ -151,7 +151,7 @@ export default function EditProfileModal() {
   };
 
   return (
-    <div className="xxs:w-72 mx-4 h-700 md:h-700 md:w-600 lg:h-700 lg:w-900 xl:w-1000 font-dm-sans bg-white  text-white rounded-lg px-4 overflow-y-scroll scrollbar-hidden md:p-10 shadow-2xl">
+    <div className="xxs:w-72 xs:w-90 mx-4 h-700 md:h-700 md:w-600 lg:h-700 lg:w-900 xl:w-1000 font-dm-sans bg-white  text-white rounded-lg px-4 overflow-y-scroll scrollbar-hidden md:p-10 shadow-2xl">
       <div className="block lg:flex lg:space-x-28 w-full pt-7">
         <div className="pb-2 md:mx-auto lg:mx-0">
           <label>
