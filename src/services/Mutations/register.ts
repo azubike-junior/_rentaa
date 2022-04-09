@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 import { IRegistration, UserResponse } from "../../interfaces";
 import { axiosInstance } from "./../../utils/axiosInstance";
-import { baseUrl } from './../../utils/helper';
+import { baseUrl } from "./../../utils/helper";
 
 interface initState {
   error: any;
@@ -25,11 +25,8 @@ export const registerUser = createAsyncThunk(
   "register",
   async ({ history, ...rest }: IRegistration, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${baseUrl}/auth/registration`,
-        rest
-      );
-      console.log(">>>>response", response)
+      const response = await axios.post(`${baseUrl}/auth/registration`, rest);
+      console.log(">>>>response", response);
 
       if (response.status === 201) {
         history.push("/verify_email");
