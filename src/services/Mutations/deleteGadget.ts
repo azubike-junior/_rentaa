@@ -6,6 +6,7 @@ import { IGadgets, ITokenDecode, UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { getUserResponse } from "../../interfaces/index";
 import { toggleDeleteModal } from "./Modal";
+import { baseUrl } from "./../../utils/helper";
 
 interface DataProps {
   formData: any;
@@ -31,8 +32,14 @@ const initialState: initState = {
 export const deleteGadget = createAsyncThunk(
   "deleteGadget",
   async ({ id, history, dispatch }: any) => {
+    const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
+
     try {
-      const response = await axiosInstance.delete(`/gadgets/${id}`);
+      const response = await axios.delete(`${baseUrl}/gadgets/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       if (response.status === 200) {
         history.push("/profile");
         dispatch(toggleDeleteModal());

@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import { UserResponse } from "../../interfaces";
 import { axiosInstance } from "../../utils/axiosInstance";
+import { baseUrl } from "./../../utils/helper";
 
 interface DataProps {
   formData: any;
@@ -27,7 +29,15 @@ export const postGadget = createAsyncThunk(
   "register",
   async ({ formData, history }: DataProps, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post("/gadgets", formData);
+      const accessToken = JSON.parse(
+        localStorage.getItem("accessToken") || "{}"
+      );
+
+      const response = await axios.post(`${baseUrl}/gadgets`, formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log(">>>>>response", response);
 
       if (response.data.status === 201) {
