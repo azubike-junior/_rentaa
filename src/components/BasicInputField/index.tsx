@@ -123,7 +123,7 @@ export function SelectInput({
             onClick={setState}
             className={classNames(
               // disabled && " bg-lightCream w-full px-6",
-              "py-1 h-10 text-sm md:h-14 md:text-base md:px-2 w-full rounded-lg outline-none font-dm-sans"
+              "py-1 h-10 text-sm md:h-14 md:text-base md:px-2 w-full rounded-lg bg-transparent outline-none font-dm-sans"
             )}
           >
             {selectArray?.map((_item: any) => {

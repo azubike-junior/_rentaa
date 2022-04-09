@@ -190,7 +190,7 @@ export default function PostProduct() {
               <SelectInput
                 register={register}
                 label="Product Category"
-                className="lg:w-700 pt-12 cursor-pointer"
+                className="lg:w-700 pt-12 cursor-pointer bg-transparent"
                 name="category"
                 selectArray={allCategories}
                 required
@@ -202,7 +202,7 @@ export default function PostProduct() {
                 register={register}
                 selectArray={[{ value: "", text: "-Select-" }, ...getStates()]}
                 label="Current State of Residence"
-                className="lg:w-700 pt-12 cursor-pointer"
+                className="lg:w-700 pt-12 cursor-pointer bg-transparent"
                 name="state"
                 type="text"
                 setState={handleClick}
@@ -214,7 +214,7 @@ export default function PostProduct() {
                 register={register}
                 selectArray={[{ value: "", text: "-Select-" }, ...getLga(lga)]}
                 label="LGA"
-                className="lg:w-700 pt-12"
+                className="lg:w-700 pt-12 bg-transparent"
                 name="lga"
                 type="text"
                 required
@@ -234,7 +234,7 @@ export default function PostProduct() {
                 register={register}
                 selectArray={gadgetConditions}
                 label="Gadget Condition"
-                className="lg:w-700 pt-12"
+                className="lg:w-700 pt-12 bg-transparent"
                 name="condition"
                 required
                 errors={errors?.condition}
