@@ -8,7 +8,7 @@ import OptimizedForYou from '../../components/OptimizedForYou';
 
 const LandingPage : React.FC = () => {
     return (
-    <div className='bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-12'>
+    <div className='bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-12 font-dm-sans'>
         <LandingPageNavBar />
         <AccessPossibilities />
         <ImagePanel />
