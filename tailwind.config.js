@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       borderWidth: {
-        '1': '0.5px'
+        1: "0.5px",
       },
       height: {
         98: "409px",
@@ -29,10 +29,10 @@ module.exports = {
         1300: "90rem",
       },
       maxWidth: {
-        'xmd': '488px', 
-        'xxs': '274px',
-        'btn': '689px', 
-        'form': '748px'
+        xmd: "488px",
+        xxs: "274px",
+        btn: "689px",
+        form: "748px",
       },
       width: {
         18: "75px",
@@ -46,7 +46,7 @@ module.exports = {
         800: "48rem",
         900: "55rem",
         1000: "65rem",
-        1500: "80rem"
+        1500: "80rem",
       },
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
@@ -58,7 +58,8 @@ module.exports = {
         bgAsh: "rgba(0, 0, 0, 0.3)",
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
-        greyishWhite: "#FAFAFA"
+        greyishWhite: "#FAFAFA",
+        lightAsh: "#8A8892",
       },
     },
   },

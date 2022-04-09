@@ -26,7 +26,7 @@ export default function DeleteModal({ id }: gadgetProp) {
           type="button"
           child="No, cancel"
           onClick={() => dispatch(toggleDeleteModal())}
-          className="bg-darkerAsh text-white p-3 px-4 md:px-12 font-dm-sans mr-5"
+          className="bg-lightAsh text-white p-3 px-4 md:px-12 font-dm-sans mr-5"
         />
         <Button
           onClick={() => {

@@ -71,7 +71,7 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
         <img
           src={image}
           alt="my gadget"
-          className="mx-auto md:mx-0 w-64 lg:w-400 lg:h-64 md:mr-10 lg:mr-14 xl:mr-20"
+          className="mx-auto md:mx-0 h-52 w-64 lg:w-400 lg:h-64 md:mr-10 lg:mr-14 xl:mr-20"
         />
         <div className="pt-3 lg:pt-7">
           <p className="text-xl text-center md:text-justify text-gray-400 pb-5">
