@@ -39,12 +39,12 @@ export default function Notification({isMouse}: IData ) {
 
   return (
     <motion.div
-      className=" bg-white cursor-pointer right-10 absolute top-28 z-50"
+      className="bg-white cursor-pointer right-8 md:right-10 absolute top-20 md:top-28 z-50"
       initial="exit"
       animate={isMouse ? "enter" : "exit"}
       variants={subMenuAnimate}
     >
-      <div className=" w-500 font-dm-sans py-8 shadow-xl">
+      <div className="w-full md:w-500 font-dm-sans py-8 shadow-xl">
         <div className="px-5">
           <p className="text-black text-left text-2xl pt-5 pb-2 font-bold">
             Notification

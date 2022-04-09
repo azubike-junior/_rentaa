@@ -4,6 +4,7 @@ const {
   REACT_APP_AWS_HTTP,
   REACT_APP_BUCKET_NAME,
   REACT_APP_BASE_URL,
+  NODE_ENV
 } = process.env;
 
 export default {

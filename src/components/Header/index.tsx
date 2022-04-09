@@ -91,8 +91,7 @@ export default function Header() {
           <div className="flex space-x-4 md:space-x-7 xl:space-x-10 pt-6 md:pt-2">
             <motion.div
               // className="menu-item"
-              onMouseEnter={toggleMouseMenu}
-              onMouseLeave={toggleMouseMenu}
+              onClick={() => toggleMouseMenu()}
             >
               <Link to="#">
                 <img

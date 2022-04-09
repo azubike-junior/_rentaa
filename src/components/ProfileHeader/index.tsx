@@ -113,7 +113,7 @@ export default function ProfileHeader() {
                 <Link to="/post_product">
                   <Button
                     child="Post a Gadget"
-                    className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-8 text-white"
+                    className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 md:mr-8 text-white"
                     type="button"
                   />
                 </Link>
@@ -127,20 +127,23 @@ export default function ProfileHeader() {
               )}
 
               {user ? (
-               
                 <div className="">
                   <div
                     onClick={() => showSettings()}
-                    className="cursor-pointer flex font-dm-sans md:justify-center md:items-center pt-2"
+                    className="cursor-pointer flex font-dm-sans md:justify-center md:items-center md:pt-2"
                   >
-                    <img src={settingIcon} className="w-6 ml-4 md:ml-0 md:w-10 mr-2" alt="" />
+                    <img
+                      src={settingIcon}
+                      className="w-6 ml-4 md:ml-0 md:w-10 mr-2"
+                      alt=""
+                    />
                     <p className="text-base md:text-xl text-secondary">
                       Settings
                     </p>
                   </div>
                   {openSettings && (
-                    <div className="font-dm-sans ml-1 mt-4 px-4 md:px-6 py-5 cursor-pointer shadow-xl text-sm md:text-base">
-                      <ul className=" space-y-3">
+                    <div className="font-dm-sans ml-1 mt-4 px-4 md:px-6 py-5 cursor-pointer shadow-xl text-sm md:text-base absolute">
+                      <ul className="space-y-3">
                         <li
                           onClick={() => {
                             dispatch(getUserById({}));
