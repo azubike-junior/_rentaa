@@ -273,7 +273,7 @@ export default function EditProfileModal() {
               message="Description should not be lesser than 30 chars and more than 400 chars"
             />
 
-            <div className="block md:flex space-x-2">
+            <div className="block md:flex space-x-2 mt-2 mb-6" >
               <Button
                 child={loadingHandler ? <Loader /> : "Save Changes"}
                 className="w-48 lg:w-52 px-4 py-3 md:py-5 text-white mt-3 md:mt-5 md:mb-10 bg-secondary"
