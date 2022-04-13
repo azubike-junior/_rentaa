@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 import { ILogin, ITokenDecode, UserResponse } from "../../interfaces";
 import jwt_decode from "jwt-decode";
-import { baseUrl } from './../../utils/helper';
+import { baseUrl } from "./../../utils/helper";
 
 interface initState {
   error: any;
@@ -26,10 +26,7 @@ export const loginUser = createAsyncThunk(
   async ({ history, ...rest }: ILogin, { rejectWithValue }) => {
     // const accessToken: string = localStorage.getItem("accessToken") || "";
     try {
-      const response = await axios.post(
-        `${baseUrl}/auth/login`,
-        rest
-      );
+      const response = await axios.post(`${baseUrl}/auth/login`, rest);
 
       if (response.data.statusCode === 200) {
         const { token, refreshToken } = response.data.message.results;
@@ -38,6 +35,11 @@ export const loginUser = createAsyncThunk(
         localStorage.setItem("avatarId", user?.avatar_id);
         localStorage.setItem("accessToken", JSON.stringify(token));
         localStorage.setItem("refresh_token", JSON.stringify(refreshToken));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify(response.data.message.userData)
+        );
+        // console.log(">>>response", response.data.message.userData);
         history.push("/dashboard");
         return response.data;
       }

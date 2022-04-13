@@ -14,25 +14,8 @@ export default function Dashboard() {
   // const { data } = useSelector((state: RootState) => state.getUserById);
   const dispatch = useDispatch();
 
-  /**
-   * in the getUserById function, an avatarId is set to the localStorage.
-   */
-  // useEffect(() => {
-  //   dispatch(getUserById());
-  // }, []);
-
-  // const { data: categories, loading: categoriesLoading } = useSelector(
-  //   (state: RootState) => state.getCategoriesReducer
-  // );
-
-  // console.log(">>>>>>categories", categories)
-
   const { data: categories, isLoading: categoriesLoading } =
     useGetCategoriesQuery("");
-
-  // useEffect(() => {
-  //   dispatch(getCategories(dispatch));
-  // }, []);
 
   return (
     <div>

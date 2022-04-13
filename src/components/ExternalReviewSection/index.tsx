@@ -13,9 +13,9 @@ import { getUserById } from "./../../services/Queries/getUser";
 import Modal from "../Modal";
 import ReviewModal from "../ReviewModal";
 import avatar from "../../images/avatar.jpg";
-import { getReviewerImage } from './../../services/Queries/getReviewerImage';
+import { getReviewerImage } from "./../../services/Queries/getReviewerImage";
 
-export default function ReviewSection({ reviews }: any) {
+export default function ExternalReviewSection({ reviews }: any) {
   const { pathname } = useLocation();
 
   const access: string = JSON.parse(
@@ -43,7 +43,9 @@ export default function ReviewSection({ reviews }: any) {
       review: review.review,
       reviewer: review.reviewer,
     };
-  })
+  });
+
+  console.log(">>>>>>reviewData", reviews);
 
   /**
    * todo: get the images of the reviewer from through the avatarId
@@ -52,9 +54,13 @@ export default function ReviewSection({ reviews }: any) {
     for (let i = 0; i < reviewData?.length; i++) {
       const { avatarId, review, reviewer } = reviewData[i];
 
-      dispatch(getReviewerImage({avatarId, setImage}));
+      console.log(">>>>>>avatr ooo", avatarId);
+
+      dispatch(getReviewerImage({ avatarId, setImage }));
     }
   }, []);
+
+  console.log(">>>>>image", image);
 
   return (
     <div className="container max-w-7xl mx-auto pb-14">

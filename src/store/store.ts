@@ -19,6 +19,8 @@ import deleteGadgetReducer from "./../services/Mutations/deleteGadget";
 import getCategoriesReducer from "./../services/Queries/getCategories";
 import resetPasswordReducer from "./../services/Mutations/resetPassword";
 import changePasswordReducer from './../services/Mutations/changePassword';
+import viewMoreGadgetReducer from './../services/Queries/viewMoreGadget';
+import getReviewerImageReducer from './../services/Queries/getReviewerImage';
 
 export const store = configureStore({
   reducer: {
@@ -40,7 +42,9 @@ export const store = configureStore({
     deleteGadgetReducer,
     getCategoriesReducer,
     resetPasswordReducer,
-    changePasswordReducer
+    changePasswordReducer,
+    viewMoreGadgetReducer,
+    getReviewerImageReducer
   },
   // middleware: (gdm) => gdm().concat(openAccountApi.middleware),
   devTools: true,

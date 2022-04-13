@@ -92,6 +92,8 @@ export default function Profile() {
     body.style.overflow = contactModalOpen ? "hidden" : "auto";
   }, [contactModalOpen]);
 
+  console.log(">>>>>review", data?.profile?.reviews);
+
   return (
     <div>
       <ProfileHeader />
@@ -107,10 +109,6 @@ export default function Profile() {
 
         <ReviewSection reviews={data?.profile?.reviews} />
       </div>
-
-      {/* <Modal isOpen={contactModalOpen}>
-        <ViewContactModal />
-      </Modal> */}
 
       <Modal isOpen={changePasswordOpen}>
         <ChangePasswordModal />

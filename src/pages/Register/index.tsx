@@ -75,7 +75,7 @@ export default function SignUp() {
           />
           {error?.statusCode === 400 && (
             <p className="text-sm px-3 pt-4 md:text-base text-red-500 font-dm-sans">
-              Email has been used, Please retry
+              Email has been used, Please try signing up with a different email
             </p>
           )}
           <form

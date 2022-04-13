@@ -53,7 +53,7 @@ export default function Login() {
           />
           {error?.statusCode === 400 && (
             <p className="text-sm px-3 pt-4 md:text-base text-red-500 font-dm-sans">
-              Invalid Login Credentials, Please Enter right credentials to
+              Invalid Login Credentials, Please Enter the right credentials to
               continue.
             </p>
           )}

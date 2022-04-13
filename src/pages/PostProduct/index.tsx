@@ -251,7 +251,7 @@ export default function PostProduct() {
                 required
                 textArea
                 errors={errors?.description}
-                message="description must be more than 30 chars"
+                message="description must be more than 30 chars and lesser than 400 chars"
               />
               <InputField
                 register={register}

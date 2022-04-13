@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import camera from "../../images/camera-2.svg";
 import Button from "./../Button/index";
 import phone from "../../images/whitePhone.svg";
@@ -11,8 +11,9 @@ import Modal from "../Modal";
 import ViewContactModal from "../ViewContactModal";
 import { ITokenDecode } from "../../interfaces";
 import jwt_decode from "jwt-decode";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import config from "../../utils/config";
+import { viewMoreGadget } from "./../../services/Queries/viewMoreGadget";
 
 function SingleProduct({ img }: any) {
   return (
@@ -43,6 +44,12 @@ export default function ProductDescBody({ gadget }: any) {
     (state: RootState) => state.modalReducer
   );
 
+  const { data: moreGadgets } = useSelector(
+    (state: RootState) => state.viewMoreGadgetReducer
+  );
+
+  console.log(moreGadgets);
+
   let imageUrls;
 
   const href =
@@ -54,6 +61,33 @@ export default function ProductDescBody({ gadget }: any) {
   imageUrls = photos?.map((photo: any) => {
     return bucketUrl + encodeURIComponent(photo.key);
   });
+
+  let moreGadgetsPhotos;
+
+  console.log(">>>>moreGadgets", moreGadgets);
+
+  if (moreGadgets.length > 0) {
+    moreGadgetsPhotos = moreGadgets
+      ?.map((gadget: any) => {
+        return {
+          photos: gadget.photos,
+          price: gadget.price,
+          name: gadget.name,
+        };
+      })
+      .map((photo: any) => {
+        return { ...photo.photos, name: photo.name, price: photo.price };
+      })
+      .map((photo: any) => {
+        return {
+          imageUrl: bucketUrl + encodeURIComponent(photo[0].key),
+          name: photo.name,
+          price: photo.price,
+        };
+      });
+  }
+
+  // console.log("moreGadgetPhotos", moreGadgetsPhotos);
 
   return (
     <div className="max-w-7xl mx-auto px-8 font-dm-sans mb-20">
@@ -109,22 +143,16 @@ export default function ProductDescBody({ gadget }: any) {
             <span className="text-secondary">{`${user?.last_name} ${user?.first_name}`}</span>{" "}
           </p>
 
-          <div className="p-0 grid xxs:grid-cols-1 xs:grid-cols-2 justify-items-center xxs:place-items-center sm:gap-6 sm:grid-cols-2 md:grid-cols-3 md:pl-3 md:gap-16 grid-flow-row lg:gap-10 lg:grid-cols-4 xl:pl-5 xl:grid-cols-6">
-            <Product
-              imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg"
-              productName="Cameras"
-              price={20000}
-            />
-            <Product
-              imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg"
-              productName="Cameras"
-              price={20000}
-            />
-            <Product
-              imageUrl="https://demo3.admorris.com/media/image/product/11699/lg/dslr-kamera-21mp.jpg"
-              productName="Cameras"
-              price={20000}
-            />
+          <div className="place-content-center grid grid-flow-row md:gap-x-16 md:gap-y-6 md:pb-6 md:grid-cols-3 gap-y-2 lg:gap-y-7 lg:grid-cols-4 xl:grid-cols-6 ">
+            {moreGadgetsPhotos?.map((gadget: any) => {
+              return (
+                <Product
+                  imageUrl={gadget.imageUrl}
+                  productName={gadget.name}
+                  price={gadget.price}
+                />
+              );
+            })}
           </div>
         </div>
       )}

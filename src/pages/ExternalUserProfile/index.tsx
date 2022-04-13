@@ -14,6 +14,7 @@ import ReviewModal from "../../components/ReviewModal";
 import EditProfileModal from "../../components/EditProfileModal";
 import { getUserById } from "../../services/Queries/getUser";
 import config from "../../utils/config";
+import ExternalReviewSection from './../../components/ExternalReviewSection/index';
 
 function ExternalUserProfile() {
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ function ExternalUserProfile() {
         ) : (
           <MyGadgets gadgets={imageUrls} gadgetLoading={userLoading} />
         )}
-        <ReviewSection reviews={data?.profile?.reviews} />
+        <ExternalReviewSection reviews={data?.profile?.reviews} />
       </div>
 
       <Modal isOpen={contactModalOpen}>

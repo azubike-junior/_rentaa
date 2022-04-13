@@ -13,7 +13,7 @@ import Loader from "./../Loader/index";
 export default function ReviewModal({ id }: any) {
   const first_name = localStorage.getItem("first_name");
   const last_name = localStorage.getItem("last_name");
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
 
   const {
     register,
@@ -23,10 +23,9 @@ export default function ReviewModal({ id }: any) {
     formState: { errors },
   } = useForm({
     mode: "onTouched",
-    defaultValues: {
-      reviewerName: `${first_name} ${last_name}`,
-    },
   });
+
+  const userData = JSON.parse(localStorage.getItem("userData") || "");
 
   const { loading: reviewsLoading } = useSelector(
     (state: RootState) => state.leaveReviewReducer
@@ -34,14 +33,14 @@ export default function ReviewModal({ id }: any) {
 
   const handleReviewSubmit = (data: any) => {
     const rev = {
-      reviewer: data.reviewerName,
+      reviewer: `${userData.first_name} ${userData.last_name}`,
       review: data.review,
     };
     const newData = {
       data: rev,
       id,
       dispatch,
-      setImage
+      setImage,
     };
     dispatch(leaveReview(newData));
   };
@@ -68,7 +67,7 @@ export default function ReviewModal({ id }: any) {
           label="Your Name"
           name="reviewerName"
           className="w-full lg:w-700 text-gray-400"
-          value={`${first_name} ${last_name}`}
+          value={`${userData.first_name} ${userData.last_name}`}
           disabled
         />
         <InputField

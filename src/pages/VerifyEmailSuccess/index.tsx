@@ -41,7 +41,7 @@ export default function VerifyEmailSuccess() {
 
           {response?.status === 200 && (
             <h1 className="text-center mb-6 text-xl md:text-3xl pt-32 capitalize bolder">
-              email verification successful
+              Email verification successful
             </h1>
           )}
 

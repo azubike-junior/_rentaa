@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { findGadget } from "./../../services/Queries/findGadget";
 import { RootState } from "../../store/store";
 import Loader from "../../components/Loader";
+import { viewMoreGadget } from './../../services/Queries/viewMoreGadget';
 
 export default function ProductDesc() {
   const dispatch = useDispatch();
@@ -24,10 +25,13 @@ export default function ProductDesc() {
     photoKey = gadgetData?.photos[0];
   }
 
-
   // get gadget description by id from the id string in {useParams}
   useEffect(() => {
     dispatch(findGadget(id));
+  }, []);
+
+  useEffect(() => {
+    dispatch(viewMoreGadget(id));
   }, []);
 
   return (
