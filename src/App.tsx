@@ -34,6 +34,8 @@ import EditGadget from "./pages/EditGadget/index";
 import Loader from "./components/Loader";
 import ResetPassword from "./pages/ResetPassword";
 import LandingPage from "./pages/LandingPage";
+import PrivateRoute from "./components/PrivateRoute";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -44,25 +46,25 @@ function App() {
 
   const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   const timer = new IdleTimer({
-  //     timeout: 120, //expire after 3 mins
-  //     onTimeout: () => {
-  //       window.location.href = "/login";
-  //       localStorage.clear();
-  //     },
-  //     onExpired: () => {
-  //       window.location.href = "/login";
-  //       localStorage.clear();
-  //     },
-  //   });
+  useEffect(() => {
+    const timer = new IdleTimer({
+      timeout: 120, //expire after 3 mins
+      onTimeout: () => {
+        window.location.href = "/login";
+        localStorage.clear();
+      },
+      onExpired: () => {
+        window.location.href = "/login";
+        localStorage.clear();
+      },
+    });
 
-  //   return () => {
-  //     timer.cleanUp();
-  //   };
-  // }, []);
+    return () => {
+      timer.cleanUp();
+    };
+  }, []);
 
-  const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+  // const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
   return (
     <div className="relative">
@@ -75,49 +77,62 @@ function App() {
         <Header />
       )}
       <main>
-        <Suspense fallback={<Loader />}>
-          <Route exact path={"/"} component={LandingPage} />
-          {/* <Header /> */}
-          {/* <main> */}
-          <Route exact path={"/verify_email"} component={VerifyEmail} />
-          <Route
-            exact
-            path={"/forget_password_success_response"}
-            component={VerifyPasswordSuccess}
-          />
-          <Route exact path={"/dashboard"} component={Dashboard} />
-          <Route
-            exact
-            path={"/user_profile/:id"}
-            component={ExternalUserProfile}
-          />
-          <Route
-            exact
-            path={"/reset_password_success/:token"}
-            component={ResetPassword}
-          />
-          <Route exact path={"/sign_up"} component={SignUp} />
-          <Route exact path={"/forget_password"} component={ForgetPassword} />
-          <Route exact path={"/login"} component={Login} />
-          <Route exact path={"/bookmark"} component={Bookmark} />
-          <Route exact path={"/post_product"} component={PostProduct} />
-          <Route exact path={"/edit_gadget/:id"} component={EditGadget} />
-          <Route exact path={"/profile"} component={Profile} />
-          <Route
-            exact
-            path={"/product_description/:id"}
-            component={ProductDesc}
-          />
-          <Route exact path={"/view_categories/:id"} component={ViewCategory} />
-          <Route exact path={"/contact_us"} component={Contact} />
-          <Route
-            exact
-            path={"/verify_email_success/:token"}
-            component={VerifyEmailSuccess}
-          />
-        </Suspense>
+        {/* <Switch> */}
+          <Suspense fallback={<Loader />}>
+            <Route exact path={"/"} component={LandingPage} />
+            <Route exact path={"/verify_email"} component={VerifyEmail} />
+            <Route
+              exact
+              path={"/forget_password_success_response"}
+              component={VerifyPasswordSuccess}
+            />
+            <Route exact path={"/contact_us"} component={Contact} />
+            <Route
+              exact
+              path={"/verify_email_success/:token"}
+              component={VerifyEmailSuccess}
+            />
+            <Route
+              exact
+              path={"/reset_password_success/:token"}
+              component={ResetPassword}
+            />
+            <Route exact path={"/sign_up"} component={SignUp} />
+            <Route exact path={"/forget_password"} component={ForgetPassword} />
+            <Route exact path={"/login"} component={Login} />
+            <PrivateRoute path="/bookmark" component={Bookmark} />
+            <PrivateRoute
+              exact
+              path={"/post_product"}
+              component={PostProduct}
+            />
+            <PrivateRoute
+              exact
+              path={"/edit_gadget/:id"}
+              component={EditGadget}
+            />
+            <PrivateRoute exact path={"/profile"} component={Profile} />
+            <PrivateRoute
+              exact
+              path={"/product_description/:id"}
+              component={ProductDesc}
+            />
+            <PrivateRoute
+              exact
+              path={"/view_categories/:id"}
+              component={ViewCategory}
+            />
+            <PrivateRoute path="/dashboard" exact component={Dashboard} />
+            <PrivateRoute
+              exact
+              path={"/user_profile/:id"}
+              component={ExternalUserProfile}
+            />
+          </Suspense>
+        {/* </Switch> */}
       </main>
       {pathname === "/verify_email" ||
+      pathname === "/" ||
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""

@@ -39,7 +39,7 @@ export const loginUser = createAsyncThunk(
           "userData",
           JSON.stringify(response.data.message.userData)
         );
-        // console.log(">>>response", response.data.message.userData);
+
         history.push("/dashboard");
         return response.data;
       }
