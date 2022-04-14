@@ -57,7 +57,8 @@ export default function PostProduct() {
   } = useForm<IProductInputs>({
     mode: "onTouched",
     defaultValues: {
-      contact_info: "08393038303",
+      contact_info: JSON.parse(localStorage.getItem("userData") || "{}")
+        .phone_number,
     },
   });
 

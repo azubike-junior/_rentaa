@@ -37,7 +37,7 @@ export const loginUser = createAsyncThunk(
         localStorage.setItem("refresh_token", JSON.stringify(refreshToken));
         localStorage.setItem(
           "userData",
-          JSON.stringify(response.data.message.userData)
+          JSON.stringify(response?.data?.message.userData)
         );
 
         history.push("/dashboard");

@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 120, //expire after 3 mins
+      timeout: 300, //expire after 7 mins
       onTimeout: () => {
         window.location.href = "/login";
         localStorage.clear();
