@@ -25,7 +25,7 @@ export default function ReviewModal({ id }: any) {
     mode: "onTouched",
   });
 
-  const userData = JSON.parse(localStorage.getItem("userData") || "");
+  const userData = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const { loading: reviewsLoading } = useSelector(
     (state: RootState) => state.leaveReviewReducer
