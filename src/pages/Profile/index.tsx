@@ -36,8 +36,6 @@ export default function Profile() {
     (state: RootState) => state.getUserById
   );
 
-  // console.log(">>>>>>data from profile", data)
-
   let imageUrls;
   let gadgetData;
 

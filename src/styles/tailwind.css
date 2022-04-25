@@ -17,6 +17,18 @@
   left: 20;
 }
 
+.z-index-100 {
+  z-index: 100;
+}
+
+.bottom-100 {
+  top: 28rem;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }

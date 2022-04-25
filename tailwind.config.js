@@ -60,6 +60,7 @@ module.exports = {
         darkCream: "#E8E8EE",
         greyishWhite: "#FAFAFA",
         lightAsh: "#8A8892",
+        darkBlue: "#150C38",
       },
     },
   },
