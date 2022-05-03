@@ -10,7 +10,7 @@ const AccessPossibilities: React.FC = () => {
     <section className="mt-12 lg:flex lg:items-center flex-row-reverse container lg:justify-between mx-auto px-8 xl:h-600">
       <div
         data-aos="fade-up"
-        data-aos-duration="3000"
+        data-aos-duration="1000"
         className="relative xxs:hidden xs:hidden sm:hidden md:hidden lg:block w-90 mx-auto xl:w-500 xl:h-600 lg:m-0 md:w-96 md:h-96"
       >
         <img className="absolute w-400 mt-24 z-10" src={iphone} />
@@ -27,7 +27,7 @@ const AccessPossibilities: React.FC = () => {
       <article className="mt-14">
         <p
           data-aos="fade-right"
-          data-aos-duration="2000"
+          data-aos-duration="1000"
           className="xs:w-64 font-dm-sans xxs:w-64 xs:text-2xl xxs:text-2xl text-3xl md:text-4xl md:w-90 w-72 text-center lg:text-5xl lg:w-500 lg:text-left mx-auto lg:mx-0 font-medium"
         >
           Access a <span className="text-secondary">world</span> of creative{" "}
@@ -67,7 +67,7 @@ const AccessPossibilities: React.FC = () => {
       </article>
       <figure
         data-aos="fade-up"
-        data-aos-duration="2000"
+        data-aos-duration="1000"
         className="lg:hidden xxs:w-64 xs:mx-auto xs:w-72 xs:h-72 w-90 mx-auto xl:w-500 xl:h-600 lg:m-0 md:w-96 md:h-96"
       >
         <img className="w-400 mt-24 z-10" src={iphone} />
