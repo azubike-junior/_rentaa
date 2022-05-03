@@ -17,7 +17,11 @@ export default function Sidebar() {
       <div className="flex pl-8 pr-4 pt-8 pb-6 shadow-lg font-dm-sans">
         <div className="flex justify-between">
           <ul className="space-y-8">
-            <li>Home</li>
+            <li>
+              <Link onClick={() => dispatch(toggleSidebar())} to="/">
+                Home
+              </Link>
+            </li>
             <li>Our Story</li>
             <li>
               <Link onClick={() => dispatch(toggleSidebar())} to="/sign_up">

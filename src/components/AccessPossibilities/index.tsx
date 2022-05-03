@@ -51,12 +51,14 @@ const AccessPossibilities: React.FC = () => {
           </div>
 
           <div className="">
-            <button
-              data-aos="zoom-in"
-              className="xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-4.5 px-5 lg:px-7 text-secondary border-2 rounded-md border-secondary"
-            >
-              Join Private Beta
-            </button>
+            <Link to="/sign_up">
+              <button
+                data-aos="zoom-in"
+                className="xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-4.5 px-5 lg:px-7 text-secondary border-2 rounded-md border-secondary"
+              >
+                Join Private Beta
+              </button>
+            </Link>
           </div>
         </div>
         {/* Set the line hieght of the second paragraph to 18px */}
