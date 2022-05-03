@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RentaaLogo from "../../images/rentaa_white.svg";
 import star from "../../images/star.svg";
+import menu from "../../images/menu.svg";
+import { toggleSidebar } from "../../services/Mutations/Modal";
+import { useDispatch } from 'react-redux';
 
 const LandingPageNavBar: React.FC = () => {
+  const dispatch = useDispatch()
   return (
     <>
       <nav className="hidden md:block container mx-auto px-6">
@@ -37,21 +41,28 @@ const LandingPageNavBar: React.FC = () => {
           </Link>
         </div>
       </nav>
-      <nav className="md:hidden w-full mx-auto">
+      <nav className="md:hidden w-full mx-auto mt-3">
         <div className="mx-7 flex items-center justify-between">
           <Link to="/">
             <figure>
-              <img className="h-6" src={RentaaLogo} />
+              <img className="h-6 cursor-pointer" src={RentaaLogo} />
             </figure>
           </Link>
-          <Link to="/sign_up">
-            <button className="relative px-5 py-3 text-xs rounded-md bg-secondary text-white">
+
+          {/* <button className="relative px-5 py-3 text-xs rounded-md bg-secondary text-white">
               Join Private Beta
               <img className="absolute -top-3 -left-2 w-5 h-5" src={star} />
-            </button>
-          </Link>
+            </button> */}
+          <img
+            src={menu}
+            alt=""
+            className="w-7 cursor-pointer"
+            onClick={() => {
+              dispatch(toggleSidebar());
+            }}
+          />
         </div>
-        <ul className="flex flex-row mx-auto xs:w-72 w-80 xxs:w-56 sm:w-400 justify-between mt-5">
+        {/* <ul className="flex flex-row mx-auto xs:w-72 w-80 xxs:w-56 sm:w-400 justify-between mt-5">
           <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             Home
           </li>
@@ -64,7 +75,7 @@ const LandingPageNavBar: React.FC = () => {
           <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
             FAQs
           </li>
-        </ul>
+        </ul> */}
       </nav>
     </>
   );
