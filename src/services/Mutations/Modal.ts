@@ -1,9 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import { ITokenDecode, UserResponse } from "../../interfaces";
-import { axiosInstance } from "../../utils/axiosInstance";
 
 interface initState {
   contactModalOpen: boolean;
