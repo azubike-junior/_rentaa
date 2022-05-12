@@ -62,6 +62,9 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
   const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
   const image = bucketUrl + encodeURIComponent(photoKey?.key);
 
+
+  console.log(">>>>>>gadget", gadget)
+
   return (
     <div className="max-w-7xl mx-auto px-8 py-16 font-dm-sans">
       <h1 className="text-2xl text-center md:text-justify md:text-4xl font-dm-sans pb-8">
@@ -86,7 +89,7 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
             </span>{" "}
           </p>
           <p className="text-xl text-center md:text-justify md:text-2xl text-gray-400 pb-9">
-            {price}
+            &#x20A6;{price}
           </p>
 
           <div className="grid place-content-center place-items-center lg:flex">
@@ -143,7 +146,9 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
       <div className=" font-dm-sans text-base md:text-xl space-y-4 text-center md:text-left ">
         <p className="">
           Product Category:{" "}
-          <span className="text-secondary">{category?.name}</span>
+          <Link to={`/view_categories/${category?.id}`}>
+            <span className="text-secondary">{category?.name}</span>
+          </Link>
         </p>
         <p>Location: {`${lga}, ${state}`}</p>
         <p>Gadget Condition: {condition}</p>

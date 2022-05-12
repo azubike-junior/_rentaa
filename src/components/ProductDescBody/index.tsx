@@ -64,30 +64,32 @@ export default function ProductDescBody({ gadget }: any) {
 
   let moreGadgetsPhotos;
 
-  console.log(">>>>moreGadgets", moreGadgets);
+  // console.log(">>>>moreGadgets", moreGadgets);
 
   if (moreGadgets.length > 0) {
     moreGadgetsPhotos = moreGadgets
       ?.map((gadget: any) => {
         return {
+          id: gadget.id,
           photos: gadget.photos,
           price: gadget.price,
           name: gadget.name,
         };
       })
       .map((photo: any) => {
-        return { ...photo.photos, name: photo.name, price: photo.price };
+        return { ...photo.photos, id:photo.id, name: photo.name, price: photo.price };
       })
       .map((photo: any) => {
         return {
           imageUrl: bucketUrl + encodeURIComponent(photo[0].key),
           name: photo.name,
           price: photo.price,
+          id: photo.id
         };
       });
   }
 
-  // console.log("moreGadgetPhotos", moreGadgetsPhotos);
+  console.log("moreGadgetPhotos", moreGadgetsPhotos);
 
   return (
     <div className="max-w-7xl mx-auto px-8 font-dm-sans mb-20">
@@ -146,11 +148,14 @@ export default function ProductDescBody({ gadget }: any) {
           <div className="place-content-center grid grid-flow-row md:gap-x-16 md:gap-y-6 md:pb-6 md:grid-cols-3 gap-y-2 lg:gap-y-7 lg:grid-cols-4 xl:grid-cols-6 ">
             {moreGadgetsPhotos?.map((gadget: any) => {
               return (
-                <Product
-                  imageUrl={gadget.imageUrl}
-                  productName={gadget.name}
-                  price={gadget.price}
-                />
+                <Link to={`/more_gadget_description/${gadget.id}`}>
+                  <Product
+                    imageUrl={gadget.imageUrl}
+                    productName={gadget.name}
+                    price={gadget.price}
+                    // id={gadget.id}
+                  />
+                </Link>
               );
             })}
           </div>

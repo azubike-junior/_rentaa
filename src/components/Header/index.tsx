@@ -53,20 +53,20 @@ export default function Header() {
   }, [user, avatarId]);
 
   return (
-    <div className="bg-white shadow-lg h-24 md:h-32 border-b-2 w-full sticky top-0 z-30">
+    <div className="bg-white shadow-sm h-24 border-b-2 w-full sticky top-0 z-30">
       <div className="px-8 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-2 md:pt-5">
         <Link to={user ? "/dashboard" : "/"}>
-          <img src={rentaa} className="mt-6 md:mt-3 w-20 md:w-32" alt="" />
+          <img src={rentaa} className="mt-6 md:mt-0 w-20 md:w-24" alt="" />
         </Link>
         {!user ? (
-          <div className="hidden md:flex pt-4 space-x-36 font-dm-sans text-base text-black">
+          <div className="hidden md:flex pt-0 space-x-36 font-dm-sans text-base text-black">
             <span>
               <Link to="/">Home</Link>{" "}
             </span>
             <span>About</span>
           </div>
         ) : (
-          <div className=" hidden bg-primary md:w-96 lg:w-500 xl:w-700 rounded-full mt-2 py-4 md:flex px-4">
+          <div className=" hidden bg-primary md:w-96 lg:w-500 xl:w-700 rounded-full py-2 md:flex px-4">
             <img
               src={searchIcon}
               className="w-10 h-6 mt-2 pl-3 flex items-center justify-center"
@@ -84,7 +84,7 @@ export default function Header() {
             <Button
               type="button"
               child={pathName === "/login" ? "Sign Up" : "Login"}
-              className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-3 mt-5 md:mt-4"
+              className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-2 mt-5 md:mt-3"
             />
           </Link>
         ) : (
@@ -95,7 +95,7 @@ export default function Header() {
             >
               <Link to="#">
                 <img
-                  className="w-6  md:w-8 lg:w-10 cursor-pointer"
+                  className="w-6 lg:w-8 pt-1 cursor-pointer"
                   src={notifyIcon}
                   alt="notify"
                 />
@@ -108,7 +108,7 @@ export default function Header() {
 
             <Link to="/bookmark">
               <img
-                className="w-6  md:w-8 lg:w-10"
+                className="w-6 lg:w-8 pt-1"
                 src={bookmark}
                 alt="notify"
               />
@@ -121,7 +121,7 @@ export default function Header() {
               className="cursor-pointer"
             >
               <img
-                className="w-6 h-6 md:w-8 md:h-8 lg:h-10 lg:w-10 border rounded-full"
+                className="w-6 h-6  md:h-8 lg:h-10 lg:w-10 border rounded-full"
                 src={!image ? avatar : image}
                 alt="notify"
               />

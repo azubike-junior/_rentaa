@@ -10,7 +10,7 @@ const LandingPageNavBar: React.FC = () => {
   const dispatch = useDispatch()
   return (
     <>
-      <nav className="hidden md:block container mx-auto px-6">
+      <nav className="hidden md:block container mx-auto px-6  max-w-7xl">
         <div className="flex flex-row justify-between items-center mx-2">
           <div className="flex flex-row items-center">
             <Link to="/">

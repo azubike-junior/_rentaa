@@ -14,6 +14,7 @@ interface initState {
   changePasswordOpen: boolean;
   changePasswordSuccessOpen: boolean;
   sidebarOpen: boolean;
+  logoutOpen: boolean
 }
 
 const initialState: initState = {
@@ -25,38 +26,42 @@ const initialState: initState = {
   changePasswordOpen: false,
   changePasswordSuccessOpen: false,
   sidebarOpen: false,
+  logoutOpen: false
 };
 
 const modalSlice = createSlice({
   name: "bvn",
   initialState,
   reducers: {
-    toggleContactModal(state) {
+    toggleContactModal(state: initState) {
       state.contactModalOpen = !state.contactModalOpen;
     },
-    toggleReviewModal(state) {
+    toggleReviewModal(state: initState) {
       state.reviewModalOpen = !state.reviewModalOpen;
     },
-    toggleEditModal(state) {
+    toggleEditModal(state: initState) {
       state.editModalOpen = !state.editModalOpen;
     },
-    openNotification(state) {
+    openNotification(state: initState) {
       state.showNotification = true;
     },
-    closeNotification(state) {
+    closeNotification(state: initState) {
       state.showNotification = true;
     },
-    toggleDeleteModal(state) {
+    toggleDeleteModal(state: initState) {
       state.deleteModalOpen = !state.deleteModalOpen;
     },
-    toggleChangePasswordModal(state) {
+    toggleChangePasswordModal(state: initState) {
       state.changePasswordOpen = !state.changePasswordOpen;
     },
-    toggleChangePasswordSuccessModal(state) {
+    toggleChangePasswordSuccessModal(state: initState) {
       state.changePasswordSuccessOpen = !state.changePasswordSuccessOpen;
     },
-    toggleSidebar(state) {
+    toggleSidebar(state: initState) {
       state.sidebarOpen = !state.sidebarOpen;
+    },
+    toggleLogoutModal(state:initState) {
+      state.logoutOpen = !state.logoutOpen;
     },
   },
 });
@@ -71,5 +76,6 @@ export const {
   toggleChangePasswordModal,
   toggleChangePasswordSuccessModal,
   toggleSidebar,
+  toggleLogoutModal
 } = modalSlice.actions;
 export default modalSlice.reducer;

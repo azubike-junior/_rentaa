@@ -114,6 +114,7 @@ export default function ViewCategory() {
                     {gadgetName}
                   </h1>
                   <p className=" text-gray-400 text-xs md:text-base">
+                    <span>&#x20A6;</span>
                     {gadgetPrice}
                   </p>
                   <p className="text-gray-400 pt-2 md:pt-5 text-sm md:text-lg font-dm-sans">

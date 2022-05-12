@@ -36,7 +36,7 @@ export function CopyField({
       <p className="pb-2 text-sm md:text-base">{title}</p>
       <div className="w-full flex py-4 px-4 md:px-7 justify-between bg-lightCream rounded">
         <input
-          value={input}
+          value={input ? input : "No Contact For Now"}
           className="w-full bg-lightCream text-xs md:text-base"
           disabled
         />
@@ -126,7 +126,7 @@ export default function ViewContactModal({
           input={phone_number}
           onClick={() => copy(phone_number, "noCopied")}
           img2
-          classname={isCopied.noCopied ? " w-10" : ""}
+          classname={isCopied.noCopied ? "w-10" : ""}
           link={""}
         />
         <CopyField

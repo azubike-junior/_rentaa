@@ -19,6 +19,7 @@ import { IGadgets } from "./../../interfaces/index";
 import ChangePasswordModal from "./../../components/ChangePasswordModal/index";
 import ChangePasswordSuccessModal from "./../../components/changePasswordSuccessModal/index";
 import config from "../../utils/config";
+import LogoutModal from './../../components/LogoutModal/index';
 
 export default function Profile() {
   let { data: gadgets, loading: gadgetLoading } = useSelector(
@@ -67,6 +68,7 @@ export default function Profile() {
     changePasswordSuccessOpen,
     changePasswordOpen,
     contactModalOpen,
+    logoutOpen
   } = useSelector((state: RootState) => state.modalReducer);
 
   const dispatch = useDispatch();
@@ -118,6 +120,10 @@ export default function Profile() {
 
       <Modal isOpen={editModalOpen}>
         <EditProfileModal />
+      </Modal>
+
+      <Modal isOpen={logoutOpen}>
+        <LogoutModal />
       </Modal>
     </div>
   );

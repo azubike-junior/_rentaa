@@ -304,7 +304,7 @@ export default function PostProduct() {
                     <div className="border mx-2 relative">
                       <MdDeleteForever
                         onClick={() => deleteFile(photo.id)}
-                        className="absolute right-1 cursor-pointer"
+                        className="absolute right-1 cursor-pointer w-6 h-6"
                       />
                       <img
                         src={photo.image}

@@ -176,7 +176,7 @@ export function InputField({
           {label} {required && <span className=" ml-1 text-red-600">*</span>}
           {optional && <span className=" ml-1 text-bgAsh">optional</span>}
           {errors && (
-            <span style={{ fontSize: "10px" }} className="text-red-600 pl-4">
+            <span className="text-red-600 pl-4 text-sm">
               {message}
             </span>
           )}

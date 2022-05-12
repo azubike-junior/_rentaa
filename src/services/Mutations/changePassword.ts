@@ -45,7 +45,7 @@ export const changePassword = createAsyncThunk(
             Authorization: `Bearer ${accessToken}`,
           },
         }
-      );
+      )
       console.log(">>>>>response", response);
 
       if (response.status === 201) {

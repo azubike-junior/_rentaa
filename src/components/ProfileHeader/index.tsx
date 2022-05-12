@@ -7,6 +7,7 @@ import {
   toggleEditModal,
   toggleReviewModal,
   toggleChangePasswordModal,
+  toggleLogoutModal,
 } from "../../services/Mutations/Modal";
 import { RootState } from "../../store/store";
 import { capitalizeFirstLetter } from "../../utils/helper";
@@ -54,7 +55,7 @@ export default function ProfileHeader() {
    *
    */
   useEffect(() => {
-    dispatch(getUserById({setImage}));
+    dispatch(getUserById({ setImage }));
   }, []);
 
   /**
@@ -162,8 +163,7 @@ export default function ProfileHeader() {
                         <li
                           className="text-red-700"
                           onClick={() => {
-                            localStorage.clear();
-                            history.push("/login");
+                            dispatch(toggleLogoutModal());
                           }}
                         >
                           Log out

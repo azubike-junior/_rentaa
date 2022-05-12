@@ -155,7 +155,8 @@ export default function SignUp() {
                   value === password || "Password do not match"
                 }
               />
-              <span className="hidden md:flex items-center justify-center font-dm-sans pt-8 text-xs">
+              
+              <span className="hidden md:flex items-center justify-center font-dm-sans pt-8 text-sm">
                 By clicking{" "}
                 <span className="text-secondary px-1">Sign up</span> you
                 agree to Rentaa's{" "}
@@ -184,7 +185,7 @@ export default function SignUp() {
                 className="w-full bg-secondary md:text-lg mt-10 py-3 md:py-8 font-dm-sans text-white rounded"
               />
 
-              <span className="flex items-center justify-center font-dm-sans pt-8 text-xs">
+              <span className="flex items-center justify-center font-dm-sans pt-8 text-base">
                 Have an Account?{" "}
                 <Link to="/login" className="text-secondary px-2">
                   {" "}

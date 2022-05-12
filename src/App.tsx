@@ -50,11 +50,11 @@ function App() {
     const timer = new IdleTimer({
       timeout: 300, //expire after 7 mins
       onTimeout: () => {
-        window.location.href = "/login";
+        window.location.href = "/";
         localStorage.clear();
       },
       onExpired: () => {
-        window.location.href = "/login";
+        window.location.href = "/";
         localStorage.clear();
       },
     });
@@ -63,8 +63,6 @@ function App() {
       timer.cleanUp();
     };
   }, []);
-
-  // const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
   return (
     <div className="relative">
@@ -78,57 +76,58 @@ function App() {
       )}
       <main>
         {/* <Switch> */}
-          <Suspense fallback={<Loader />}>
-            <Route exact path={"/"} component={LandingPage} />
-            <Route exact path={"/verify_email"} component={VerifyEmail} />
-            <Route
-              exact
-              path={"/forget_password_success_response"}
-              component={VerifyPasswordSuccess}
-            />
-            <Route exact path={"/contact_us"} component={Contact} />
-            <Route
-              exact
-              path={"/verify_email_success/:token"}
-              component={VerifyEmailSuccess}
-            />
-            <Route
-              exact
-              path={"/reset_password_success/:token"}
-              component={ResetPassword}
-            />
-            <Route exact path={"/sign_up"} component={SignUp} />
-            <Route exact path={"/forget_password"} component={ForgetPassword} />
-            <Route exact path={"/login"} component={Login} />
-            <PrivateRoute path="/bookmark" component={Bookmark} />
-            <PrivateRoute
-              exact
-              path={"/post_product"}
-              component={PostProduct}
-            />
-            <PrivateRoute
-              exact
-              path={"/edit_gadget/:id"}
-              component={EditGadget}
-            />
-            <PrivateRoute exact path={"/profile"} component={Profile} />
-            <PrivateRoute
-              exact
-              path={"/product_description/:id"}
-              component={ProductDesc}
-            />
-            <PrivateRoute
-              exact
-              path={"/view_categories/:id"}
-              component={ViewCategory}
-            />
-            <PrivateRoute path="/dashboard" exact component={Dashboard} />
-            <PrivateRoute
-              exact
-              path={"/user_profile/:id"}
-              component={ExternalUserProfile}
-            />
-          </Suspense>
+        <Suspense fallback={<Loader />}>
+          <Route exact path={"/"} component={LandingPage} />
+          <Route exact path={"/verify_email"} component={VerifyEmail} />
+          <Route
+            exact
+            path={"/forget_password_success_response"}
+            component={VerifyPasswordSuccess}
+          />
+          <Route exact path={"/contact_us"} component={Contact} />
+          <Route
+            exact
+            path={"/verify_email_success/:token"}
+            component={VerifyEmailSuccess}
+          />
+          <Route
+            exact
+            path={"/reset_password_success/:token"}
+            component={ResetPassword}
+          />
+          <Route exact path={"/sign_up"} component={SignUp} />
+          <Route exact path={"/forget_password"} component={ForgetPassword} />
+          <Route exact path={"/login"} component={Login} />
+          <PrivateRoute path="/bookmark" component={Bookmark} />
+          <PrivateRoute exact path={"/post_product"} component={PostProduct} />
+          <PrivateRoute
+            exact
+            path={"/edit_gadget/:id"}
+            component={EditGadget}
+          />
+          <PrivateRoute exact path={"/profile"} component={Profile} />
+          <PrivateRoute
+            exact
+            path={"/product_description/:id"}
+            component={ProductDesc}
+          />
+          <PrivateRoute
+            exact
+            path={"/more_gadget_description/:id"}
+            component={ProductDesc}
+          />
+          <PrivateRoute
+            exact
+            path={"/view_categories/:id"}
+            component={ViewCategory}
+          />
+          <PrivateRoute path="/dashboard" exact component={Dashboard} />
+          <PrivateRoute
+            exact
+            path={"/user_profile/:id"}
+            component={ExternalUserProfile}
+          />
+        </Suspense>
         {/* </Switch> */}
       </main>
       {pathname === "/verify_email" ||
