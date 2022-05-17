@@ -121,7 +121,7 @@ export default function Header() {
               className="cursor-pointer"
             >
               <img
-                className="w-6 h-6  md:h-8 lg:h-10 lg:w-10 border rounded-full"
+                className="w-6 mt-1 h-6  md:h-8 lg:h-10 lg:w-10 border rounded-full"
                 src={!image ? avatar : image}
                 alt="notify"
               />

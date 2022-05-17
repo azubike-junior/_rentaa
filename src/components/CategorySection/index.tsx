@@ -54,7 +54,7 @@ export default function CategorySection({ categories }: ICategoriesData) {
         Browse Product Categories
       </h1>
       {/* <div className="gridContainer flex-wrap"> */}
-      <div className="grid xxs:grid-cols-1 xs:grid-cols-2 justify-items-center xxs:place-items-center sm:gap-6 sm:grid-cols-2 md:grid-cols-3 md:pl-3 md:gap-16 grid-flow-row lg:gap-10 lg:grid-cols-4 xl:pl-5 xl:grid-cols-6">
+      <div className="grid xxs:gap-x-10 xxs:grid-cols-2 xs:grid-cols-2 justify-items-center xxs:place-items-center sm:gap-6 sm:grid-cols-2 md:grid-cols-3 md:pl-3 md:gap-16 grid-flow-row lg:gap-10 lg:grid-cols-4 xl:pl-5 xl:grid-cols-6">
         {photoCategories?.map((category: any) => {
           // console.log(category);
           return (

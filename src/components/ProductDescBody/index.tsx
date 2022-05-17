@@ -141,7 +141,7 @@ export default function ProductDescBody({ gadget }: any) {
       ) : (
         <div>
           <p className="pt-14 pb-10 text-xl">
-            More gadgets from{" "}
+            Other gadgets from{" "}
             <span className="text-secondary">{`${user?.last_name} ${user?.first_name}`}</span>{" "}
           </p>
 

@@ -13,7 +13,7 @@ export default function LogoutModal() {
 
   return (
     <div className="bg-white xxs:w-72  xs:w-80 md:w-600 rounded-md px-5 py-24 md:px-20">
-      <p className="text-base md:text-3xl font-dm-sans text-center pb-8 ">
+      <p className="xxs:text-sm text-base md:text-3xl font-dm-sans text-center pb-8 ">
         Are you sure you want Log out ?
       </p>
 
@@ -22,7 +22,7 @@ export default function LogoutModal() {
           type="button"
           child="No, cancel"
           onClick={() => dispatch(toggleLogoutModal())}
-          className="bg-lightAsh text-white p-3 px-4 md:px-12 font-dm-sans mr-5"
+          className="xxs:text-xs bg-lightAsh text-white p-3 px-4 md:px-12 font-dm-sans mr-5"
         />
         <Button
           onClick={() => {
@@ -31,7 +31,7 @@ export default function LogoutModal() {
           }}
           type="button"
           child="Yes, Log Me Out"
-          className="bg-red-700 text-white p-3 px-4 md:px-12 font-dm-sans"
+          className="xxs:text-xs bg-red-700 text-white p-3 px-4 md:px-12 font-dm-sans"
         />
       </div>
     </div>

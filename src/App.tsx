@@ -36,6 +36,7 @@ import ResetPassword from "./pages/ResetPassword";
 import LandingPage from "./pages/LandingPage";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
+import LandingPageFooter from "./components/LandingPageFooter";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -136,7 +137,8 @@ function App() {
       pathname.includes("/verify_email_success") ? (
         ""
       ) : (
-        <Footer />
+        // <Footer />
+        <LandingPageFooter/>
       )}
     </div>
   );
