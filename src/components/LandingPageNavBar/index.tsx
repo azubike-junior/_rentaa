@@ -4,10 +4,10 @@ import RentaaLogo from "../../images/rentaa_white.svg";
 import star from "../../images/star.svg";
 import menu from "../../images/menu.svg";
 import { toggleSidebar } from "../../services/Mutations/Modal";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 const LandingPageNavBar: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <>
       <nav className="hidden md:block container mx-auto px-6  max-w-7xl">
@@ -22,9 +22,12 @@ const LandingPageNavBar: React.FC = () => {
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
                 Home
               </li>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+              <Link
+                to="/ourstory"
+                className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer"
+              >
                 Our Story
-              </li>
+              </Link>
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 Contact Us
               </li>

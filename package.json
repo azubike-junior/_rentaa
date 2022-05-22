@@ -47,7 +47,8 @@
     "start:dev": "concurrently \"craco --openssl-legacy-provider start\" \"cd node_modules/cors-anywhere/lib/ && craco start",
     "start": " craco --openssl-legacy-provider start",
     "build": "craco --openssl-legacy-provider build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start2": "craco start"
   },
   "eslintConfig": {
     "extends": [

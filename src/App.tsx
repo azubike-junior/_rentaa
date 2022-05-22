@@ -37,6 +37,7 @@ import LandingPage from "./pages/LandingPage";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import LandingPageFooter from "./components/LandingPageFooter";
+import OurStory from "./pages/OurStory";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -80,6 +81,7 @@ function App() {
         <Suspense fallback={<Loader />}>
           <Route exact path={"/"} component={LandingPage} />
           <Route exact path={"/verify_email"} component={VerifyEmail} />
+          <Route exact path={"/ourstory"} component={OurStory} />
           <Route
             exact
             path={"/forget_password_success_response"}
@@ -138,7 +140,7 @@ function App() {
         ""
       ) : (
         // <Footer />
-        <LandingPageFooter/>
+        <LandingPageFooter />
       )}
     </div>
   );
