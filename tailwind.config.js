@@ -13,12 +13,14 @@ module.exports = {
     fontFamily: {
       "dm-sans": ["DM Sans", "sans-serif"],
       poppins: ["Poppins", "sans-serif"],
+      dosis: ["Dosis", "sans-serif"]
     },
     extend: {
       borderWidth: {
         1: "0.5px",
       },
       height: {
+        86: "346px",
         98: "409px",
         600: "30rem",
         650: "526px",
@@ -47,6 +49,9 @@ module.exports = {
         900: "55rem",
         1000: "65rem",
         1500: "80rem",
+      },
+      maxHeight: {
+        156: '622px'
       },
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
