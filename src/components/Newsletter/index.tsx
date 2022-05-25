@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Newsletter : React.FC = () => {
+
     return (
         <section className='mt-28 lg:flex lg:container justify-center items-center mx-auto gap-24 px-6'>
             <article>

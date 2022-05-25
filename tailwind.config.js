@@ -18,6 +18,9 @@ module.exports = {
       borderWidth: {
         '1': '0.5px'
       },
+      lineHeight: {
+        12: '65.1px'
+      },
       height: {
         98: "409px",
         600: "30rem",
