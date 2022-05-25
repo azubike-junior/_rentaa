@@ -2,7 +2,7 @@
 const OurStory : React.FC = () => {
     return (
         <div>
-            
+
         </div>
     )
 }
