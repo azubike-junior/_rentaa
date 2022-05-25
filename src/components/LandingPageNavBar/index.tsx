@@ -22,9 +22,11 @@ const LandingPageNavBar: React.FC = () => {
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
                 Home
               </li>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
-                Our Story
-              </li>
+              <Link to="/our_story">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+                  Our Story
+                </li>
+              </Link>
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 Contact Us
               </li>
