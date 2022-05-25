@@ -27,6 +27,7 @@ import LandingPageFooter from "./components/LandingPageFooter";
 import Loader from "./components/Loader";
 import Login from "./pages/Login";
 import Notification from "./components/Notification";
+import OurStory from "./pages/OurStory";
 import PostProduct from "./pages/PostProduct";
 import PrivateRoute from "./components/PrivateRoute";
 import ProductDesc from "./pages/ProductDesc/index";
@@ -86,6 +87,7 @@ function App() {
             component={VerifyPasswordSuccess}
           />
           <Route exact path={"/contact_us"} component={Contact} />
+          <Route exact path={"/our_story"} component={OurStory} />
           <Route
             exact
             path={"/verify_email_success/:token"}
