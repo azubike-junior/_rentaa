@@ -33,8 +33,10 @@ module.exports = {
       maxWidth: {
         xmd: "488px",
         xxs: "274px",
+        btnsm: "314px",
         btn: "689px",
         form: "748px",
+        mxl: "550px"
       },
       width: {
         18: "75px",
@@ -56,6 +58,10 @@ module.exports = {
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
       },
+      fontSize: {
+        16: '64px',
+        21: '21px'
+      },
       colors: {
         secondary: "#35208C",
         primary: "#EFECEC",
@@ -66,6 +72,7 @@ module.exports = {
         greyishWhite: "#FAFAFA",
         lightAsh: "#8A8892",
         darkBlue: "#150C38",
+        grey: "#D3D3D3"
       },
     },
   },
