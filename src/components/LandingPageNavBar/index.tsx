@@ -19,9 +19,11 @@ const LandingPageNavBar: React.FC = () => {
               </figure>
             </Link>
             <ul className="flex flex-row">
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
-                Home
-              </li>
+              <Link to="/">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
+                  Home
+                </li>
+              </Link>
               <Link to="/our_story">
                 <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                   Our Story
