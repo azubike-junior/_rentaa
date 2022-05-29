@@ -10,7 +10,7 @@ const LandingPageNavBar: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <nav className="hidden md:block container mx-auto px-6  max-w-7xl">
+    <nav className="hidden md:block container mx-auto px-6  max-w-7xl">
         <div className="flex flex-row justify-between items-center mx-2">
           <div className="flex flex-row items-center">
             <Link to="/">
@@ -19,18 +19,21 @@ const LandingPageNavBar: React.FC = () => {
               </figure>
             </Link>
             <ul className="flex flex-row">
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
-                Home
-              </li>
-              <Link
-                to="/ourstory"
-                className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer"
-              >
-                Our Story
+              <Link to="/">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs text-black mr-12 hover:text-black cursor-pointer">
+                  Home
+                </li>
               </Link>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
-                Contact Us
-              </li>
+              <Link to="/our_story">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+                  Our Story
+                </li>
+              </Link>
+              <Link to="/contact_us">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+                  Contact Us
+                </li>
+              </Link>
               <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
                 FAQs
               </li>

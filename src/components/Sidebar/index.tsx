@@ -22,13 +22,24 @@ export default function Sidebar() {
                 Home
               </Link>
             </li>
-            <li>Our Story</li>
+
+            <li>
+              {" "}
+              <Link onClick={() => dispatch(toggleSidebar())} to="/our_story">
+                Our Story
+              </Link>
+            </li>
             <li>
               <Link onClick={() => dispatch(toggleSidebar())} to="/sign_up">
                 Join Private Beta{" "}
               </Link>
             </li>
-            <li>Contact Us</li>
+            <li>
+              {" "}
+              <Link onClick={() => dispatch(toggleSidebar())} to="/contact_us">
+                Contact Us
+              </Link>
+            </li>
             <li>FAQs</li>
           </ul>
           {/* <img src={closeIcon} className="w-4 justify-center items-start" alt="" /> */}

@@ -61,12 +61,14 @@ const AccessPossibilities: React.FC = () => {
         </p>
         <div className="block md:flex md:justify-center md:items-center lg:justify-start mt-6  lg:mt-16 text-center lg:text-left">
           <div className="pb-4 md:pb-0 ">
-            <button
-              data-aos="zoom-in"
-              className="xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-4 px-5 lg:px-7 bg-secondary text-white rounded-md md:mr-5"
-            >
-              Our story
-            </button>
+            <Link to="/our_story">
+              <button
+                data-aos="zoom-in"
+                className="xs:text-xs xxs:text-xs text-sm md:text-base lg:text-lg py-3 lg:py-4 px-5 lg:px-7 bg-secondary text-white rounded-md md:mr-5"
+              >
+                Our story
+              </button>
+            </Link>
           </div>
 
           <div className="">

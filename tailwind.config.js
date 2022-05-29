@@ -13,13 +13,14 @@ module.exports = {
     fontFamily: {
       "dm-sans": ["DM Sans", "sans-serif"],
       poppins: ["Poppins", "sans-serif"],
-      dossis: ["Dosis", "sans-serif"],
+      dosis: ["Dosis", "sans-serif"]
     },
     extend: {
       borderWidth: {
         1: "0.5px",
       },
       height: {
+        86: "346px",
         98: "409px",
         600: "30rem",
         650: "526px",
@@ -34,8 +35,10 @@ module.exports = {
       maxWidth: {
         xmd: "488px",
         xxs: "274px",
+        btnsm: "314px",
         btn: "689px",
         form: "748px",
+        mxl: "550px"
       },
       width: {
         18: "75px",
@@ -52,10 +55,17 @@ module.exports = {
         1500: "80rem",
         92: "92vw",
       },
+      maxHeight: {
+        156: '622px'
+      },
       backgroundImage: {
         "purple-bg": "url('../images/purpleBackground.svg')",
         "about-img":
           "linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url('/src/images/about-us.png')",
+      },
+      fontSize: {
+        16: '64px',
+        21: '21px'
       },
       colors: {
         secondary: "#35208C",
@@ -67,8 +77,7 @@ module.exports = {
         greyishWhite: "#FAFAFA",
         lightAsh: "#8A8892",
         darkBlue: "#150C38",
-        green: "#32C50D",
-        ash: "#D3D3D3",
+        grey: "#D3D3D3"
       },
     },
   },

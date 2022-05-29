@@ -155,11 +155,10 @@ export default function SignUp() {
                   value === password || "Password do not match"
                 }
               />
-              
+
               <span className="hidden md:flex items-center justify-center font-dm-sans pt-8 text-sm">
-                By clicking{" "}
-                <span className="text-secondary px-1">Sign up</span> you
-                agree to Rentaa's{" "}
+                By clicking <span className="text-secondary px-1">Sign up</span>{" "}
+                you agree to Rentaa's{" "}
                 <Link to="#" className="px-1 text-secondary">
                   Private Policy
                 </Link>{" "}
@@ -187,10 +186,10 @@ export default function SignUp() {
 
               <span className="flex items-center justify-center font-dm-sans pt-8 text-base">
                 Have an Account?{" "}
-                <Link to="/login" className="text-secondary px-2">
+                <a href="/login" className="text-secondary px-2">
                   {" "}
                   Log in here{" "}
-                </Link>{" "}
+                </a>{" "}
               </span>
             </div>
           </form>

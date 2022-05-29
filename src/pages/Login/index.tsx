@@ -93,17 +93,17 @@ export default function Login() {
               className="w-full bg-secondary md:text-lg mt-10 py-3 md:py-8 font-dm-sans text-white rounded"
             />
 
-            <Link to="/forget_password">
+            <a href="/forget_password">
               <p className="text-center pt-7 pb-5 font-semibold text-secondary">
                 Forgot Password
               </p>
-            </Link>
+            </a>
 
             <p className="text-center">
               Don’t have an Account?{" "}
-              <Link to="/sign_up">
+              <a href="/sign_up">
                 <span className="text-secondary">Create Account here</span>
-              </Link>{" "}
+              </a>{" "}
             </p>
           </form>
         </div>

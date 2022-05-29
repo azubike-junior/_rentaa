@@ -63,7 +63,9 @@ export default function Header() {
             <span>
               <Link to="/">Home</Link>{" "}
             </span>
-            <span>About</span>
+            <span>
+              <Link to="/our_story">Our Story</Link>{" "}
+            </span>
           </div>
         ) : (
           <div className=" hidden bg-primary md:w-96 lg:w-500 xl:w-700 rounded-full py-2 md:flex px-4">
@@ -107,11 +109,7 @@ export default function Header() {
             {/* </motion.div> */}
 
             <Link to="/bookmark">
-              <img
-                className="w-6 lg:w-8 pt-1"
-                src={bookmark}
-                alt="notify"
-              />
+              <img className="w-6 lg:w-8 pt-1" src={bookmark} alt="notify" />
             </Link>
             <span
               onClick={() => {
