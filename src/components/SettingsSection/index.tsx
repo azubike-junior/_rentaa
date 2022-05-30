@@ -5,7 +5,7 @@ const SettingsSection = () => {
     // Border radius
     // Left Padding of the list
     return (
-        <section className="w-full max-w-xxxs px-7 py-11 shadow-xl rounded-3xl">
+        <section className="w-full max-w-xxxs px-7 py-11 shadow-xmd rounded-20">
             <div className='inline-flex gap-3 mb-5'>
                 <img src={SettingsIcon} />
                 <p className='text-lg text-secondary'>Settings</p>
