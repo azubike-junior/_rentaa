@@ -38,6 +38,7 @@ import VerifyEmail from "./pages/VerifyEmail/index";
 import VerifyEmailSuccess from "./pages/VerifyEmailSuccess/index";
 import VerifyPasswordSuccess from "./components/VerifyPasswordSuccess";
 import ViewCategory from "./pages/ViewCategory";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -102,6 +103,7 @@ function App() {
           <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
           <Route exact path={"/login"} component={Login} />
+          <Route exact path={"/profilePage"} component={ProfilePage} />
           <PrivateRoute path="/bookmark" component={Bookmark} />
           <PrivateRoute exact path={"/post_product"} component={PostProduct} />
           <PrivateRoute
