@@ -19,6 +19,9 @@ module.exports = {
       borderWidth: {
         1: "0.5px",
       },
+      margin: {
+        '87px': '87px'
+      },
       height: {
         86: "346px",
         98: "409px",
@@ -31,6 +34,7 @@ module.exports = {
         1300: "90rem",
       },
       maxWidth: {
+        xxxs: "305px",
         xmd: "488px",
         xxs: "274px",
         btnsm: "314px",
@@ -74,8 +78,22 @@ module.exports = {
         lightAsh: "#8A8892",
         darkBlue: "#150C38",
         lightRed: "rgba(212, 13, 13, 0.49)",
-        grey: "#D3D3D3"
+        grey: "#D3D3D3", 
+        mediumGrey: "#606060"
       },
+      boxShadow: {
+        'xmd': '0px 4px 40px 0px rgba(0, 0, 0, 0.15)'
+      }, 
+      gridTemplateColumns: {
+        'profileLayout': 'auto 305px'
+      },
+      borderRadius: {
+        20: '20px'
+      }, 
+      inset: {
+        '135px': '-135px'
+      }
+
     },
   },
   variants: {
