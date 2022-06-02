@@ -1,11 +1,7 @@
 import SettingsIcon from '../../images/settingsIcon.svg';
 const SettingsSection = () => {
-    //TODO: Make the following styles more accurate with tailwind config: 
-    // Box shadow
-    // Border radius
-    // Left Padding of the list
     return (
-        <section className="w-full max-w-xxxs px-7 py-11 shadow-xmd rounded-20">
+        <section className="w-full max-w-278px xl:max-w-xxxs px-7 py-11 shadow-xmd rounded-20">
             <div className='inline-flex gap-3 mb-5'>
                 <img src={SettingsIcon} />
                 <p className='text-lg text-secondary'>Settings</p>
