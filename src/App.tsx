@@ -72,6 +72,7 @@ function App() {
       {pathname === "/verify_email" ||
       pathname === "/" ||
       pathname === "/our_story" ||
+      pathname === "profilePage" ||
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""
