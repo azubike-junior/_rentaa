@@ -34,6 +34,8 @@ module.exports = {
         1300: "90rem",
       },
       maxWidth: {
+        '278px': '278px',
+        '296px': '296px',
         xxxs: "305px",
         xmd: "488px",
         xxs: "274px",
@@ -41,6 +43,9 @@ module.exports = {
         btn: "689px",
         form: "748px",
         mxl: "550px"
+      },
+      maxHeight: {
+        '193px': '193px'
       },
       width: {
         18: "75px",
@@ -85,7 +90,8 @@ module.exports = {
         'xmd': '0px 4px 40px 0px rgba(0, 0, 0, 0.15)'
       }, 
       gridTemplateColumns: {
-        'profileLayout': 'auto 305px'
+        'profileLayoutL': 'auto 305px', 
+        'profileLayoutM': 'auto 278px', 
       },
       borderRadius: {
         20: '20px'
