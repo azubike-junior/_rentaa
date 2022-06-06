@@ -6,13 +6,16 @@ import gridImage3 from '../../images/gridImage3.png';
 import gridImage4 from '../../images/gridImage4.png';
 import gridImage5 from '../../images/gridImage5.png';
 import gridImage6 from '../../images/gridImage6.png';
+import noGadgetImage from '../../images/NoGadgetImages.svg';
+import { useState } from 'react';
 
 const UserProfileSection = () => {
+    const [gadgetImages, setGadgetImages] = useState<string[]>([gridImage1, gridImage2, gridImage3, gridImage4, gridImage5, gridImage6]);
     return (
         <div className="w-full shadow-xmd rounded-20">
             <header className="px-9 h-52 mb-87px">
                 <figure className='w-full h-full'>
-                    <img src={ProfileHeaderBackground} className="w-full h-full object-cover"/>
+                    <img src={ProfileHeaderBackground} className="w-full h-full object-cover rounded-b-100 overflow-hidden"/>
                 </figure>
                 <figure className='relative w-full flex justify-center top-135px'>
                     <img className='' src={PersonImage} />
@@ -33,15 +36,22 @@ const UserProfileSection = () => {
                 </div>
                 <p className='mt-20 text-2xl text-center'>View My Gadgets</p>
             </section>
-            <section className='grid mx-auto mt-9 grid-cols-3 max-w-3xl gap-x-6 gap-y-9 pb-24 px-7'>
-                <div className='max-w-296px max-h-193px'><img src={gridImage1} className="w-full h-full"/></div>
-                <div className='max-w-296px max-h-193px'><img src={gridImage2} className="w-full h-full"/></div>
-                <div className='max-w-296px max-h-193px'><img src={gridImage3} className="w-full h-full"/></div>
-                <div className='max-w-296px max-h-193px'><img src={gridImage4} className="w-full h-full"/></div>
-                <div className='max-w-296px max-h-193px'><img src={gridImage5} className="w-full h-full"/></div>
-                <div className='max-w-296px max-h-193px'><img src={gridImage6} className="w-full h-full"/></div>
-                
-            </section>
+                {   gadgetImages &&
+                    <section className='grid mx-auto mt-9 grid-cols-3 max-w-3xl gap-x-6 gap-y-9 pb-24 px-7'>
+                    {gadgetImages.map(gadgetImage => (
+                        <div className='max-w-296px max-h-193px'><img src={gadgetImage} className="w-full h-full"/></div>
+                    ) )}
+                    </section>
+                }           
+                {
+                    !gadgetImages && 
+                    <div className='flex flex-col items-center mx-auto w-full mt-14 pb-24'>
+                        <figure className='max-w-xs'>
+                            <img src={noGadgetImage} className="w-full" />
+                        </figure>
+                        <p className='mt-4'>Nothing to see here. Try posting some gadgets</p>
+                    </div>
+                }
         </div>
     );
 }
