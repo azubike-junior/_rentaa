@@ -72,7 +72,6 @@ function App() {
       {pathname === "/verify_email" ||
       pathname === "/" ||
       pathname === "/our_story" ||
-      pathname === "profilePage" ||
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""
@@ -104,7 +103,7 @@ function App() {
           <Route exact path={"/sign_up"} component={SignUp} />
           <Route exact path={"/forget_password"} component={ForgetPassword} />
           <Route exact path={"/login"} component={Login} />
-          <Route exact path={"/profilePage"} component={ProfilePage} />
+          <Route exact path={"/profile"} component={ProfilePage} />
           <PrivateRoute path="/bookmark" component={Bookmark} />
           <PrivateRoute exact path={"/post_product"} component={PostProduct} />
           <PrivateRoute
@@ -112,7 +111,7 @@ function App() {
             path={"/edit_gadget/:id"}
             component={EditGadget}
           />
-          <PrivateRoute exact path={"/profile"} component={Profile} />
+          {/* <PrivateRoute exact path={"/profile"} component={Profile} /> */}
           <PrivateRoute
             exact
             path={"/product_description/:id"}
