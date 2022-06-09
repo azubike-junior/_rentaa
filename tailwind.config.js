@@ -19,6 +19,9 @@ module.exports = {
       borderWidth: {
         1: "0.5px",
       },
+      margin: {
+        '87px': '87px'
+      },
       height: {
         86: "346px",
         98: "409px",
@@ -33,12 +36,18 @@ module.exports = {
         80: "80vh",
       },
       maxWidth: {
+        '278px': '278px',
+        '296px': '296px',
+        xxxs: "305px",
         xmd: "488px",
         xxs: "274px",
         btnsm: "314px",
         btn: "689px",
         form: "748px",
         mxl: "550px"
+      },
+      maxHeight: {
+        '193px': '193px'
       },
       width: {
         18: "75px",
@@ -75,10 +84,28 @@ module.exports = {
         lightCream: "#E5E5E5",
         darkCream: "#E8E8EE",
         greyishWhite: "#FAFAFA",
+        lightGrey: "#A89E9E",
         lightAsh: "#8A8892",
         darkBlue: "#150C38",
-        grey: "#D3D3D3"
+        lightRed: "rgba(212, 13, 13, 0.49)",
+        grey: "#D3D3D3", 
+        mediumGrey: "#606060", 
       },
+      boxShadow: {
+        'xmd': '0px 4px 40px 0px rgba(0, 0, 0, 0.15)'
+      }, 
+      gridTemplateColumns: {
+        'profileLayoutL': 'auto 305px', 
+        'profileLayoutM': 'auto 278px', 
+      },
+      borderRadius: {
+        100: '100px', 
+        20: '20px'
+      }, 
+      inset: {
+        '135px': '-135px'
+      }
+
     },
   },
   variants: {
