@@ -39,6 +39,7 @@ import VerifyEmailSuccess from "./pages/VerifyEmailSuccess/index";
 import VerifyPasswordSuccess from "./components/VerifyPasswordSuccess";
 import ViewCategory from "./pages/ViewCategory";
 import ProfilePage from "./pages/ProfilePage";
+import ExternalProfilePage from "./pages/ExternalProfilePage";
 
 function App() {
   // let { path, url } = useRouteMatch();
@@ -51,7 +52,7 @@ function App() {
 
   useEffect(() => {
     const timer = new IdleTimer({
-      timeout: 300, //expire after 7 mins
+      timeout: 1000, //expire after 7 mins
       onTimeout: () => {
         window.location.href = "/";
         localStorage.clear();
@@ -129,10 +130,15 @@ function App() {
             component={ViewCategory}
           />
           <PrivateRoute path="/dashboard" exact component={Dashboard} />
-          <PrivateRoute
+          {/* <PrivateRoute
             exact
             path={"/user_profile/:id"}
             component={ExternalUserProfile}
+          /> */}
+          <PrivateRoute
+            exact
+            path={"/user_profile/:id"}
+            component={ExternalProfilePage}
           />
         </Suspense>
         {/* </Switch> */}

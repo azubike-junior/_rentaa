@@ -22,25 +22,26 @@ import {
   toggleEditModal,
   toggleLogoutModal,
 } from "../../services/Mutations/Modal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import EmptyGadgetSection from "../EmptyGadgetSection";
 import Loader from "../Loader";
+import { ITokenDecode } from "../../interfaces";
+import jwt_decode from "jwt-decode";
 
-const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
-  const [gadgetImages, setGadgetImages] = useState<string[]>([
-    gridImage1,
-    gridImage2,
-    gridImage3,
-    gridImage4,
-    gridImage5,
-    gridImage6,
-  ]);
-  const access = localStorage.getItem("accessToken");
+const ExternalProfileHeader2 = ({
+  gadgets,
+  imageUrls,
+  gadgetLoading,
+  image,
+}: any) => {
+  const access: string = localStorage.getItem("accessToken") || "";
   const [user, setUser] = useState(access);
-  const [image, setImage] = useState<any>();
+  //   const [image, setImage] = useState<any>();
   const [openSettings, setOpenSettings] = useState(false);
   const dispatch = useDispatch();
-  //   const history = useHistory();
+  const decodedUser: ITokenDecode = jwt_decode(access);
+  const { id } = useParams<{ id: string }>();
+
 
   const { loading: userLoading, data } = useSelector(
     (state: RootState) => state.getUserById
@@ -70,20 +71,20 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
    * it get a response (Profile: avatarId), the response is set to the local storage
    *
    */
-  useEffect(() => {
-    dispatch(getUserById({ setImage }));
-  }, []);
+  //   useEffect(() => {
+  //     dispatch(getUserById({ setImage }));
+  //   }, []);
 
   /**
    * the value(avatarId) in the localStorage Is used to get an image
    * in the getProfileAvatar func, the user image is fetched by the avatarId
    * the setImage func is used to set the buffer response returned from the getProfileAvatar.
    */
-  useEffect(() => {
-    if (avatarId) {
-      dispatch(getProfileAvatar({ avatarId, setImage }));
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (avatarId) {
+  //       dispatch(getProfileAvatar({ avatarId, setImage }));
+  //     }
+  //   }, []);
 
   const gad = [];
 
@@ -140,7 +141,7 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
           {profile?.description ? profileDescriptions[2] : ""}
         </p> */}
         <div className="xxs:flex xs:flex sm:flex pt-0 md:pt-1 justify-center items-center">
-          {user ? (
+          {decodedUser?.user_id === id ? (
             <Link to="/post_product">
               <Button
                 child="Post a Gadget"
@@ -151,7 +152,7 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
           ) : (
             <Button
               child="View Contact Info"
-              className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-3 text-white"
+              className=" bg-secondary mt-10 md:mt-0 text-xs xxs:py-3 xxs:px-3 md:text-sm lg:mt-20 lg:text-base mb-3 px-8 py-5 md:py-4 text-white"
               type="button"
               onClick={() => dispatch(toggleContactModal())}
             />
@@ -233,4 +234,4 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
     </div>
   );
 };
-export default UserProfileSection;
+export default ExternalProfileHeader2;

@@ -12,12 +12,21 @@ import LogoutModal from "../../components/LogoutModal";
 import config from "../../utils/config";
 import { getGadgets } from "./../../services/Queries/getGadgets";
 import ReviewSection from "../../components/ReviewSection";
+import ExternalProfileHeader from "../../components/ExternalProfileHeader";
+import ViewContactModal from "../../components/ViewContactModal";
+import ReviewModal from "./../../components/ReviewModal/index";
+import { useParams } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { getUserById } from "../../services/Queries/getUser";
+import { ITokenDecode } from "../../interfaces";
+import ExternalProfileHeader2 from './../../components/ExternalProfileHeader2/index';
 
-const ProfilePage = () => {
+const ExternalProfilePage = () => {
+  const access: string = localStorage.getItem("accessToken") || "";
+  const decodedUser: ITokenDecode = jwt_decode(access);
+
   const dispatch = useDispatch();
-  let { data: gadgets, loading: gadgetLoading } = useSelector(
-    (state: RootState) => state.getGadgetReducer
-  );
+  const [image, setImage] = useState();
 
   const {
     REACT_APP_AWS_AMAZON,
@@ -26,15 +35,27 @@ const ProfilePage = () => {
     REACT_APP_BUCKET_NAME,
   } = config;
 
+  const { id } = useParams<{ id: string }>();
+
   const { loading: userLoading, data } = useSelector(
     (state: RootState) => state.getUserById
   );
 
+  // console.log(">>>>>>data from userProfile", data);
+
   let imageUrls;
   let gadgetData;
 
-  if (gadgets?.length > 0) {
-    gadgetData = gadgets?.map((gadget) => {
+  const { data: contactData, loading } = useSelector(
+    (state: RootState) => state.findContactReducer
+  );
+
+  /**
+   * For each of the gadgets, map the gadget key to the bucket url to display the image
+   */
+  if (data?.gadgets?.length > 0) {
+    gadgetData = data?.gadgets?.map((gadget) => {
+      // console.log(gadget);
       return { gadgetKey: gadget.photos[0].key, id: gadget.id };
     });
     const href =
@@ -43,7 +64,6 @@ const ProfilePage = () => {
       `${REACT_APP_AWS_AMAZON}`;
 
     const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
-
     imageUrls = gadgetData?.map((gadget: any) => {
       return {
         image: bucketUrl + encodeURIComponent(gadget.gadgetKey),
@@ -52,41 +72,32 @@ const ProfilePage = () => {
     });
   }
 
-  const {
-    editModalOpen,
-    reviewModalOpen,
-    changePasswordSuccessOpen,
-    changePasswordOpen,
-    contactModalOpen,
-    logoutOpen,
-  } = useSelector((state: RootState) => state.modalReducer);
-
+  /**
+   * if the id is added as a parameter to the getUserById func, this means its getting an external user.
+   * it gets an avatarId2 and passes it to  the profile avatar endpoint to get the external user image
+   *
+   */
   useEffect(() => {
-    dispatch(getGadgets());
+    dispatch(getUserById({ id, setImage }));
   }, []);
 
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-    body.style.overflow = reviewModalOpen ? "hidden" : "auto";
-  }, [reviewModalOpen]);
-
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-    body.style.overflow = contactModalOpen ? "hidden" : "auto";
-  }, [contactModalOpen]);
+  const { editModalOpen, reviewModalOpen, contactModalOpen } = useSelector(
+    (state: RootState) => state.modalReducer
+  );
 
   return (
     <>
       <div className="mx-auto container md:max-w-screen-lg xl:max-w-screen-xl w-full xxs:px-0 xs:px-2 md:pt-4 md:px-8 lg:grid lg:grid-cols-profileLayoutM xl:grid-cols-profileLayoutL gap-5">
         <section className="mb-6">
-          <UserProfileSection
-            gadgets={gadgets}
+          <ExternalProfileHeader2
+            gadgets={data?.gadgets}
             imageUrls={imageUrls}
-            gadgetLoading={gadgetLoading}
+            gadgetLoading={userLoading}
+            image={image}
           />
         </section>
         <section className="hidden lg:block flex flex-col gap-9">
-          <SettingsSection />
+          {decodedUser?.user_id === id && <SettingsSection />}
           <ReviewsSection reviews={data?.profile?.reviews} />
         </section>
 
@@ -94,23 +105,19 @@ const ProfilePage = () => {
           <ReviewSection reviews={data?.profile?.reviews} />
         </section>
 
+        <Modal isOpen={contactModalOpen}>
+          <ViewContactModal {...contactData} />
+        </Modal>
+
+        <Modal isOpen={reviewModalOpen}>
+          <ReviewModal id={id} />
+        </Modal>
+
         <Modal isOpen={editModalOpen}>
           <EditProfileModal />
-        </Modal>
-        <Modal isOpen={changePasswordOpen}>
-          <ChangePasswordModal />
-        </Modal>
-        <Modal isOpen={changePasswordSuccessOpen}>
-          <ChangePasswordSuccessModal />
-        </Modal>
-        <Modal isOpen={editModalOpen}>
-          <EditProfileModal />
-        </Modal>
-        <Modal isOpen={logoutOpen}>
-          <LogoutModal />
         </Modal>
       </div>
     </>
   );
 };
-export default ProfilePage;
+export default ExternalProfilePage;

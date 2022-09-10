@@ -92,7 +92,9 @@ export default function Profile() {
     body.style.overflow = contactModalOpen ? "hidden" : "auto";
   }, [contactModalOpen]);
 
-  console.log(">>>>>review", data?.profile?.reviews);
+  // console.log(">>>>>review", data?.profile?.reviews);
+
+  // console.log(">>imageUrls", imageUrls)
 
   return (
     <div>

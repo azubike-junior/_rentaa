@@ -27,6 +27,7 @@
     "concurrently": "^6.3.0",
     "cors-anywhere": "^0.4.4",
     "dayjs": "^1.10.7",
+    "env-cmd": "^10.1.0",
     "framer-motion": "^4.1.17",
     "jwt-decode": "^3.1.2",
     "naija-state-local-government": "^1.1.2",
@@ -44,11 +45,12 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start:dev": "concurrently \"craco --openssl-legacy-provider start\" \"cd node_modules/cors-anywhere/lib/ && craco start",
-    "start": " craco --openssl-legacy-provider start",
-    "build": "craco --openssl-legacy-provider build",
+    "start": "concurrently \"craco --openssl-legacy-provider start\" \"cd node_modules/cors-anywhere/lib/ && craco start ",
+    "start:dev": "env-cmd -f .env.development craco --openssl-legacy-provider start",
+    "start:prod": "env-cmd -f .env.production craco --openssl-legacy-provider start",
+    "build": "craco build .env.production",
     "eject": "react-scripts eject",
-    "start2": "craco start"
+    "start2": "craco --openssl-legacy-provider start"
   },
   "eslintConfig": {
     "extends": [
