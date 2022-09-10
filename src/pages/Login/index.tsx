@@ -28,7 +28,6 @@ export default function Login() {
     mode: "onTouched",
   });
 
-
   const handlePasswordClick = () => {
     setPasswordEye(!passwordEye);
   };

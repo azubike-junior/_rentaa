@@ -18,7 +18,11 @@ import { ITokenDecode } from "../../interfaces";
 import jwt_decode from "jwt-decode";
 import { findContact } from "../../services/Queries/findUserContact";
 
-export default function ExternalProfileHeader({ data, userLoading, image }: any) {
+export default function ExternalProfileHeader({
+  data,
+  userLoading,
+  image,
+}: any) {
   const access: string = localStorage.getItem("accessToken") || "";
   const [user, setUser] = useState(access);
   // const [image, setImage] = useState();
