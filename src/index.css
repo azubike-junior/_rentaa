@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  /* @apply border-b-2 border-[#000000] no-underline font-bold text-[#000000]; */
+  color: #000000 !important;
+  font-weight: bold;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&family=Nunito:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap");
+
+._purpleBg {
+  background: url("./images/purpleBackground.svg");
+  background-position: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.absolutee {
+  position: absolute;
+  left: 20;
+}
+
+.z-index-100 {
+  z-index: 100;
+}
+
+.bottom-100 {
+  top: 28rem;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
+
+main {
+  min-height: calc(100vh - 96px);
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #fff;
+  margin: 0 auto;
+  animation: spinner 2s linear infinite;
+}
+
+/* ================ */
+._gadget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+  width: 250px;
+  height: 250px;
+  background: white;
+  border-radius: 75px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  transition: 1s box-shadow;
+}
+
+._gadget {
+  box-shadow: 0 5px 35px 0px rgba(0, 0, 0, 0.1);
+}
+
+._gadget:hover::before,
+._gadget:hover::after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: #fda8cf;
+  border-radius: 75px;
+  z-index: -1;
+  animation: 1s clockwise infinite;
+}
+
+._gadget:hover:after {
+  background: #f3ce5e;
+  animation: 2s counterclockwise infinite;
+}
