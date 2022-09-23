@@ -2,7 +2,7 @@ import React from 'react';
 
 const Newsletter : React.FC = () => {
     return (
-        <section className="bg-white mb-10  lg:bg-greyishWhite lg:py-32">
+        <section className="snap-sxtart bg-white mb-10  lg:bg-greyishWhite lg:py-32">
             <div className='lg:flex lg:container justify-center items-center mx-auto gap-24 px-8 lg:bg-greyishWhite'>
                 <article>
                     <p className='font-dosis font-semibold text-black text-center text-2xl xxs:text-2xl sm:text-2xl lg:text-5xl lg:text-left mx-auto'>Stay in the <span className='text-secondary'>Loop</span></p>

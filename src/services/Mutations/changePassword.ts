@@ -32,10 +32,7 @@ const initialState: initState = {
 export const changePassword = createAsyncThunk(
   "updatePassword",
   async ({ data, dispatch }: DataProps, { rejectWithValue }) => {
-    console.log(">>>>>>>hello");
     const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
-
-    console.log(">>>>dtaa", data);
     try {
       const response = await axios.post(
         `${baseUrl}/users/update-password`,
@@ -46,7 +43,6 @@ export const changePassword = createAsyncThunk(
           },
         }
       )
-      console.log(">>>>>response", response);
 
       if (response.status === 201) {
         // history.push("/profile");

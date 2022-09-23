@@ -1,7 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      xxs: { min: "250px", max: "374px" },
+      xs: { min: "374px", max: "427px" },
+      ...defaultTheme.screens,
+      "2xl": { min: "2560px" },
+    },
+    fontFamily: {
+      "dm-sans": ["DM Sans", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
+      dosis: ["Dosis", "sans-serif"],
+    },
     extend: {
       borderWidth: {
         1: "0.5px",
@@ -64,30 +76,6 @@ module.exports = {
         21: "21px",
       },
       colors: {
-        lightAsh: "#707070",
-        almostBlack: "#222222",
-        bgColor: "#F7F7F7",
-        tableHeadBg: "#EAEAEA",
-        darkAsh: "#D0D0D0",
-        lighterAsh: "#F3F3F3",
-        blackRussian: "#101828",
-        shadeBlue: "#667085",
-        success: "#027A48",
-        lightPurple: "#F9F5FF",
-        darkPurple: "#7F56D9",
-        darkerBlue: "#344054",
-        tintedAsh: "#808080",
-        disabled: "#FAFAFA",
-        darkGreen: "#014342",
-        kesAsh: "#EAEAEA",
-        kesText: "#555555",
-        percentAsh: "#B5B5B5",
-        EAE: "#EAECF0",
-        FFB: "#FFBD2E",
-        mediumGreen: "#80B539",
-        EFEF: "#EFEFEF",
-        E5E5E5: "#E5E5E5",
-
         secondary: "#35208C",
         primary: "#EFECEC",
         darkAsh: "#222229",

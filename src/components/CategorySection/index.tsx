@@ -29,7 +29,6 @@ interface ICategoriesData {
   categories: any;
 }
 export default function CategorySection({ categories }: ICategoriesData) {
-
   let photoCategories = [];
   let allImages = "";
 
@@ -65,7 +64,7 @@ export default function CategorySection({ categories }: ICategoriesData) {
               />
             </Link>
           );
-        })}
+      })}
       </div>
       <h2 className="xs:text-base sm:text-lg md:text-2xl mt-10">
         Want to post a gadget for rent?
@@ -75,7 +74,7 @@ export default function CategorySection({ categories }: ICategoriesData) {
         <Button
           child="List Gadgets for rent"
           type="button"
-          className="xxs:w-44 xs:px-4 xxs:text-sm md:w-500 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-7 font-dm-sans md:text-lg text-white rounded"
+          className="xxs:w-44 xs:px-4 transition-all duration-150 delay-75 hover:bg-blue-700  xxs:text-sm md:w-500 bg-secondary mb-8 mt-6 md:mt-9 py-5 md:py-7 font-dm-sans md:text-lg text-white rounded"
         />
       </Link>
     </div>

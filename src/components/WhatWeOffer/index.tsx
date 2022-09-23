@@ -2,7 +2,7 @@ import Speaker from '../../images/speaker.png';
 import SpeakerWithPattern from '../../images/speakerWithPattern.png';
 const WhatWeOffer : React.FC = () => {
     return (
-        <div className="w-full bg-secondary pt-12 lg:pt-32 pb-28 lg:pb-44 mb-28 mt-24 lg:mt-44">
+        <div className="w-full snap-start bg-secondary pt-12 lg:pt-32 pb-28 lg:pb-44 mb-28 mt-24 lg:mt-44">
             <div className='w-full grid grid-cols-1 lg:px-4 lg:grid-cols-2 justify-center gap-4'>
                 <div>
                     <figure className="relative max-w-sm lg:max-w-md xl:max-w-2xl mx-auto px-9 lg:px-0">

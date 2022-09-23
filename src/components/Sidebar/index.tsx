@@ -7,12 +7,16 @@ import { toggleSidebar } from "../../services/Mutations/Modal";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
+  const { sidebarOpen } = useSelector((state: RootState) => state.modalReducer);
+
   const dispatch = useDispatch();
   return (
     <div
-      data-aos="fade-left"
-      data-aos-duration="1000"
-      className="absolute top-0 right-0 z-50 w-60 bg-white md:hidden"
+      // data-aos="fade-left"
+      // data-aos-duration="1000"
+      className={`fixed top-0 right-0 z-50 w-60 bg-white md:hidden ${
+        sidebarOpen ? "translate-x-0" : "translate-x-full"
+      } ease-in-out duration-300`}
     >
       <div className="flex pl-8 pr-4 pt-8 pb-6 shadow-lg font-dm-sans">
         <div className="flex justify-between">

@@ -14,7 +14,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-12 font-dm-sans">
-      {sidebarOpen && <Sidebar />}
+      <Sidebar />
       <LandingPageNavBar />
       <AccessPossibilities />
       {/* <ImagePanel />

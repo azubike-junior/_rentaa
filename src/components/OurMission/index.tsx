@@ -2,7 +2,7 @@ import ourMissionBackground from '../../images/ourMissionBackground.png';
 
 const OurMission : React.FC = () => {
     return (
-        <div className="px-7 md:px-12 lg:px-6 pt-12 container mx-auto max-w-7xl">
+        <div className="snap-start px-7 md:px-12 lg:px-6 pt-12 container mx-auto max-w-7xl">
                 <figure className="relative w-full h-86 md:h-full max-h-156">
                     <img src={ourMissionBackground} className="w-full h-full max-h-156 object-cover"/>
                     <div className="absolute top-0 bottom-0 left-0 right-0 bg-black opacity-70 ">

@@ -12,9 +12,8 @@ const OurStory: React.FC = () => {
   const { sidebarOpen } = useSelector((state: RootState) => state.modalReducer);
 
   return (
-    <div className="pt-12">
-      {sidebarOpen && <Sidebar />}
-
+    <div className="snap-y snap-mandatory pt-12 overflow-scroll">
+      <Sidebar/>
       <LandingPageNavBar />
       <OurMission />
       <OurOrigins />

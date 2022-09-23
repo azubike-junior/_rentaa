@@ -144,14 +144,14 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
             <Link to="/post_product">
               <Button
                 child="Post a Gadget"
-                className=" bg-secondary mt-10 md:mt-0 text-xs xxs:py-3 xxs:px-3 md:text-sm lg:mt-20 lg:text-base mb-3 px-8 py-5 md:py-4 text-white"
+                className=" bg-secondary transition-all duration-150 delay-75 hover:bg-blue-700  mt-10 md:mt-0 text-xs xxs:py-3 xxs:px-3 md:text-sm lg:mt-20 lg:text-base mb-3 px-8 py-5 md:py-4 text-white"
                 type="button"
               />
             </Link>
           ) : (
             <Button
               child="View Contact Info"
-              className=" bg-secondary mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-3 text-white"
+              className=" bg-secondary transition-all duration-150 delay-75 hover:bg-blue-700 mt-3 md:mt-0 text-xs md:text-sm lg:text-base mb-3 px-6 py-4 mr-3 text-white"
               type="button"
               onClick={() => dispatch(toggleContactModal())}
             />
