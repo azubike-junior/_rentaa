@@ -13,7 +13,7 @@ const LandingPage: React.FC = () => {
   const { sidebarOpen } = useSelector((state: RootState) => state.modalReducer);
 
   return (
-    <div className="bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-12 font-dm-sans">
+    <div className="bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-2 font-dm-sans">
       <Sidebar />
       <LandingPageNavBar />
       <AccessPossibilities />

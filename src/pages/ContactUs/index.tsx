@@ -4,11 +4,13 @@ import instagram from "../../images/instagramIcon.svg";
 import twitter from "../../images/twitter.svg";
 import { HookInput } from "../../components/BasicInputField";
 import Button from "../../components/Button";
+import LandingPageNavBar from "./../../components/LandingPageNavBar/index";
 
 export default function Contact() {
   return (
-    <>
-      <div className=" bg-secondary h-full xl:h-full  2xl:h-screen">
+    <div className="pt-2">
+      <LandingPageNavBar />
+      <div className=" bg-secondary h-full xl:h-full 2xl:h-screen">
         <div className="max-w-7xl h-full mx-auto px-8 py-24 block md:flex justify-between md:space-x-16 lg:space-x-32 xl:space-x-56">
           <div className="mt-0 md:mt-16 text-white font-dm-sans mb-10 md:mb-0">
             <h1 className="text-2xl lg:text-3xl pb-3 text-center md:text-left ">
@@ -40,9 +42,9 @@ export default function Contact() {
 
           <div className="bg-white w-full px-10 lg:px-14 rounded-xl py-4">
             <HookInput
-              label="Email Address"
+              label="Full Name"
               className="lg:w-full pt-10"
-              name="email"
+              name="fullName"
             />
             <HookInput
               label="Email Address"
@@ -85,6 +87,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

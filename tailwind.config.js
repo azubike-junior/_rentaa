@@ -32,7 +32,7 @@ module.exports = {
         1000: "70rem",
         1300: "90rem",
         60: "60vh",
-        80: "80vh",
+        80: "80vh"
       },
       maxWidth: {
         "278px": "278px",

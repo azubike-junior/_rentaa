@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { forgetPassword } from "../../services/Mutations/forgetPassword";
 import { RootState, useAppDispatch } from "../../store/store";
 import Loader from "../../components/Loader";
+import LandingPageNavBar from "../../components/LandingPageNavBar";
 
 export interface IForgetPasswordProp {
   email: string;
@@ -16,9 +17,11 @@ export default function ForgetPassword() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { data: response, error, loading } = useSelector(
-    (state: RootState) => state.forgetPasswordReducer
-  );
+  const {
+    data: response,
+    error,
+    loading,
+  } = useSelector((state: RootState) => state.forgetPasswordReducer);
 
   const {
     register,
@@ -40,8 +43,9 @@ export default function ForgetPassword() {
   };
 
   return (
-    <>
-      <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
+    <div className="mb-20">
+      <LandingPageNavBar />
+      <div className="w-full pt-7 py-10 my-12 lg:mt-14 flex items-center justify-center ">
         <form
           onSubmit={handleSubmit(postEmailHandler)}
           className="flex flex-col items-start "
@@ -78,6 +82,6 @@ export default function ForgetPassword() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,16 +1,20 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import RentaaLogo from "../../images/rentaa_white.svg";
 import star from "../../images/star.svg";
 import menu from "../../images/menu.svg";
 import { toggleSidebar } from "../../services/Mutations/Modal";
 import { useDispatch } from "react-redux";
+import Button from "../Button";
 
 const LandingPageNavBar: React.FC = () => {
+  const location = useLocation();
+  const pathName = location.pathname;
+
   const dispatch = useDispatch();
   return (
     <>
-    <nav className="hidden md:block container mx-auto px-6  max-w-7xl">
+      <nav className="hidden md:block container mx-auto px-6  max-w-7xl py-5">
         <div className="flex flex-row justify-between items-center mx-2">
           <div className="flex flex-row items-center">
             <NavLink to="/">
@@ -18,33 +22,48 @@ const LandingPageNavBar: React.FC = () => {
                 <img className="sm:h-6 md:h-9" src={RentaaLogo} />
               </figure>
             </NavLink>
-            <ul className="flex flex-row">
+            <ul className="flex flex-row font-dm-sans">
               <NavLink to="/">
-                <li className="transition-all duration-300 lg:text-lg md:text-x mr-12  cursor-pointer">
+                <li className="transition-all duration-300 lg:text-lg md:text-x mr-12 cursor-pointer">
                   Home
                 </li>
               </NavLink>
               <NavLink to="/our_story">
-                <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs  mr-12 hover:text-black cursor-pointer">
                   Our Story
                 </li>
               </NavLink>
               <NavLink to="/contact_us">
-                <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs mr-12 hover:text-black cursor-pointer">
                   Contact Us
                 </li>
               </NavLink>
-              <li className="transition-all duration-300 lg:text-lg md:text-xs text-bgAsh mr-12 hover:text-black cursor-pointer">
-                FAQs
-              </li>
+              <NavLink to="/faqs">
+                <li className="transition-all duration-300 lg:text-lg md:text-xs mr-12 hover:text-black cursor-pointer">
+                  FAQs
+                </li>
+              </NavLink>
             </ul>
           </div>
-          <Link to="/sign_up">
-            <button className="relative lg:px-7 md:px-5 lg:py-4 md:py-4 md:text-xs lg:text-lg rounded-md bg-secondary text-white text-lg">
-              Join Private Beta
-              <img className="absolute -top-5 -left-5" src={star} />
-            </button>
-          </Link>
+
+          {pathName !== "/sign_up" && (
+            <Link to={"/sign_up"}>
+              <button className="relative lg:px-7 md:px-5 lg:py-4 md:py-4 md:text-xs lg:text-lg rounded-md bg-secondary text-white text-lg">
+                Join Private Beta
+                <img className="absolute -top-5 -left-5" src={star} />
+              </button>
+            </Link>
+          )}
+
+          {pathName === "/sign_up" && (
+            <Link to="/login">
+              <Button
+                type="button"
+                child="Login"
+                className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-2 mt-5 md:mt-3"
+              />
+            </Link>
+          )}
         </div>
       </nav>
       <nav className="md:hidden w-full mx-auto mt-3">

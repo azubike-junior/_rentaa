@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store/store";
 import { registerUser } from "./../../services/Mutations/register";
 import Loader from "../../components/Loader";
+import LandingPageNavBar from "../../components/LandingPageNavBar";
 
 export default function SignUp() {
   const [passwordEye, setPasswordEye] = useState(false);
@@ -67,7 +68,8 @@ export default function SignUp() {
 
   return (
     <>
-      <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center ">
+      <LandingPageNavBar />
+      <div className="w-full pt-7 py-10 my-12 lg:mt-14 flex items-center justify-center ">
         <div className="flex flex-col items-start ">
           <FormTitle
             title="Let's Create your Account"

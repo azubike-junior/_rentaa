@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const AccessPossibilities: React.FC = () => {
   return (
-    <section className="mt-12 lg:flex lg:items-center flex-row-reverse container lg:justify-between mx-auto px-8 xl:h-600  max-w-7xl">
+    <section className="mt-6 lg:flex lg:items-center flex-row-reverse container lg:justify-between mx-auto px-8 xl:h-600  max-w-7xl">
       <div
         data-aos="fade-up"
         data-aos-duration="3000"

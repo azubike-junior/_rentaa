@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ILogin } from "../../interfaces";
 import { loginUser } from "../../services/Mutations/login";
 import Loader from "../../components/Loader";
+import LandingPageNavBar from './../../components/LandingPageNavBar/index';
 
 export default function Login() {
   const [passwordEye, setPasswordEye] = useState(false);
@@ -44,7 +45,8 @@ export default function Login() {
 
   return (
     <>
-      <div className="w-full pt-7 py-10 my-12 lg:mt-24 flex items-center justify-center font-dm-sans ">
+    <LandingPageNavBar/>
+      <div className="w-full pt-7 py-10 my-12 lg:mt-14 flex items-center justify-center font-dm-sans ">
         <div className="flex flex-col items-start ">
           <FormTitle
             title="Login to your Account ?"

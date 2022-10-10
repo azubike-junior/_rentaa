@@ -8,6 +8,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
+import "react-slideshow-image/dist/styles.css";
 // import Overview from "./pages/Overview";
 // import Customers from "./pages/Customers";
 // import CustomerProfile from "./pages/CustomerProfile/index";
@@ -47,6 +48,7 @@ import VerifyPasswordSuccess from "./components/VerifyPasswordSuccess";
 import ViewCategory from "./pages/ViewCategory";
 import ProfilePage from "./pages/ProfilePage";
 import ExternalProfilePage from "./pages/ExternalProfilePage";
+import FAQs from "./pages/FAQs/index";
 
 function App() {
   const { pathname } = useLocation();
@@ -55,7 +57,13 @@ function App() {
     <div className="relative">
       {pathname === "/verify_email" ||
       pathname === "/" ||
+      pathname === "/contact_us" ||
       pathname === "/our_story" ||
+      pathname === "/faqs" ||
+      pathname === "/sign_up" ||
+      pathname === "/login" ||
+      pathname === "/forget_password" ||
+
       pathname === "/forget_password_success_response" ||
       pathname.includes("/verify_email_success") ? (
         ""
@@ -66,6 +74,8 @@ function App() {
       <main>
         <Routes>
           <Route path={"/"} element={<LandingPage />} />
+          <Route path={"/faqs"} element={<FAQs />} />
+
           <Route path={"/verify_email"} element={<VerifyEmail />} />
           {/* <Route exact path={"/our_story"} component={OurStory} /> */}
           <Route
