@@ -1,13 +1,16 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import iphone from "../../images/iphone.svg";
+import { Link, useNavigate } from "react-router-dom";
 import BottomLeft from "../../images/bottomLeft.png";
 import BottomRight from "../../images/bottomRight.png";
-import TopLeft from "../../images/topLeft.svg";
-import { Link } from "react-router-dom";
+import iphone from "../../images/iphone.svg";
+import Button from "../Button";
+import line from "../../images/line.svg"
 
 const AccessPossibilities: React.FC = () => {
+  const navigate = useNavigate()
   return (
-    <section className="mt-6 lg:flex lg:items-center flex-row-reverse container lg:justify-between mx-auto px-8 xl:h-600  max-w-7xl">
+    <section className="mt-6 lg:flex lg:items-center flex-row-reverse lg:justify-between mx-auto px-8 xl:h-600 max-w-7xl">
       <div
         data-aos="fade-up"
         data-aos-duration="3000"
@@ -18,19 +21,19 @@ const AccessPossibilities: React.FC = () => {
           src={iphone}
         />
         <img
-          className="hidden md:block absolute xxs:w-18 xs:w-18 w-40 z-0 lg:-bottom-96 xl:-bottom-96 -left-28 lg:h-56 xl:h-60"
+          className="hidden md:block absolute xxs:w-18 xs:w-18 w-40 z-0 lg:-bottom-96 xl:-bottom-96 -left-28 lg:h-[50px] xl:h-60"
           src={BottomLeft}
         />
         <img
-          className="hidden md:block absolute xxs:w-24 xs:w-24 w-32 h-60 -bottom-1 -right-3 lg:hidden xl:block"
+          className="hidden md:block absolute xxs:w-24 xs:w-24 w-32 h-[250px] -bottom-1 -right-3 lg:hidden xl:block"
           src={BottomRight}
         />
         {/* <img className='absolute xxs:w-24 xs:w-24 w-32 -top-3 -left-2' src={TopLeft} /> */}
       </div>
 
       {/* for extra-small screen size (remains hidden in other screens) */}
-      <div className="xxs:block hidden text-center text-base">
-        <p data-aos="fade-right" data-aos-duration="2000" className="">
+      <div className="xxs:block hidden text-center text-base font-dosis">
+        <p data-aos="fade-right" data-aos-duration="2000" className="font-dosis">
           Access a <span className="text-secondary">world</span> of creative{" "}
           <span className="text-secondary">possibilities</span>
         </p>
@@ -43,23 +46,23 @@ const AccessPossibilities: React.FC = () => {
         </p>
       </div>
 
-      <article className="mt-14">
+      <article className="mt-12">
         <p
           data-aos="fade-right"
           data-aos-duration="2000"
-          className="xs:w-64 font-dm-sans xxs:hidden xs:text-2xl xxs:text-2xl text-3xl md:text-4xl md:w-90 w-72 text-center lg:text-5xl lg:w-500 lg:text-left mx-auto lg:mx-0 font-medium"
+          className="xs:w-64 xxs:hidden xs:text-2xl xxs:text-2xl text-3xl md:text-4xl md:w-90 w-72 text-center lg:text-5xl lg:w-500 lg:text-left mx-auto lg:mx-0 font-medium font-dosis"
         >
           Access a <span className="text-secondary">world</span> of creative{" "}
           <span className="text-secondary">possibilities</span>
         </p>
-        <p className="xs:w-80 xxs:hidden xs:text-xs xxs:text-xs leading-6 text-sm md:text-base lg:text-xl text-center lg:text-left w-400 md:w-500 xl:w-600 mx-auto lg:mx-0  font-normal mt-4 lg:mt-10">
+        <p className="xs:w-80 xxs:hidden xs:text-xs xxs:text-xs leading-6 text-sm md:text-base lg:text-lg text-center lg:text-left w-400 md:w-500 xl:w-600 mx-auto lg:mx-0  font-normal mt-4 lg:mt-10 lg:tracking-wider lg:leading-9">
           We’re building <span className="font-bold">faster</span> and{" "}
           <span className="font-bold">stress-free</span> ways to rent gadgets
           from, and to anyone without any hassle. Giving you complete{" "}
           <span className="font-bold">access</span> to work better, and earn
           better.
         </p>
-        <div className="block md:flex md:justify-center md:items-center lg:justify-start mt-6  lg:mt-16 text-center lg:text-left">
+        <div className="block md:flex md:justify-center md:items-center lg:hidden lg:justify-start mt-6  lg:mt-16 text-center lg:text-left">
           <div className="pb-4 md:pb-0 ">
             <Link to="/our_story">
               <button
@@ -81,10 +84,22 @@ const AccessPossibilities: React.FC = () => {
               </button>
             </Link>
           </div>
+         
         </div>
-        {/* Set the line hieght of the second paragraph to 18px */}
-        {/* Remember to change the line height of the first paragraph to 65.1px */}
-        {/* Rewmber to change the z-index of some items in the figure element */}
+        <div className="hidden lg:block  font-dm-sans">
+          <div className="hidden w-full bg-white h-18 py-2 lg:flex items-center px-3 rounded-2xl mt-4">
+          <input type="text" className="w-full outline-none text-lg px-2 pr-3" /> <Button child="Search" className=" bg-secondary text-white w-28 py-2.5 rounded-lg" type="button" />
+          </div>
+          <div className="pl-2 pt-0 flex -mt-6">
+            <img src={line} alt="line"  />
+              <div className="flex items-center justify-center space-x-6">
+              <p className="text-black pt-14 pl-2">Have a gadget for rent?</p>
+              <Link to="/post_product">
+               <Button className="border-secondary border-[1.5px] p-4 px-8 rounded-2xl mt-14 text-secondary" child="Upload Gadget" type="button"/>
+              </Link>
+            </div>
+          </div>
+        </div>
       </article>
       <figure
         data-aos="fade-up"

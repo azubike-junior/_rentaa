@@ -5,11 +5,13 @@ import twitter from "../../images/twitter.svg";
 import { HookInput } from "../../components/BasicInputField";
 import Button from "../../components/Button";
 import LandingPageNavBar from "./../../components/LandingPageNavBar/index";
+import Sidebar from "../../components/Sidebar";
 
 export default function Contact() {
   return (
     <div className="pt-2">
       <LandingPageNavBar />
+      <Sidebar/>
       <div className=" bg-secondary h-full xl:h-full 2xl:h-screen">
         <div className="max-w-7xl h-full mx-auto px-8 py-24 block md:flex justify-between md:space-x-16 lg:space-x-32 xl:space-x-56">
           <div className="mt-0 md:mt-16 text-white font-dm-sans mb-10 md:mb-0">

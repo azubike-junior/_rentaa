@@ -14,10 +14,10 @@ const LandingPageNavBar: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <nav className="hidden md:block container mx-auto px-6  max-w-7xl py-5">
+      <nav className="hidden mx-auto px-6 py-5 lg:block lg:max-w-[1500px]">
         <div className="flex flex-row justify-between items-center mx-2">
           <div className="flex flex-row items-center">
-            <NavLink to="/">
+            <NavLink to="/">  
               <figure className="mr-24">
                 <img className="sm:h-6 md:h-9" src={RentaaLogo} />
               </figure>
@@ -38,7 +38,7 @@ const LandingPageNavBar: React.FC = () => {
                   Contact Us
                 </li>
               </NavLink>
-              <NavLink to="/faqs">
+              <NavLink to="/FAQs">
                 <li className="transition-all duration-300 lg:text-lg md:text-xs mr-12 hover:text-black cursor-pointer">
                   FAQs
                 </li>
@@ -46,31 +46,32 @@ const LandingPageNavBar: React.FC = () => {
             </ul>
           </div>
 
-          {pathName !== "/sign_up" && (
-            <Link to={"/sign_up"}>
-              <button className="relative lg:px-7 md:px-5 lg:py-4 md:py-4 md:text-xs lg:text-lg rounded-md bg-secondary text-white text-lg">
-                Join Private Beta
-                <img className="absolute -top-5 -left-5" src={star} />
-              </button>
-            </Link>
-          )}
-
-          {pathName === "/sign_up" && (
+           {pathName !== "/login" && (
             <Link to="/login">
               <Button
                 type="button"
                 child="Login"
-                className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-2 mt-5 md:mt-3"
+                className="text-secondary text-sm  md:text-base border border-secondary rounded px-5 lg:py-3 md:px-9 md:py-2 mt-5 md:mt-3 lg:block"
+              />
+            </Link>
+          )} 
+
+          {pathName === "/login" && (
+            <Link to="/sign_up">
+              <Button
+                type="button"
+                child="Signup"
+                className="text-secondary text-sm  md:text-base border border-secondary rounded px-5 lg:py-3 md:px-9 md:py-2 mt-5 md:mt-3 lg:block"
               />
             </Link>
           )}
         </div>
       </nav>
-      <nav className="md:hidden w-full mx-auto mt-3">
+      <nav className="w-full lg:hidden mx-auto mt-3">
         <div className="mx-7 flex items-center justify-between">
           <Link to="/">
             <figure>
-              <img className="h-6 cursor-pointer" src={RentaaLogo} />
+              <img className="h-6 md:h-10 cursor-pointer" src={RentaaLogo} />
             </figure>
           </Link>
 
@@ -81,7 +82,7 @@ const LandingPageNavBar: React.FC = () => {
           <img
             src={menu}
             alt=""
-            className="w-7 cursor-pointer"
+            className="w-7 md:w-10 cursor-pointer"
             onClick={() => {
               dispatch(toggleSidebar());
             }}

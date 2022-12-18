@@ -14,11 +14,11 @@ let accessToken: string = JSON.parse(
 )
   ? JSON.parse(localStorage.getItem("accessToken") || "{}")
   : "";
-let refresh_token: string = JSON.parse(
-  localStorage.getItem("refresh_token") || "{}"
-)
-  ? JSON.parse(localStorage.getItem("refresh_token") || "{}")
-  : "";
+// let refresh_token: string = JSON.parse(
+//   localStorage.getItem("refresh_token") || "{}"
+// )
+  // ? JSON.parse(localStorage.getItem("refresh_token") || "{}")
+  // : "";
 
 export const axiosInstance = axios.create({
   baseURL: baseUrl,
@@ -38,7 +38,7 @@ axiosInstance.interceptors.request.use(async (req: any) => {
   if (!expired) return req;
 
   const response = await axios.post(`${baseUrl}/auth/refresh-token`, {
-    refresh_token,
+    // refresh_token,
   });
 
   if (response.data.statusCode === 400) {

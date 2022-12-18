@@ -11,6 +11,7 @@ import { RootState, useAppDispatch } from "../../store/store";
 import { registerUser } from "./../../services/Mutations/register";
 import Loader from "../../components/Loader";
 import LandingPageNavBar from "../../components/LandingPageNavBar";
+import Sidebar from "../../components/Sidebar";
 
 export default function SignUp() {
   const [passwordEye, setPasswordEye] = useState(false);
@@ -69,6 +70,7 @@ export default function SignUp() {
   return (
     <>
       <LandingPageNavBar />
+      <Sidebar/>
       <div className="w-full pt-7 py-10 my-12 lg:mt-14 flex items-center justify-center ">
         <div className="flex flex-col items-start ">
           <FormTitle
