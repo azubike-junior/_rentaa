@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from "react";
-import avatar from "../../images/avatar.jpg";
-import {
-  HookInput,
-  InputField,
-  SelectInput,
-} from "../../components/BasicInputField";
-import Button from "../Button";
-import { AiOutlineClose } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import NaijaStates from "naija-state-local-government";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getUserById } from "../../services/Queries/getUser";
+import { AiOutlineClose } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
-  getUserResponse,
-  IProductInputs,
-  IRegistration,
-} from "../../interfaces";
-import { IEditProfile } from "./../../interfaces/index";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store/store";
-import Loader from "./../Loader/index";
+  InputField,
+  SelectInput
+} from "../../components/BasicInputField";
+import avatar from "../../images/avatar.jpg";
 import { toggleEditModal } from "../../services/Mutations/Modal";
+import { getProfileAvatar } from "../../services/Queries/getProfileAvatar";
+import { RootState, useAppDispatch } from "../../store/store";
 import {
   FileService,
   getLga,
   getStates,
   setAllValues,
   validateFileSize,
-  validateFileType,
+  validateFileType
 } from "../../utils/helper";
-import NaijaStates from "naija-state-local-government";
+import Button from "../Button";
+import { IEditProfile } from "./../../interfaces/index";
 import { editProfile } from "./../../services/Mutations/editProfile";
-import { getProfileAvatar } from "../../services/Queries/getProfileAvatar";
+import Loader from "./../Loader/index";
 
 export default function EditProfileModal() {
   const [state, setState] = useState("");
@@ -118,7 +111,7 @@ export default function EditProfileModal() {
 
   const editProfileHandler = (data: IEditProfile) => {
     const pic = doc ? doc : photo.image;
-
+    
     const {
       first_name,
       last_name,
@@ -152,13 +145,13 @@ export default function EditProfileModal() {
 
   return (
     <div className="xxs:w-72 xs:w-90 mx-4 h-700 md:h-700 md:w-600 lg:h-700 lg:w-900 xl:w-1000 font-dm-sans bg-white  text-white rounded-lg px-4 overflow-y-scroll scrollbar-hidden md:p-10 shadow-2xl">
-      <div className="block lg:flex lg:space-x-28 w-full pt-7">
+      <div className="block lg:flex lg:space-x-20 w-full pt-7 pl-10">
         <div className="pb-2 md:mx-auto lg:mx-0">
           <label>
             <img
               src={image ? image : photo.image}
               alt=""
-              className=" w-28 h-28 md:h-40 md:w-40 lg:w-48 lg:h-48 rounded-full mx-auto lg:mx-0"
+              className="w-28 h-28 md:h-40 md:w-40 lg:w-48 lg:h-48 rounded-full mx-auto lg:mx-0 xl:h-28 xl:w-28 border "
             />
             {fileError && (
               <p className="ml-4 pt-2 text-red-500 text-xs">{fileError}</p>
@@ -169,7 +162,7 @@ export default function EditProfileModal() {
               onChange={handleFile}
               name="photos"
             />
-            <p className="text-gray-400 text-base ml-5 mt-4 text-center lg:text-left pb-3 cursor-pointer">
+            <p className="text-gray-400 text-sm mt-4 text-center pb-3 cursor-pointer">
               Change Profile Picture
             </p>
           </label>

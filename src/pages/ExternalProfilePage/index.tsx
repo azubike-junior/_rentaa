@@ -1,54 +1,57 @@
-import { useEffect, useState } from "react";
-import EditProfileModal from "../../components/EditProfileModal";
-import ReviewsSection from "../../components/ReviewsSection";
-import SettingsSection from "../../components/SettingsSection";
-import UserProfileSection from "../../components/UserProfileSection";
-import Modal from "../../components/Modal";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store/store";
-import ChangePasswordModal from "../../components/ChangePasswordModal";
-import ChangePasswordSuccessModal from "../../components/changePasswordSuccessModal";
-import LogoutModal from "../../components/LogoutModal";
-import config from "../../utils/config";
-import { getGadgets } from "./../../services/Queries/getGadgets";
-import ReviewSection from "../../components/ReviewSection";
-import ExternalProfileHeader from "../../components/ExternalProfileHeader";
-import ViewContactModal from "../../components/ViewContactModal";
-import ReviewModal from "./../../components/ReviewModal/index";
-import { useParams } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { getUserById } from "../../services/Queries/getUser";
-import { ITokenDecode } from "../../interfaces";
-import ExternalProfileHeader2 from './../../components/ExternalProfileHeader2/index';
+import jwt_decode from 'jwt-decode'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import EditProfileModal from '../../components/EditProfileModal'
+import Modal from '../../components/Modal'
+import ReviewSection from '../../components/ReviewSection'
+import ReviewsSection from '../../components/ReviewsSection'
+import SettingsSection from '../../components/SettingsSection'
+import ViewContactModal from '../../components/ViewContactModal'
+import { ITokenDecode } from '../../interfaces'
+import { getUserById } from '../../services/Queries/getUser'
+import { RootState, useAppDispatch } from '../../store/store'
+import config from '../../utils/config'
+import ExternalProfileHeader2 from './../../components/ExternalProfileHeader2/index'
+import ReviewModal from './../../components/ReviewModal/index'
 
 const ExternalProfilePage = () => {
-  const access: string = localStorage.getItem("accessToken") || "";
-  const decodedUser: ITokenDecode = jwt_decode(access);
+  const access: string = localStorage.getItem('accessToken') || ''
+  const decodedUser: ITokenDecode = jwt_decode(access)
 
-  const dispatch = useAppDispatch();
-  const [image, setImage] = useState();
+  const dispatch = useAppDispatch()
+  // const [image, setImage] = useState()
 
   const {
     REACT_APP_AWS_AMAZON,
     REACT_APP_AWS_REGION,
     REACT_APP_AWS_HTTP,
     REACT_APP_BUCKET_NAME,
-  } = config;
+  } = config
 
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
 
   const { loading: userLoading, data } = useSelector(
-    (state: RootState) => state.getUserById
-  );
+    (state: RootState) => state.getUserById,
+  )
 
-  // console.log(">>>>>>data from userProfile", data);
+  console.log('>>>>>>data from userProfile', data)
 
-  let imageUrls;
-  let gadgetData;
+  let imageUrls
+  let gadgetData
 
   const { data: contactData, loading } = useSelector(
-    (state: RootState) => state.findContactReducer
-  );
+    (state: RootState) => state.findContactReducer,
+  )
+
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`
+
+  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + '/'
+
+  const image = bucketUrl + encodeURIComponent(data?.profile?.avatar?.key)
 
   /**
    * For each of the gadgets, map the gadget key to the bucket url to display the image
@@ -56,20 +59,15 @@ const ExternalProfilePage = () => {
   if (data?.gadgets?.length > 0) {
     gadgetData = data?.gadgets?.map((gadget) => {
       // console.log(gadget);
-      return { gadgetKey: gadget.photos[0].key, id: gadget.id };
-    });
-    const href =
-      `${REACT_APP_AWS_HTTP}` +
-      `${REACT_APP_AWS_REGION}` +
-      `${REACT_APP_AWS_AMAZON}`;
+      return { gadgetKey: gadget.photos[0].key, id: gadget.id }
+    })
 
-    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
     imageUrls = gadgetData?.map((gadget: any) => {
       return {
         image: bucketUrl + encodeURIComponent(gadget.gadgetKey),
         id: gadget.id,
-      };
-    });
+      }
+    })
   }
 
   /**
@@ -78,12 +76,12 @@ const ExternalProfilePage = () => {
    *
    */
   useEffect(() => {
-    dispatch(getUserById({ id, setImage }));
-  }, []);
+    dispatch(getUserById({ id }))
+  }, [])
 
   const { editModalOpen, reviewModalOpen, contactModalOpen } = useSelector(
-    (state: RootState) => state.modalReducer
-  );
+    (state: RootState) => state.modalReducer,
+  )
 
   return (
     <>
@@ -118,6 +116,6 @@ const ExternalProfilePage = () => {
         </Modal>
       </div>
     </>
-  );
-};
-export default ExternalProfilePage;
+  )
+}
+export default ExternalProfilePage

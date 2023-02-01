@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
-import { ILogin, ITokenDecode, UserResponse } from "../../interfaces";
 import jwt_decode from "jwt-decode";
+import { ILogin, ITokenDecode, UserResponse } from "../../interfaces";
 import { baseUrl } from "./../../utils/helper";
 
 interface initState {
@@ -28,6 +27,8 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post(`${baseUrl}/auth/login`, rest);
 
+      console.log("loginRes", response)
+
       if (response.data.statusCode === 200) {
         const { token, refreshToken } = response.data.message.results;
         const user: ITokenDecode = jwt_decode(token);
@@ -45,6 +46,7 @@ export const loginUser = createAsyncThunk(
       }
       return response.data;
     } catch (e: any) {
+      console.log("...e",e)
       return rejectWithValue(e.response.data);
     }
   }

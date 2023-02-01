@@ -31,6 +31,8 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
     REACT_APP_BUCKET_NAME,
   } = config
 
+  console.log(">>>>>>>>react_aws", REACT_APP_BUCKET_NAME)
+
   
 
   const { id } = useParams<{ id: string | any }>();
@@ -70,11 +72,11 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
       <h1 className="text-2xl text-center md:text-justify md:text-4xl font-dm-sans pb-8">
         {name}
       </h1>
-      <div className="px-30 pb-14 md:flex">
+      <div className="pb-14 md:flex items-center ">
         <img
           src={image}
           alt="my gadget"
-          className="mx-auto md:mx-0 h-52 w-64 lg:w-400 lg:h-64 md:mr-10 lg:mr-14 xl:mr-20"
+          className="mx-auto md:mx-0 h-52 w-64 lg:w-[300px] lg:h-[200px] rounded-lg p-3 xl:w-[300px] xl:h-[200px] border md:mr-10 lg:mr-14 xl:mr-14"
         />
         <div className="pt-3 lg:pt-7">
           <p className="text-xl text-center md:text-justify text-gray-400 pb-5">

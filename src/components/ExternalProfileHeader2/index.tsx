@@ -1,32 +1,23 @@
-import ProfileHeaderBackground from "../../images/profileHeaderBackground.png";
-import PersonImage from "../../images/personImage.png";
-import gridImage1 from "../../images/gridImage1.png";
-import gridImage2 from "../../images/gridImage2.png";
-import gridImage3 from "../../images/gridImage3.png";
-import gridImage4 from "../../images/gridImage4.png";
-import gridImage5 from "../../images/gridImage5.png";
-import gridImage6 from "../../images/gridImage6.png";
-import domAvatar from "../../images/avatar.jpg";
-import burgerIcon from "../../images/burgerIcon.svg";
-import noGadgetImage from "../../images/NoGadgetImages.svg";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store/store";
-import { getUserById } from "../../services/Queries/getUser";
-import { getProfileAvatar } from "./../../services/Queries/getProfileAvatar";
-import { capitalizeFirstLetter } from "../../utils/helper";
-import Button from "../Button";
+import jwt_decode from 'jwt-decode'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import domAvatar from '../../images/avatar.jpg'
+import burgerIcon from '../../images/burgerIcon.svg'
+import ProfileHeaderBackground from '../../images/profileHeaderBackground.png'
+import { ITokenDecode } from '../../interfaces'
 import {
   toggleChangePasswordModal,
   toggleContactModal,
   toggleEditModal,
   toggleLogoutModal,
-} from "../../services/Mutations/Modal";
-import { Link, useParams } from "react-router-dom";
-import EmptyGadgetSection from "../EmptyGadgetSection";
-import Loader from "../Loader";
-import { ITokenDecode } from "../../interfaces";
-import jwt_decode from "jwt-decode";
+} from '../../services/Mutations/Modal'
+import { getUserById } from '../../services/Queries/getUser'
+import { RootState, useAppDispatch } from '../../store/store'
+import { capitalizeFirstLetter } from '../../utils/helper'
+import Button from '../Button'
+import EmptyGadgetSection from '../EmptyGadgetSection'
+import Loader from '../Loader'
 
 const ExternalProfileHeader2 = ({
   gadgets,
@@ -34,37 +25,36 @@ const ExternalProfileHeader2 = ({
   gadgetLoading,
   image,
 }: any) => {
-  const access: string = localStorage.getItem("accessToken") || "";
-  const [user, setUser] = useState(access);
+  const access: string = localStorage.getItem('accessToken') || ''
+  const [user, setUser] = useState(access)
   //   const [image, setImage] = useState<any>();
-  const [openSettings, setOpenSettings] = useState(false);
-  const dispatch = useAppDispatch();
-  const decodedUser: ITokenDecode = jwt_decode(access);
-  const { id } = useParams<{ id: string }>();
-
+  const [openSettings, setOpenSettings] = useState(false)
+  const dispatch = useAppDispatch()
+  const decodedUser: ITokenDecode = jwt_decode(access)
+  const { id } = useParams<{ id: string }>()
 
   const { loading: userLoading, data } = useSelector(
-    (state: RootState) => state.getUserById
-  );
+    (state: RootState) => state.getUserById,
+  )
 
-  localStorage.setItem("first_name", data?.first_name);
-  localStorage.setItem("last_name", data?.last_name);
+  localStorage.setItem('first_name', data?.first_name)
+  localStorage.setItem('last_name', data?.last_name)
 
-  const { profile } = data;
+  const { profile } = data
 
-  const avatarId = localStorage.getItem("avatarId");
+  const avatarId = localStorage.getItem('avatarId')
 
   const profileDescriptions = profile?.description
-    ? profile?.description.split(".")
-    : "";
+    ? profile?.description.split('.')
+    : ''
 
   const showSettings = () => {
-    setOpenSettings(true);
-  };
+    setOpenSettings(true)
+  }
 
   const closeSettings = () => {
-    setOpenSettings(false);
-  };
+    setOpenSettings(false)
+  }
 
   /**
    * when the getUserById func is called after a user logs in
@@ -86,13 +76,13 @@ const ExternalProfileHeader2 = ({
   //     }
   //   }, []);
 
-  const gad = [];
+  const gad = []
 
   return (
     <div
       onClick={() => {
         if (openSettings) {
-          closeSettings();
+          closeSettings()
         }
       }}
       className="w-full md:shadow-xmd md:rounded-20 font-dm-sans"
@@ -115,26 +105,27 @@ const ExternalProfileHeader2 = ({
       </header>
       <section className="px-7">
         <p className="text-lg md:text-2xl lg:text-3xl font-semibold text-center">
-          {" "}
-          {data?.first_name && capitalizeFirstLetter(data?.first_name)}{" "}
+          {' '}
+          {data?.first_name && capitalizeFirstLetter(data?.first_name)}{' '}
           {data?.last_name && capitalizeFirstLetter(data?.last_name)}
         </p>
         <p className="inline-flex text-sm items-center gap-2 text-mediumGrey w-full justify-center mt-3">
           <span>
-            {profile?.lga ? capitalizeFirstLetter(profile?.lga) : ""}{" "}
+            {profile?.lga ? capitalizeFirstLetter(profile?.lga) : ''}{' '}
           </span>
           <span className="inline-block  w-1 h-1 bg-mediumGrey rounded-full"></span>
           <span>
-            {profile?.state ? capitalizeFirstLetter(profile?.state) : ""}
+            {profile?.state ? capitalizeFirstLetter(profile?.state) : ''}
           </span>
         </p>
         <p className="text-center text-lg font-semibold md:text-2xl mt-14 mb-4">
           About me
         </p>
-        <p className="text-sm xxs:px-0 xs:text-base md:text-lg text-center mb-0 md:mb-10 lg:mb-4 px-0 md:px-6">
-          {profile?.description ? profileDescriptions[0] : ""}{" "}
-          {profile?.description ? profileDescriptions[1] : ""}
-          {profile?.description ? profileDescriptions[2] : ""}
+        <p className="text-sm xxs:px-0 xs:text-base md:text-lg text-center mb-0 md:mb-10 lg:mb-2 px-0 md:px-6 italic">
+          {profile?.description ? profileDescriptions[0] : ''}{' '}
+          {profile?.description ? profileDescriptions[1] : ''}
+          {profile?.description ? profileDescriptions[2] : ''}
+          {!profile?.description ? "No description" : ''}
         </p>
         {/* <p className="text-base md:text-lg text-center">
           {profile?.description ? profileDescriptions[1] : ""}
@@ -152,7 +143,7 @@ const ExternalProfileHeader2 = ({
           ) : (
             <Button
               child="View Contact Info"
-              className=" bg-secondary mt-10 md:mt-0 text-xs xxs:py-3 xxs:px-3 md:text-sm lg:mt-20 lg:text-base mb-3 px-8 py-5 md:py-4 text-white"
+              className=" bg-secondary mt-10 md:mt-0 text-xs xxs:py-3 xxs:px-3 md:text-sm lg:mt-10 lg:text-base mb-3 px-8 py-5 md:py-4 text-white"
               type="button"
               onClick={() => dispatch(toggleContactModal())}
             />
@@ -169,15 +160,15 @@ const ExternalProfileHeader2 = ({
                 <ul className="space-y-3">
                   <li
                     onClick={() => {
-                      dispatch(getUserById({}));
-                      dispatch(toggleEditModal());
+                      dispatch(getUserById({}))
+                      dispatch(toggleEditModal())
                     }}
                   >
                     Edit Profile
                   </li>
                   <li
                     onClick={() => {
-                      dispatch(toggleChangePasswordModal());
+                      dispatch(toggleChangePasswordModal())
                     }}
                   >
                     Change Password
@@ -185,7 +176,7 @@ const ExternalProfileHeader2 = ({
                   <li
                     className="text-red-700"
                     onClick={() => {
-                      dispatch(toggleLogoutModal());
+                      dispatch(toggleLogoutModal())
                     }}
                   >
                     Log out
@@ -211,14 +202,14 @@ const ExternalProfileHeader2 = ({
               {imageUrls?.map((item: any) => {
                 return (
                   <Link to={`/product_description/${item.id}`}>
-                    <div key={item.id} className="border rounded-lg mb-4 ">
+                    <div key={item.id} className="border rounded-lg mb-4 p-3 ">
                       <img
                         src={item.image}
-                        className=" w-64 h-40 xs:w-52 xs:h-36 md:w-72 md:h-48 rounded-lg"
+                        className=" w-64 h-40 xs:w-52 xs:h-36 md:w-72 md:h-48 rounded-lg xl:w-[300px] xl:h-[150px]"
                       />
                     </div>
                   </Link>
-                );
+                )
               })}
             </section>
           )}
@@ -232,6 +223,6 @@ const ExternalProfileHeader2 = ({
         <p className="mt-4">Nothing to see here. Try posting some gadgets</p>
       </div> */}
     </div>
-  );
-};
-export default ExternalProfileHeader2;
+  )
+}
+export default ExternalProfileHeader2

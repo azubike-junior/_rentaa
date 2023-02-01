@@ -8,7 +8,7 @@ import Loader from "./../Loader/index";
 function SingleGadget({ img, id }: any) {
   return (
     <Link to={`/product_description/${id}`}>
-      <div className="border rounded ">
+      <div className="border rounded p-3 ">
         <img
           src={img}
           className=" w-64 h-40 xs:w-52 xs:h-36 md:w-72 md:h-48 rounded-lg"

@@ -1,40 +1,59 @@
-import React, { useEffect, useState } from "react";
-import rentaa from "../../images/rentaa_white.svg";
-import Button from "../Button";
-import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
-import searchIcon from "../../images/searchIcon.svg";
-import notifyIcon from "../../images/notification.svg";
-import bookmark from "../../images/bookmark.svg";
-import avatar from "../../images/avatar.jpg";
-import { RootState, useAppDispatch } from "../../store/store";
-import { useDispatch, useSelector } from "react-redux";
-import { getProfileAvatar } from "../../services/Queries/getProfileAvatar";
-import { getUserById } from "../../services/Queries/getUser";
-import {
-  closeNotification,
-  openNotification,
-} from "../../services/Mutations/Modal";
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import avatar from '../../images/avatar.jpg'
+import bookmark from '../../images/bookmark.svg'
+import notifyIcon from '../../images/notification.svg'
+import rentaa from '../../images/rentaa_white.svg'
+import searchIcon from '../../images/searchIcon.svg'
+import { getProfileAvatar } from '../../services/Queries/getProfileAvatar'
+import { RootState, useAppDispatch } from '../../store/store'
+import Button from '../Button'
 // import { motion } from "framer-motion/dist/framer-motion";
-import Notification from "./../Notification/index";
-import { getGadgets } from "./../../services/Queries/getGadgets";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
+import jwtDecode from 'jwt-decode'
+import config from '../../utils/config'
+import { getGadgets } from './../../services/Queries/getGadgets'
+import Notification from './../Notification/index'
+import { getUserById2 } from '../../services/Queries/getUser2'
 
 export default function Header() {
-  const location = useLocation();
-  const [image, setImage] = useState("");
-  const pathName = location.pathname;
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const location = useLocation()
+  // const [image, setImage] = useState('')
+  const pathName = location.pathname
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-  const [isMouse, toggleMouse] = useState(false);
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config
+
+  const [isMouse, toggleMouse] = useState(false)
   const toggleMouseMenu = () => {
-    toggleMouse(!isMouse);
-  };
+    toggleMouse(!isMouse)
+  }
 
-  let avatarId: any;
+  const { loading: userLoading, data } = useSelector(
+    (state: RootState) => state.getUserById2,
+  )
 
-  const user = localStorage.getItem("accessToken");
-  avatarId = localStorage.getItem("avatarId");
+  let avatarId: any
+
+  const user = localStorage.getItem('accessToken') || ''
+  avatarId = localStorage.getItem('avatarId')
+
+  const id: any = jwtDecode(user)
+
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`
+
+  const bucketUrl = href + `${data?.profile?.avatar?.bucketname}` + '/'
+  const image = bucketUrl + encodeURIComponent(data?.profile?.avatar?.key)
 
   /**
    * same approach from the ProfileHeader Component is used to set the avatar image
@@ -42,30 +61,26 @@ export default function Header() {
    */
 
   useEffect(() => {
-    dispatch(getGadgets());
-  }, []);
+    dispatch(getGadgets())
+  }, [])
 
   useEffect(() => {
-    // if (user) {
-    //   useAppuseAppDispatch(getUserById());
-    //   console.log(">>>>>>>>>.user oo", avatarId);
-
-    dispatch(getProfileAvatar({ avatarId, setImage }));
-  }, [user, avatarId]);
+    dispatch(getUserById2(id?.user_id))
+  }, [])
 
   return (
     <div className="bg-white shadow-sm h-24 border-b-2 w-full sticky top-0 z-30">
       <div className="px-8 flex flex-row justify-between items-center mx-auto md:max-w-7xl pt-2 md:pt-5">
-        <Link to={user ? "/dashboard" : "/"}>
+        <Link to={user ? '/dashboard' : '/'}>
           <img src={rentaa} className="mt-6 md:mt-0 w-20 md:w-24" alt="" />
         </Link>
         {!user ? (
           <div className="hidden md:flex pt-0 space-x-36 font-dm-sans text-base text-black">
             <span>
-              <Link to="/">Home</Link>{" "}
+              <Link to="/">Home</Link>{' '}
             </span>
             <span>
-              <Link to="/our_story">Our Story</Link>{" "}
+              <Link to="/our_story">Our Story</Link>{' '}
             </span>
           </div>
         ) : (
@@ -83,10 +98,10 @@ export default function Header() {
           </div>
         )}
         {!user ? (
-          <Link to={pathName === "/login" ? "/sign_up" : "/login"}>
+          <Link to={pathName === '/login' ? '/sign_up' : '/login'}>
             <Button
               type="button"
-              child={pathName === "/login" ? "Sign Up" : "Login"}
+              child={pathName === '/login' ? 'Sign Up' : 'Login'}
               className="text-secondary text-sm md:text-base border border-secondary rounded px-5 py-2 md:px-9 md:py-2 mt-5 md:mt-3"
             />
           </Link>
@@ -114,13 +129,13 @@ export default function Header() {
             </Link>
             <span
               onClick={() => {
-                navigate("/profile");
+                navigate('/profile')
                 // window.location.reload();
               }}
               className="cursor-pointer"
             >
               <img
-                className="w-6 mt-1 h-6  md:h-8 lg:h-10 lg:w-10 border rounded-full"
+                className="w-6 mt-1 h-6  md:h-8 lg:h-9 lg:w-9 border rounded-full"
                 src={!image ? avatar : image}
                 alt="notify"
               />
@@ -129,5 +144,5 @@ export default function Header() {
         )}
       </div>
     </div>
-  );
+  )
 }

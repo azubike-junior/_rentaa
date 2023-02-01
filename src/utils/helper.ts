@@ -153,5 +153,7 @@ export const setGadgetValues = (setValue: any, gadget: any) => {
 
 export const baseUrl = `${config.REACT_APP_BASE_URL}`;
 
+console.log(">>>babseUrol", baseUrl)
+
 
 export { validateFileSize, validateFileType };

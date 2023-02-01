@@ -17,8 +17,8 @@ import { viewMoreGadget } from "./../../services/Queries/viewMoreGadget";
 
 function SingleProduct({ img }: any) {
   return (
-    <div className="border w-48 h-56">
-      <img src={img} alt="" className="w-48 h-56" />
+    <div className="border w-48 h-56 p-3 rounded-lg ">
+      <img src={img} alt="" className="w-48 h-56 xl:w-[200px] xl:h-[200px] " />
     </div>
   );
 }
@@ -59,12 +59,14 @@ export default function ProductDescBody({ gadget }: any) {
 
   const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
   imageUrls = photos?.map((photo: any) => {
+    console.log(">>>>>>url", photo.key )
     return bucketUrl + encodeURIComponent(photo.key);
   });
 
   let moreGadgetsPhotos;
 
-  // console.log(">>>>moreGadgets", moreGadgets);
+    console.log(">>>>>>>>href", href)
+
 
   if (moreGadgets.length > 0) {
     moreGadgetsPhotos = moreGadgets

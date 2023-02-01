@@ -135,6 +135,7 @@ export interface getUserResponse {
   email_verified: boolean;
   profile: IProfile;
   gadgets: IGadget[];
+  // avatar?: any
 }
 
 // interface IData {
@@ -164,6 +165,7 @@ interface IProfile {
   twitter: string;
   instagram: string;
   reviews: IReview[]
+  avatar?:any
 }
 
 interface IGadget {

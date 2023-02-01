@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EmptyGadgetSection from "../../components/EmptyGadgetSection";
@@ -33,7 +34,7 @@ function ExternalUserProfile() {
     (state: RootState) => state.getUserById
   );
 
-  // console.log(">>>>>>data from userProfile", data);
+  console.log(">>>>>>data from userProfile", data);
 
   let imageUrls;
   let gadgetData;

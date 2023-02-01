@@ -1,30 +1,29 @@
-import ProfileHeaderBackground from "../../images/profileHeaderBackground.png";
-import PersonImage from "../../images/personImage.png";
-import gridImage1 from "../../images/gridImage1.png";
-import gridImage2 from "../../images/gridImage2.png";
-import gridImage3 from "../../images/gridImage3.png";
-import gridImage4 from "../../images/gridImage4.png";
-import gridImage5 from "../../images/gridImage5.png";
-import gridImage6 from "../../images/gridImage6.png";
-import domAvatar from "../../images/avatar.jpg";
-import burgerIcon from "../../images/burgerIcon.svg";
-import noGadgetImage from "../../images/NoGadgetImages.svg";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../store/store";
-import { getUserById } from "../../services/Queries/getUser";
-import { getProfileAvatar } from "./../../services/Queries/getProfileAvatar";
-import { capitalizeFirstLetter } from "../../utils/helper";
-import Button from "../Button";
+/* eslint-disable jsx-a11y/alt-text */
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import domAvatar from '../../images/avatar.jpg'
+import burgerIcon from '../../images/burgerIcon.svg'
+import gridImage1 from '../../images/gridImage1.png'
+import gridImage2 from '../../images/gridImage2.png'
+import gridImage3 from '../../images/gridImage3.png'
+import gridImage4 from '../../images/gridImage4.png'
+import gridImage5 from '../../images/gridImage5.png'
+import gridImage6 from '../../images/gridImage6.png'
+import ProfileHeaderBackground from '../../images/profileHeaderBackground.png'
 import {
   toggleChangePasswordModal,
   toggleContactModal,
   toggleEditModal,
   toggleLogoutModal,
-} from "../../services/Mutations/Modal";
-import { Link } from "react-router-dom";
-import EmptyGadgetSection from "../EmptyGadgetSection";
-import Loader from "../Loader";
+} from '../../services/Mutations/Modal'
+import { getUserById } from '../../services/Queries/getUser'
+import { RootState, useAppDispatch } from '../../store/store'
+import config from '../../utils/config'
+import { capitalizeFirstLetter } from '../../utils/helper'
+import Button from '../Button'
+import EmptyGadgetSection from '../EmptyGadgetSection'
+import Loader from '../Loader'
 
 const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
   const [gadgetImages, setGadgetImages] = useState<string[]>([
@@ -34,36 +33,46 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
     gridImage4,
     gridImage5,
     gridImage6,
-  ]);
-  const access = localStorage.getItem("accessToken");
-  const [user, setUser] = useState(access);
-  const [image, setImage] = useState<any>();
-  const [openSettings, setOpenSettings] = useState(false);
-  const dispatch = useAppDispatch();
+  ])
+
+  const {
+    REACT_APP_AWS_AMAZON,
+    REACT_APP_AWS_REGION,
+    REACT_APP_AWS_HTTP,
+    REACT_APP_BUCKET_NAME,
+  } = config
+
+  const access = localStorage.getItem('accessToken')
+  const [user, setUser] = useState(access)
+  // const [image, setImage] = useState<any>()
+  const [openSettings, setOpenSettings] = useState(false)
+  const dispatch = useAppDispatch()
   //   const history = useHistory();
 
   const { loading: userLoading, data } = useSelector(
-    (state: RootState) => state.getUserById
-  );
+    (state: RootState) => state.getUserById,
+  )
 
-  localStorage.setItem("first_name", data?.first_name);
-  localStorage.setItem("last_name", data?.last_name);
+  console.log('>>>>>userData', data)
 
-  const { profile } = data;
+  localStorage.setItem('first_name', data?.first_name)
+  localStorage.setItem('last_name', data?.last_name)
 
-  const avatarId = localStorage.getItem("avatarId");
+  const profile = data?.profile
+
+  const avatarId = localStorage.getItem('avatarId')
 
   const profileDescriptions = profile?.description
-    ? profile?.description.split(".")
-    : "";
+    ? profile?.description.split('.')
+    : ''
 
   const showSettings = () => {
-    setOpenSettings(true);
-  };
+    setOpenSettings(true)
+  }
 
   const closeSettings = () => {
-    setOpenSettings(false);
-  };
+    setOpenSettings(false)
+  }
 
   /**
    * when the getUserById func is called after a user logs in
@@ -71,8 +80,8 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
    *
    */
   useEffect(() => {
-    dispatch(getUserById({ setImage }));
-  }, []);
+    dispatch(getUserById({  }))
+  }, [])
 
   /**
    * the value(avatarId) in the localStorage Is used to get an image
@@ -80,18 +89,27 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
    * the setImage func is used to set the buffer response returned from the getProfileAvatar.
    */
   useEffect(() => {
-    if (avatarId) {
-      dispatch(getProfileAvatar({ avatarId, setImage }));
-    }
-  }, []);
+    // if (avatarId) {
+    //   dispatch(getProfileAvatar({ avatarId, setImage }));
+    // }
+  }, [])
 
-  const gad = [];
+  const href =
+    `${REACT_APP_AWS_HTTP}` +
+    `${REACT_APP_AWS_REGION}` +
+    `${REACT_APP_AWS_AMAZON}`
+
+
+  const bucketUrl = href + `${data?.profile?.avatar?.bucketname}` + '/'
+  const image = bucketUrl + encodeURIComponent(data?.profile?.avatar?.key);
+
+  console.log(">>>>>>images======", image)
 
   return (
     <div
       onClick={() => {
         if (openSettings) {
-          closeSettings();
+          closeSettings()
         }
       }}
       className="w-full md:shadow-xmd md:rounded-20 font-dm-sans"
@@ -114,26 +132,26 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
       </header>
       <section className="px-7">
         <p className="text-lg md:text-2xl lg:text-3xl font-semibold text-center">
-          {" "}
-          {data?.first_name && capitalizeFirstLetter(data?.first_name)}{" "}
+          {' '}
+          {data?.first_name && capitalizeFirstLetter(data?.first_name)}{' '}
           {data?.last_name && capitalizeFirstLetter(data?.last_name)}
         </p>
         <p className="inline-flex text-sm items-center gap-2 text-mediumGrey w-full justify-center mt-3">
           <span>
-            {profile?.lga ? capitalizeFirstLetter(profile?.lga) : ""}{" "}
+            {profile?.lga ? capitalizeFirstLetter(profile?.lga) : ''}{' '}
           </span>
           <span className="inline-block  w-1 h-1 bg-mediumGrey rounded-full"></span>
           <span>
-            {profile?.state ? capitalizeFirstLetter(profile?.state) : ""}
+            {profile?.state ? capitalizeFirstLetter(profile?.state) : ''}
           </span>
         </p>
         <p className="text-center text-lg font-semibold md:text-2xl mt-14 mb-4">
           About me
         </p>
         <p className="text-sm xxs:px-0 xs:text-base md:text-lg text-center mb-0 md:mb-10 lg:mb-4 px-0 md:px-6">
-          {profile?.description ? profileDescriptions[0] : ""}{" "}
-          {profile?.description ? profileDescriptions[1] : ""}
-          {profile?.description ? profileDescriptions[2] : ""}
+          {profile?.description ? profileDescriptions[0] : ''}{' '}
+          {profile?.description ? profileDescriptions[1] : ''}
+          {profile?.description ? profileDescriptions[2] : ''}
         </p>
         {/* <p className="text-base md:text-lg text-center">
           {profile?.description ? profileDescriptions[1] : ""}
@@ -168,15 +186,15 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
                 <ul className="space-y-3">
                   <li
                     onClick={() => {
-                      dispatch(getUserById({}));
-                      dispatch(toggleEditModal());
+                      dispatch(getUserById({}))
+                      dispatch(toggleEditModal())
                     }}
                   >
                     Edit Profile
                   </li>
                   <li
                     onClick={() => {
-                      dispatch(toggleChangePasswordModal());
+                      dispatch(toggleChangePasswordModal())
                     }}
                   >
                     Change Password
@@ -184,7 +202,7 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
                   <li
                     className="text-red-700"
                     onClick={() => {
-                      dispatch(toggleLogoutModal());
+                      dispatch(toggleLogoutModal())
                     }}
                   >
                     Log out
@@ -217,7 +235,7 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
                       />
                     </div>
                   </Link>
-                );
+                )
               })}
             </section>
           )}
@@ -231,6 +249,6 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
         <p className="mt-4">Nothing to see here. Try posting some gadgets</p>
       </div> */}
     </div>
-  );
-};
-export default UserProfileSection;
+  )
+}
+export default UserProfileSection

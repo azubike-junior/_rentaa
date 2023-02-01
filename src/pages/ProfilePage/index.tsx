@@ -75,6 +75,8 @@ const ProfilePage = () => {
     body.style.overflow = contactModalOpen ? "hidden" : "auto";
   }, [contactModalOpen]);
 
+  console.log(">>>data from profile", data)
+
   return (
     <>
       <div className="mx-auto container md:max-w-screen-lg xl:max-w-screen-xl w-full xxs:px-0 xs:px-2 md:pt-4 md:px-8 lg:grid lg:grid-cols-profileLayoutM xl:grid-cols-profileLayoutL gap-5">

@@ -281,8 +281,8 @@ export default function PostProduct() {
                 Add Gadget Photo <span className=" ml-1 text-red-600">*</span>
               </p>
               <p className="text-xs text-gray-300 md:text-sm pt-1">
-                Each picture must not be larger than 6MB. We recommend you
-                upload between 3-5 pictures
+                Each picture must not be larger than 2MB. We recommend you
+                upload between 2-5 pictures
               </p>
 
               <div className="pt-4 flex">
