@@ -8,7 +8,7 @@ import { getUserResponse } from "./../../interfaces/index";
 import { baseUrl } from './../../utils/helper';
 
 interface DataProps {
-  avatarId: any;
+  avatarId?: any;
   setImage?: any;
 }
 
@@ -46,6 +46,8 @@ export const getProfileAvatar = createAsyncThunk(
         `${baseUrl}/users/profile-avatar?avatarID=${avatarId}`,
         { ...defaultOptions }
       );
+
+      console.log(">>>>>>response avatar", response.body)
 
       if (response.status === 200) {
         const reader = response?.body?.getReader();
