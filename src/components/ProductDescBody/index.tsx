@@ -48,7 +48,7 @@ export default function ProductDescBody({ gadget }: any) {
     (state: RootState) => state.viewMoreGadgetReducer
   );
 
-  console.log(moreGadgets);
+  // console.log(moreGadgets);
 
   let imageUrls;
 
@@ -59,13 +59,13 @@ export default function ProductDescBody({ gadget }: any) {
 
   const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
   imageUrls = photos?.map((photo: any) => {
-    console.log(">>>>>>url", photo.key )
+    // console.log(">>>>>>url", photo.key )
     return bucketUrl + encodeURIComponent(photo.key);
   });
 
   let moreGadgetsPhotos;
 
-    console.log(">>>>>>>>href", href)
+    // console.log(">>>>>>>>href", href)
 
 
   if (moreGadgets.length > 0) {
@@ -91,7 +91,7 @@ export default function ProductDescBody({ gadget }: any) {
       });
   }
 
-  console.log("moreGadgetPhotos", moreGadgetsPhotos);
+  // console.log("moreGadgetPhotos", moreGadgetsPhotos);
 
   return (
     <div className="max-w-7xl mx-auto px-8 font-dm-sans mb-20">

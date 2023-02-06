@@ -31,7 +31,7 @@ const initialState: initState = {
 export const getProfileAvatar = createAsyncThunk(
   "getProfileAvatar",
   async ({ avatarId, setImage }: DataProps) => {
-    console.log(">>>>>>avatarIdin prof ", avatarId, setImage);
+    // console.log(">>>>>>avatarIdin prof ", avatarId, setImage);
     const token = JSON.parse(localStorage.getItem("accessToken") || "{}");
     const defaultOptions = {
       method: "get",
@@ -42,38 +42,37 @@ export const getProfileAvatar = createAsyncThunk(
     };
 
     try {
-      const response = await fetch(
-        `${baseUrl}/users/profile-avatar?avatarID=${avatarId}`,
-        { ...defaultOptions }
-      );
+      // const response = await fetch(
+      //   `${baseUrl}/users/profile-avatar?avatarID=${avatarId}`,
+      //   { ...defaultOptions }
+      // );
 
-      console.log(">>>>>>response avatar", response.body)
+      // console.log(">>>>>>response avatar", response.body)
 
-      if (response.status === 200) {
-        const reader = response?.body?.getReader();
-        // window.location.reload()
+      // if (response.status === 200) {
+      //   const reader = response?.body?.getReader();
+      //   // window.location.reload()
 
-        let chunks: any = [];
-        reader?.read().then(function processText({ done, value }: any): any {
-          if (done) {
-            const blob = new Blob([chunks], { type: "image" });
+      //   let chunks: any = [];
+      //   reader?.read().then(function processText({ done, value }: any): any {
+      //     if (done) {
+      //       const blob = new Blob([chunks], { type: "image" });
 
-            setImage(URL.createObjectURL(blob));
+      //       setImage(URL.createObjectURL(blob));
 
-            // console.log(">>>>>url", URL.createObjectURL(blob));
-            return URL.createObjectURL(blob);
-          }
-          const tempArray = new Uint8Array(chunks.length + value.length);
-          tempArray.set(chunks);
-          tempArray.set(value, chunks.length);
-          chunks = tempArray;
+      //       return URL.createObjectURL(blob);
+      //     }
+      //     const tempArray = new Uint8Array(chunks.length + value.length);
+      //     tempArray.set(chunks);
+      //     tempArray.set(value, chunks.length);
+      //     chunks = tempArray;
 
-          return reader.read().then(processText);
-        });
-      }
-      if (response.status === 404) {
-        return response.statusText;
-      }
+      //     return reader.read().then(processText);
+      //   });
+      // }
+      // if (response.status === 404) {
+      //   return response.statusText;
+      // }
     } catch (e: any) {
       return e.response.data;
     }

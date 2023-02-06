@@ -38,7 +38,7 @@ export const postGadget = createAsyncThunk(
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(">>>>>response", response);
+      // console.log(">>>>>response", response);
 
       if (response.data.status === 201) {
         navigate("/profile");

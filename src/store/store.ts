@@ -24,6 +24,9 @@ import changePasswordReducer from './../services/Mutations/changePassword';
 import viewMoreGadgetReducer from './../services/Queries/viewMoreGadget';
 import getReviewerImageReducer from './../services/Queries/getReviewerImage';
 import getUserById2 from "./../services/Queries/getUser2";
+import findReviewsSlice from "../services/Queries/findReviews";
+import findReviewsByReviewerSlice from "../services/Queries/findReviewByReviewerId";
+
 
 
 export const store = configureStore({
@@ -49,7 +52,9 @@ export const store = configureStore({
     changePasswordReducer,
     viewMoreGadgetReducer,
     getReviewerImageReducer,
-    getUserById2
+    getUserById2,
+    findReviewsSlice,
+    findReviewsByReviewerSlice
   },
   // middleware: (getDefaultMiddleware: any) =>
   //   getDefaultMiddleware().concat(thunkMiddleware),

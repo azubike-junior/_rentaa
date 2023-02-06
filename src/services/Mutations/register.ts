@@ -26,14 +26,14 @@ export const registerUser = createAsyncThunk(
   async ({ navigate, ...rest }: IRegistration, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${baseUrl}/auth/registration`, rest);
-      console.log(">>>>response", response);
+      // console.log(">>>>response", response);
 
       if (response.status === 201) {
         navigate("/verify_email");
         return response.data;
       }
     } catch (e: any) {
-      console.log(">>>>>>RESPONSE 2 ", e.response.data);
+      // console.log(">>>>>>RESPONSE 2 ", e.response.data);
       return rejectWithValue(e.response.data);
     }
   }

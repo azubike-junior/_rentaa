@@ -52,7 +52,6 @@ export const editProfile = createAsyncThunk(
           }
         }
       );
-      console.log(">>>>>>RESPONSE ", response.data.item);
 
       if (response.data.status === 201) {
         dispatch(getUserById({}));

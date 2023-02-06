@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Review from "../Review";
 import Button from "./../Button/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +46,7 @@ export default function ExternalReviewSection({ reviews }: any) {
     };
   });
 
-  console.log(">>>>>>reviewData", reviews);
+  // console.log(">>>>>>reviewData", reviews);
 
   /**
    * todo: get the images of the reviewer from through the avatarId
@@ -54,13 +55,13 @@ export default function ExternalReviewSection({ reviews }: any) {
     for (let i = 0; i < reviewData?.length; i++) {
       const { avatarId, review, reviewer } = reviewData[i];
 
-      console.log(">>>>>>avatr ooo", avatarId);
+      // console.log(">>>>>>avatr ooo", avatarId);
 
       useAppDispatch(getReviewerImage({ avatarId, setImage }));
     }
   }, []);
 
-  console.log(">>>>>image", image);
+  // console.log(">>>>>image", image);
 
   return (
     <div className="container max-w-7xl mx-auto pb-14">

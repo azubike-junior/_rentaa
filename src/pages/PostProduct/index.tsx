@@ -147,7 +147,7 @@ export default function PostProduct() {
       contact_info,
       description,
     } = data;
-    console.log(">>>>data", data);
+    // console.log(">>>>data", data);
     let images = docs.map((item: any) => item.file);
     const formData = new FormData();
     formData.append("name", name);

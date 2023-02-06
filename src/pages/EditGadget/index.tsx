@@ -1,23 +1,17 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
-import { v1 as uuid } from "uuid";
-import {
-  HookInput,
-  InputField,
-  SelectInput,
-} from "../../components/BasicInputField";
-import Button from "../../components/Button";
-import addPhoto from "../../images/addPhoto.svg";
-import uploadPhoto from "../../images/photoUpload.svg";
-import NaijaStates from "naija-state-local-government";
-import { useForm } from "react-hook-form";
-import {
-  CategoryValue,
-  gadgetConditions,
-  IProductInputs,
-} from "../../interfaces";
-import { useGetCategoriesQuery } from "../../services/Queries/queries";
-import { MdDeleteForever } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import NaijaStates from 'naija-state-local-government'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { FaRegEdit } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { InputField, SelectInput } from '../../components/BasicInputField'
+import Button from '../../components/Button'
+import Loader from '../../components/Loader'
+import { gadgetConditions, IProductInputs } from '../../interfaces'
+import { postGadget } from '../../services/Mutations/postGadget'
+import { useGetCategoriesQuery } from '../../services/Queries/queries'
+import { RootState, useAppDispatch } from '../../store/store'
+import config from '../../utils/config'
 import {
   FileService,
   getLga,
@@ -25,37 +19,31 @@ import {
   setGadgetValues,
   validateFileSize,
   validateFileType,
-} from "../../utils/helper";
-import { postGadget } from "../../services/Mutations/postGadget";
-import { useNavigate } from "react-router-dom";
-import { RootState, useAppDispatch } from "../../store/store";
-import Loader from "../../components/Loader";
-import { FaRegEdit } from "react-icons/fa";
-import config from "../../utils/config";
+} from '../../utils/helper'
 
 interface ImageProp {
-  id: string;
-  image: any;
+  id: string
+  image: any
 }
 
 export default function EditGadget() {
-  const [state, setState] = useState("");
-  const [docs, setDocs] = useState<any>([]);
-  const [photos, setPhotos] = useState<any[]>([]);
-  const [fileError, setFileError] = useState("");
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const [state, setState] = useState('')
+  const [docs, setDocs] = useState<any>([])
+  const [photos, setPhotos] = useState<any[]>([])
+  const [fileError, setFileError] = useState('')
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const {
     REACT_APP_AWS_AMAZON,
     REACT_APP_AWS_REGION,
     REACT_APP_AWS_HTTP,
     REACT_APP_BUCKET_NAME,
-  } = config;
+  } = config
 
   const { data, error, loading } = useSelector(
-    (state: RootState) => state.postGadgetReducer
-  );
+    (state: RootState) => state.postGadgetReducer,
+  )
 
   const {
     register,
@@ -65,78 +53,78 @@ export default function EditGadget() {
     setValue,
     formState: { errors },
   } = useForm<IProductInputs>({
-    mode: "onTouched",
+    mode: 'onTouched',
     defaultValues: {
-      contact_info: "08393038303",
+      contact_info: '08393038303',
     },
-  });
+  })
 
   const { data: gadgetData, loading: gadgetLoading } = useSelector(
-    (state: RootState) => state.findGadgetReducer
-  );
+    (state: RootState) => state.findGadgetReducer,
+  )
 
   const href =
     `${REACT_APP_AWS_HTTP}` +
     `${REACT_APP_AWS_REGION}` +
-    `${REACT_APP_AWS_AMAZON}`;
+    `${REACT_APP_AWS_AMAZON}`
 
-  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
+  const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + '/'
 
   useEffect(() => {
-    setGadgetValues(setValue, gadgetData);
-  }, []);
+    setGadgetValues(setValue, gadgetData)
+  }, [])
 
-  const { data: productCategories } = useGetCategoriesQuery("");
+  const { data: productCategories } = useGetCategoriesQuery('')
   const categories: [] = productCategories?.items?.map((item: any) => {
     return {
       value: item.id,
       text: item.name,
-    };
-  });
+    }
+  })
 
-  let allCategories;
+  let allCategories
 
   if (categories) {
-    allCategories = [{ value: "", text: "-Select-" }, ...categories];
+    allCategories = [{ value: '', text: '-Select-' }, ...categories]
   }
 
   /**
    * Package returns
    */
   const lga = NaijaStates.lgas(
-    getValues("state") ? getValues("state") : "lagos"
-  );
+    getValues('state') ? getValues('state') : 'lagos',
+  )
 
   const handleFiles = async (e: any, id: string) => {
-    const file = e.target.files[0];
-    const validFileSize = await validateFileSize(file?.size);
+    const file = e.target.files[0]
+    const validFileSize = await validateFileSize(file?.size)
 
     const validFileType = await validateFileType(
-      FileService.getFileExtension(file?.name)
-    );
+      FileService.getFileExtension(file?.name),
+    )
 
     if (!validFileSize.isValid) {
-      setFileError(validFileSize.errorMessage);
-      return;
+      setFileError(validFileSize.errorMessage)
+      return
     }
 
     if (!validFileType.isValid) {
-      setFileError(validFileType.errorMessage);
-      return;
+      setFileError(validFileType.errorMessage)
+      return
     }
 
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = () => {
       if (reader.readyState === 2) {
       }
-    };
-    reader.readAsDataURL(file);
-  };
+    }
+    reader.readAsDataURL(file)
+  }
 
   const handleClick = () => {
-    const newState = getValues("state");
-    setState(newState);
-  };
+    const newState = getValues('state')
+    setState(newState)
+  }
 
   /**
    *
@@ -145,7 +133,7 @@ export default function EditGadget() {
    */
   const postProductHandler = (data: IProductInputs) => {
     if (photos.length === 0) {
-      return setFileError("Please upload Gadgets to continue");
+      return setFileError('Please upload Gadgets to continue')
     }
     const {
       category,
@@ -156,29 +144,29 @@ export default function EditGadget() {
       condition,
       contact_info,
       description,
-    } = data;
-    console.log(">>>>data", data);
-    let images = docs.map((item: any) => item.file);
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("categoryId", category);
-    formData.append("price", price);
-    formData.append("state", state);
-    formData.append("lga", lga);
-    formData.append("condition", condition);
-    formData.append("contact_info", contact_info);
-    formData.append("description", description);
+    } = data
+    // '>>>>data', data
+    let images = docs.map((item: any) => item.file)
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('categoryId', category)
+    formData.append('price', price)
+    formData.append('state', state)
+    formData.append('lga', lga)
+    formData.append('condition', condition)
+    formData.append('contact_info', contact_info)
+    formData.append('description', description)
     for (let i = 0; i < images.length; i++) {
-      formData.append("photos", images[i]);
+      formData.append('photos', images[i])
     }
     const newData = {
       formData,
       navigate,
-    };
-    dispatch(postGadget(newData));
-  };
+    }
+    dispatch(postGadget(newData))
+  }
 
-  const imageUrls: [] = [];
+  const imageUrls: [] = []
 
   return (
     <div className="mx-auto font-dm-sans max-w-7xl my-20 px-4">
@@ -213,7 +201,7 @@ export default function EditGadget() {
               />
               <SelectInput
                 register={register}
-                selectArray={[{ value: "", text: "-Select-" }, ...getStates()]}
+                selectArray={[{ value: '', text: '-Select-' }, ...getStates()]}
                 label="Current State of Residence"
                 className="lg:w-700 pt-12 cursor-pointer"
                 name="state"
@@ -225,7 +213,7 @@ export default function EditGadget() {
               />
               <SelectInput
                 register={register}
-                selectArray={[{ value: "", text: "-Select-" }, ...getLga(lga)]}
+                selectArray={[{ value: '', text: '-Select-' }, ...getLga(lga)]}
                 label="LGA"
                 className="lg:w-700 pt-12"
                 name="lga"
@@ -311,12 +299,12 @@ export default function EditGadget() {
                       </div>
                       <input
                         type="file"
-                        style={{ display: "none" }}
+                        style={{ display: 'none' }}
                         onChange={(e) => handleFiles(e, photo.id)}
                         name="photos"
                       />
                     </label>
-                  );
+                  )
                 })}
               </div>
               <p className="text-xs text-gray-300 md:text-sm pt-5">
@@ -324,7 +312,7 @@ export default function EditGadget() {
               </p>
 
               <Button
-                child={loading ? <Loader /> : "Submit"}
+                child={loading ? <Loader /> : 'Submit'}
                 type="submit"
                 className="w-full bg-secondary mt-10 py-3 md:py-8 font-dm-sans md:text-lg text-white rounded"
               />
@@ -333,5 +321,5 @@ export default function EditGadget() {
         </form>
       </div>
     </div>
-  );
+  )
 }

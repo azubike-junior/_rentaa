@@ -26,9 +26,6 @@ export const loginUser = createAsyncThunk(
     // const accessToken: string = localStorage.getItem("accessToken") || "";
     try {
       const response = await axios.post(`${baseUrl}/auth/login`, rest);
-
-      console.log("loginRes", response)
-
       if (response.data.statusCode === 200) {
         const { token, refreshToken } = response.data.message.results;
         const user: ITokenDecode = jwt_decode(token);
@@ -46,7 +43,6 @@ export const loginUser = createAsyncThunk(
       }
       return response.data;
     } catch (e: any) {
-      console.log("...e",e)
       return rejectWithValue(e.response.data);
     }
   }

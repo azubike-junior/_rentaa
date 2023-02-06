@@ -31,7 +31,7 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
     REACT_APP_BUCKET_NAME,
   } = config
 
-  console.log(">>>>>>>>react_aws", REACT_APP_BUCKET_NAME)
+  // console.log(">>>>>>>>react_aws", REACT_APP_BUCKET_NAME)
 
   
 
@@ -65,7 +65,7 @@ export default function ProductDescHeader({ photoKey, gadget }: any) {
   const image = bucketUrl + encodeURIComponent(photoKey?.key);
 
 
-  console.log(">>>>>>gadget", gadget)
+  // console.log(">>>>>>gadget", gadget)
 
   return (
     <div className="max-w-7xl mx-auto px-8 py-16 font-dm-sans">

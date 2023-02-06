@@ -19,7 +19,7 @@ import ExternalReviewSection from './../../components/ExternalReviewSection/inde
 
 function ExternalUserProfile() {
   const dispatch = useDispatch();
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
 
   const {
     REACT_APP_AWS_AMAZON,
@@ -43,6 +43,11 @@ function ExternalUserProfile() {
     (state: RootState) => state.findContactReducer
   );
 
+  const href =
+      `${REACT_APP_AWS_HTTP}` +
+      `${REACT_APP_AWS_REGION}` +
+      `${REACT_APP_AWS_AMAZON}`;
+
   /**
    * For each of the gadgets, map the gadget key to the bucket url to display the image
    */
@@ -51,10 +56,7 @@ function ExternalUserProfile() {
       // console.log(gadget);
       return { gadgetKey: gadget.photos[0].key, id: gadget.id };
     });
-    const href =
-      `${REACT_APP_AWS_HTTP}` +
-      `${REACT_APP_AWS_REGION}` +
-      `${REACT_APP_AWS_AMAZON}`;
+    
 
     const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
     imageUrls = gadgetData?.map((gadget: any) => {
@@ -65,13 +67,16 @@ function ExternalUserProfile() {
     });
   }
 
+  const bucketUrl = href + `${data?.profile?.avatar?.bucketname}` + '/'
+  const image = bucketUrl + encodeURIComponent(data?.profile?.avatar?.key)
+
   /**
    * if the id is added as a parameter to the getUserById func, this means its getting an external user.
    * it gets an avatarId2 and passes it to  the profile avatar endpoint to get the external user image
    *
    */
   useEffect(() => {
-    useAppDispatch(getUserById({ id, setImage }));
+    useAppDispatch(getUserById({ id }));
   }, []);
 
   const { editModalOpen, reviewModalOpen, contactModalOpen } = useSelector(

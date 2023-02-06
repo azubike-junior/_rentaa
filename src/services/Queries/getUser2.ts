@@ -30,24 +30,14 @@ const initialState: initState = {
 export const getUserById2 = createAsyncThunk(
   "getUser2",
   async (params: dataProps | any) => {
-    // console.log(">>>>id", id);
-    const { id, dispatch, setImage } = params;
     const accessToken: string = JSON.parse(
       localStorage.getItem("accessToken") || "{}"
     );
     const user: ITokenDecode = jwt_decode(accessToken);
 
-    const defaultOptions = {
-      method: "get",
-      headers: {
-        "Content-Type": "image",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-
     try {
       const response = await axios.get(
-        id ? `${baseUrl}/users/${id}` : `${baseUrl}/users/${user?.user_id}`,
+       `${baseUrl}/users/${user?.user_id}`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -55,19 +45,9 @@ export const getUserById2 = createAsyncThunk(
         }
       );
 
-      if (response.data.statusCode === 200) {
-        /**
-           if an id is passed when calling the getUserById function, this means we want to get an
-           external user image
-           * so we get the avatarId from the response, then use it to get the image picture of the external user
-          */
-       
-          localStorage.setItem(
-            "avatarId",
-            response.data.user.profile?.avatarId
-          );
-        
+      console.log("<>>>>>>>>user respone", response.data)
 
+      if (response.data.statusCode === 200) {    
         return response?.data?.user;
       }
     } catch (e: any) {

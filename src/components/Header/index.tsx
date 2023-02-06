@@ -16,6 +16,7 @@ import config from '../../utils/config'
 import { getGadgets } from './../../services/Queries/getGadgets'
 import Notification from './../Notification/index'
 import { getUserById2 } from '../../services/Queries/getUser2'
+import { getUserById } from '../../services/Queries/getUser'
 
 export default function Header() {
   const location = useLocation()
@@ -40,12 +41,12 @@ export default function Header() {
     (state: RootState) => state.getUserById2,
   )
 
-  let avatarId: any
+  // let avatarId: any
 
   const user = localStorage.getItem('accessToken') || ''
-  avatarId = localStorage.getItem('avatarId')
+  // avatarId = localStorage.getItem('avatarId')
 
-  const id: any = jwtDecode(user)
+  // const id: any = jwtDecode(user)
 
   const href =
     `${REACT_APP_AWS_HTTP}` +
@@ -65,7 +66,7 @@ export default function Header() {
   }, [])
 
   useEffect(() => {
-    dispatch(getUserById2(id?.user_id))
+    dispatch(getUserById2({}))
   }, [])
 
   return (

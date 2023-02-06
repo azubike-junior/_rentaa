@@ -32,7 +32,6 @@ const initialState: initState = {
 export const leaveReview = createAsyncThunk(
   "leaveReview",
   async ({ data, id, dispatch, setImage }: DataProps, { rejectWithValue }) => {
-    console.log(">>>data", data)
     const accessToken = JSON.parse(localStorage.getItem("accessToken") || "{}");
 
     try {
@@ -45,7 +44,6 @@ export const leaveReview = createAsyncThunk(
           },
         }
       );
-      console.log(">>>>>response", response);
 
       if (response.status === 201) {
         // history.push("/profile");

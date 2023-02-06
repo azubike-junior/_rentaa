@@ -56,28 +56,12 @@ export default function ReviewSection({ reviews }: any) {
     return {
       image:
         bucketUrl +
-        'ProfilePhotos%' +
-        encodeURIComponent(review.avatarId) +
-        '.jpg',
+        encodeURIComponent(review.avatarId),
       review: review.review,
       reviewer: review.reviewer,
       id: review.id,
     }
   })
-
-  console.log('>>>>>>>>reviewData', reviewData)
-
-  /**
-   * todo: get the images of the reviewer from through the avatarId
-   */
-  useEffect(() => {
-    // for (let i = 0; i < reviewData?.length; i++) {
-    //   const { avatarId, review, reviewer } = reviewData[i];
-    //   dispatch(getProfileAvatar({ avatarId, setImage }));
-    // }
-  }, [])
-
-  // console.log(">>>>>img", image)
 
   return (
     <div className="container max-w-7xl mx-auto pb-14">

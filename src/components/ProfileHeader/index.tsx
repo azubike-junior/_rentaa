@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -63,11 +64,11 @@ export default function ProfileHeader() {
    * in the getProfileAvatar func, the user image is fetched by the avatarId
    * the setImage func is used to set the buffer response returned from the getProfileAvatar.
    */
-  useEffect(() => {
-    if (avatarId) {
-      useAppDispatch(getProfileAvatar({ avatarId, setImage }));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (avatarId) {
+  //     useAppDispatch(getProfileAvatar({ avatarId, setImage }));
+  //   }
+  // }, []);
 
   return (
     <div

@@ -29,7 +29,7 @@ const initialState: initState = {
 export const resetPassword = createAsyncThunk(
   "resetPassword",
   async ({ password, navigate, token }: DataProps, { rejectWithValue }) => {
-    console.log(password);
+    // console.log(password);
     try {
       const response = await axios.post(
         `${baseUrl}/auth/reset-password/${token}`,
@@ -37,7 +37,7 @@ export const resetPassword = createAsyncThunk(
           password,
         }
       );
-      console.log(">>>>>response", response);
+      // console.log(">>>>>response", response);
 
       if (response.status === 201) {
         navigate("/forget_password_success_response");
@@ -58,7 +58,7 @@ const resetPasswordSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(resetPassword.rejected, (state, action) => {
-      console.log(">>>>>s", action.payload);
+      // console.log(">>>>>s", action.payload);
       state.error = action.payload;
       state.error2 = action.error.name;
       state.loading = false;

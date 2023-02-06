@@ -14,7 +14,6 @@ export default function VerifyEmailSuccess() {
     (state: RootState) => state.verifyEmailReducer
   );
 
-  console.log(">>>>id", response?.status);
   useEffect(() => {
     dispatch(verifyEmail(token));
   }, []);

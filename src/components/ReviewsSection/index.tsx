@@ -54,7 +54,7 @@ const ReviewsSection = ({ reviews }: any) => {
 
   const reviewData = reviews?.map((review: any) => {
     return {
-      image: bucketUrl + 'ProfilePhotos%' + encodeURIComponent(review.avatarId) + '.jpg',
+      image: bucketUrl + encodeURIComponent(review.avatarId),
       review: review.review,
       reviewer: review.reviewer,
       id: review.id,

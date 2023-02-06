@@ -9,11 +9,14 @@ import ReviewsSection from '../../components/ReviewsSection'
 import SettingsSection from '../../components/SettingsSection'
 import ViewContactModal from '../../components/ViewContactModal'
 import { ITokenDecode } from '../../interfaces'
+import { findReviewsByReviewerId } from '../../services/Queries/findReviewByReviewerId'
 import { getUserById } from '../../services/Queries/getUser'
 import { RootState, useAppDispatch } from '../../store/store'
 import config from '../../utils/config'
 import ExternalProfileHeader2 from './../../components/ExternalProfileHeader2/index'
 import ReviewModal from './../../components/ReviewModal/index'
+
+// Visiting user's account page
 
 const ExternalProfilePage = () => {
   const access: string = localStorage.getItem('accessToken') || ''
@@ -31,11 +34,15 @@ const ExternalProfilePage = () => {
 
   const { id } = useParams<{ id: string }>()
 
+  console.log()
+
   const { loading: userLoading, data } = useSelector(
     (state: RootState) => state.getUserById,
   )
 
-  console.log('>>>>>>data from userProfile', data)
+  const { loading: reviewsLoading, data: reviewData } = useSelector(
+    (state: RootState) => state.findReviewsByReviewerSlice,
+  )
 
   let imageUrls
   let gadgetData
@@ -79,6 +86,10 @@ const ExternalProfilePage = () => {
     dispatch(getUserById({ id }))
   }, [])
 
+  useEffect(() => {
+    dispatch(findReviewsByReviewerId({ id }))
+  }, [])
+
   const { editModalOpen, reviewModalOpen, contactModalOpen } = useSelector(
     (state: RootState) => state.modalReducer,
   )
@@ -94,13 +105,14 @@ const ExternalProfilePage = () => {
             image={image}
           />
         </section>
+
         <section className="hidden lg:block flex flex-col gap-9">
           {decodedUser?.user_id === id && <SettingsSection />}
-          <ReviewsSection reviews={data?.profile?.reviews} />
+          <ReviewsSection reviews={reviewData} />
         </section>
 
         <section className="block lg:hidden">
-          <ReviewSection reviews={data?.profile?.reviews} />
+          <ReviewSection reviews={reviewData} />
         </section>
 
         <Modal isOpen={contactModalOpen}>

@@ -42,8 +42,6 @@ const ExternalProfileHeader2 = ({
 
   const { profile } = data
 
-  const avatarId = localStorage.getItem('avatarId')
-
   const profileDescriptions = profile?.description
     ? profile?.description.split('.')
     : ''
@@ -55,28 +53,6 @@ const ExternalProfileHeader2 = ({
   const closeSettings = () => {
     setOpenSettings(false)
   }
-
-  /**
-   * when the getUserById func is called after a user logs in
-   * it get a response (Profile: avatarId), the response is set to the local storage
-   *
-   */
-  //   useEffect(() => {
-  //     dispatch(getUserById({ setImage }));
-  //   }, []);
-
-  /**
-   * the value(avatarId) in the localStorage Is used to get an image
-   * in the getProfileAvatar func, the user image is fetched by the avatarId
-   * the setImage func is used to set the buffer response returned from the getProfileAvatar.
-   */
-  //   useEffect(() => {
-  //     if (avatarId) {
-  //       dispatch(getProfileAvatar({ avatarId, setImage }));
-  //     }
-  //   }, []);
-
-  const gad = []
 
   return (
     <div
@@ -125,7 +101,7 @@ const ExternalProfileHeader2 = ({
           {profile?.description ? profileDescriptions[0] : ''}{' '}
           {profile?.description ? profileDescriptions[1] : ''}
           {profile?.description ? profileDescriptions[2] : ''}
-          {!profile?.description ? "No description" : ''}
+          {!profile?.description ? 'No description' : ''}
         </p>
         {/* <p className="text-base md:text-lg text-center">
           {profile?.description ? profileDescriptions[1] : ""}

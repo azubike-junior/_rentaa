@@ -18,6 +18,7 @@ import {
   toggleLogoutModal,
 } from '../../services/Mutations/Modal'
 import { getUserById } from '../../services/Queries/getUser'
+import { getUserById2 } from '../../services/Queries/getUser2'
 import { RootState, useAppDispatch } from '../../store/store'
 import config from '../../utils/config'
 import { capitalizeFirstLetter } from '../../utils/helper'
@@ -25,35 +26,13 @@ import Button from '../Button'
 import EmptyGadgetSection from '../EmptyGadgetSection'
 import Loader from '../Loader'
 
-const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
-  const [gadgetImages, setGadgetImages] = useState<string[]>([
-    gridImage1,
-    gridImage2,
-    gridImage3,
-    gridImage4,
-    gridImage5,
-    gridImage6,
-  ])
-
-  const {
-    REACT_APP_AWS_AMAZON,
-    REACT_APP_AWS_REGION,
-    REACT_APP_AWS_HTTP,
-    REACT_APP_BUCKET_NAME,
-  } = config
+const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading, image, data }: any) => {
 
   const access = localStorage.getItem('accessToken')
   const [user, setUser] = useState(access)
   // const [image, setImage] = useState<any>()
   const [openSettings, setOpenSettings] = useState(false)
   const dispatch = useAppDispatch()
-  //   const history = useHistory();
-
-  const { loading: userLoading, data } = useSelector(
-    (state: RootState) => state.getUserById,
-  )
-
-  console.log('>>>>>userData', data)
 
   localStorage.setItem('first_name', data?.first_name)
   localStorage.setItem('last_name', data?.last_name)
@@ -74,36 +53,6 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading }: any) => {
     setOpenSettings(false)
   }
 
-  /**
-   * when the getUserById func is called after a user logs in
-   * it get a response (Profile: avatarId), the response is set to the local storage
-   *
-   */
-  useEffect(() => {
-    dispatch(getUserById({  }))
-  }, [])
-
-  /**
-   * the value(avatarId) in the localStorage Is used to get an image
-   * in the getProfileAvatar func, the user image is fetched by the avatarId
-   * the setImage func is used to set the buffer response returned from the getProfileAvatar.
-   */
-  useEffect(() => {
-    // if (avatarId) {
-    //   dispatch(getProfileAvatar({ avatarId, setImage }));
-    // }
-  }, [])
-
-  const href =
-    `${REACT_APP_AWS_HTTP}` +
-    `${REACT_APP_AWS_REGION}` +
-    `${REACT_APP_AWS_AMAZON}`
-
-
-  const bucketUrl = href + `${data?.profile?.avatar?.bucketname}` + '/'
-  const image = bucketUrl + encodeURIComponent(data?.profile?.avatar?.key);
-
-  console.log(">>>>>>images======", image)
 
   return (
     <div
