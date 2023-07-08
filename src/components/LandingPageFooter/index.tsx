@@ -11,8 +11,8 @@ const LandingPageFooter: React.FC = () => {
   return (
     <footer
       className={classNames(
-        pathname === "/" && "fixed bottom-0",
-        "border-t pt-9 px-7 pb-6 md:px-20 bg-darkBlue  w-full text-white z-20 mx-auto "
+        pathname === "/" && "bottom-0 fixed",
+        "border-t pt-9 px-7 pb-6 md:px-20 bg-darkBlue  w-full text-white z-40 mx-auto mt-20 "
       )}
     >
       <div className="flex justify-between container mx-auto  max-w-7xl">

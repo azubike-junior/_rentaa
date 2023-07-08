@@ -10,6 +10,7 @@ import 'react-slideshow-image/dist/styles.css'
 // import FulfillmentDetails from "./pages/FulfillmentDetails/index";
 // import Reconciliation from "./pages/Reconciliation";
 
+import { ChakraProvider } from '@chakra-ui/react'
 import Header from './components/Header'
 import LandingPageFooter from './components/LandingPageFooter'
 import PrivateRoute from './components/PrivateRoute'
@@ -53,112 +54,114 @@ function App() {
         <Header />
       )}
 
-      <main>
-        <Routes>
-          <Route path={'/'} element={<LandingPage />} />
-          <Route path={'/FAQs'} element={<FAQs />} />
+      <ChakraProvider>
+        <main>
+          <Routes>
+            <Route path={'/'} element={<LandingPage />} />
+            <Route path={'/FAQs'} element={<FAQs />} />
 
-          <Route path={'/verify_email'} element={<VerifyEmail />} />
-          {/* <Route exact path={"/our_story"} component={OurStory} /> */}
-          <Route
-            path={'/forget_password_success_response'}
-            element={<VerifyPasswordSuccess />}
-          />
-          <Route path={'/contact_us'} element={<Contact />} />
-          <Route path={'/our_story'} element={<OurStory />} />
-          <Route
-            path={'/verify_email_success/:token'}
-            element={<VerifyEmailSuccess />}
-          />
-          <Route
-            path={'/reset_password_success/:token'}
-            element={<ResetPassword />}
-          />
-          <Route path={'/sign_up'} element={<SignUp />} />
-          <Route path={'/forget_password'} element={<ForgetPassword />} />
-          <Route path={'/login'} element={<Login />} />
+            <Route path={'/verify_email'} element={<VerifyEmail />} />
+            {/* <Route exact path={"/our_story"} component={OurStory} /> */}
+            <Route
+              path={'/forget_password_success_response'}
+              element={<VerifyPasswordSuccess />}
+            />
+            <Route path={'/contact_us'} element={<Contact />} />
+            <Route path={'/our_story'} element={<OurStory />} />
+            <Route
+              path={'/verify_email_success/:token'}
+              element={<VerifyEmailSuccess />}
+            />
+            <Route
+              path={'/reset_password_success/:token'}
+              element={<ResetPassword />}
+            />
+            <Route path={'/sign_up'} element={<SignUp />} />
+            <Route path={'/forget_password'} element={<ForgetPassword />} />
+            <Route path={'/login'} element={<Login />} />
 
-          <Route
-            path={'/profile'}
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/bookmark"
-            element={
-              <PrivateRoute>
-                <Bookmark />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={'/post_product'}
-            element={
-              <PrivateRoute>
-                <PostProduct />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={'/edit_gadget/:id'}
-            element={
-              <PrivateRoute>
-                <EditGadget />
-              </PrivateRoute>
-            }
-          />
-          {/* <PrivateRoute exact path={"/profile"} component={Profile} /> */}
-          <Route
-            path={'/product_description/:id'}
-            element={
-              <PrivateRoute>
-                <ProductDesc />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={'/more_gadget_description/:id'}
-            element={
-              <PrivateRoute>
-                <ProductDesc />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path={'/view_categories/:id'}
-            element={
-              <PrivateRoute>
-                <ViewCategory />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          {/* <PrivateRoute
+            <Route
+              path={'/profile'}
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/bookmark"
+              element={
+                <PrivateRoute>
+                  <Bookmark />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={'/post_product'}
+              element={
+                <PrivateRoute>
+                  <PostProduct />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={'/edit_gadget/:id'}
+              element={
+                <PrivateRoute>
+                  <EditGadget />
+                </PrivateRoute>
+              }
+            />
+            {/* <PrivateRoute exact path={"/profile"} component={Profile} /> */}
+            <Route
+              path={'/product_description/:id'}
+              element={
+                <PrivateRoute>
+                  <ProductDesc />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={'/more_gadget_description/:id'}
+              element={
+                <PrivateRoute>
+                  <ProductDesc />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path={'/view_categories/:id'}
+              element={
+                <PrivateRoute>
+                  <ViewCategory />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+            {/* <PrivateRoute
             path={"/user_profile/:id"}
             component={ExternalUserProfile}
           /> */}
-          <Route
-            path={'/user_profile/:id'}
-            element={
-              <PrivateRoute>
-                <ExternalProfilePage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path={'/user_profile/:id'}
+              element={
+                <PrivateRoute>
+                  <ExternalProfilePage />
+                </PrivateRoute>
+              }
+            />
 
-          {/* </Switch> */}
-        </Routes>
-      </main>
+            {/* </Switch> */}
+          </Routes>
+        </main>
+      </ChakraProvider>
       {pathname === '/verify_email' ||
       pathname === '/' ||
       pathname === '/forget_password_success_response' ||

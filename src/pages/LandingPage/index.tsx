@@ -1,16 +1,13 @@
-import React from "react";
-import AccessPossibilities from "../../components/AccessPossibilities";
-import ImagePanel from "../../components/ImagePanel";
-import LandingPageFooter from "../../components/LandingPageFooter";
-import LandingPageNavBar from "../../components/LandingPageNavBar";
-import Newsletter from "../../components/Newsletter";
-import OptimizedForYou from "../../components/OptimizedForYou";
-import Sidebar from "../../components/Sidebar";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import AccessPossibilities from '../../components/AccessPossibilities'
+import LandingPageFooter from '../../components/LandingPageFooter'
+import LandingPageNavBar from '../../components/LandingPageNavBar'
+import Sidebar from '../../components/Sidebar'
+import { RootState } from '../../store/store'
 
 const LandingPage: React.FC = () => {
-  const { sidebarOpen } = useSelector((state: RootState) => state.modalReducer);
+  const { sidebarOpen } = useSelector((state: RootState) => state.modalReducer)
 
   return (
     <div className="bg-greyishWhite xs:pt-5 xxs:pt-4 pt-5 md:py-8 lg:pt-2 font-dm-sans">
@@ -20,9 +17,10 @@ const LandingPage: React.FC = () => {
       {/* <ImagePanel />
         <OptimizedForYou />
         <Newsletter /> */}
+
       <LandingPageFooter />
     </div>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage

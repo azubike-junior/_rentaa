@@ -9,13 +9,13 @@ import { Slide } from "react-slideshow-image";
 const ImagePanel: React.FC = () => {
   return (
     <>
-      <section className="lg:hidden w-full mt-20  overflow-hidden">
+      <section className="lg:hidden w-full mt-16 overflow-hidden">
         <div className="flex w-1500">
           <img className="ml-4 h-650" src={PanelImage1} />
           <img className="h-650" src={DesktopPanelImage1} />
         </div>
       </section>
-      <section className="hidden w-full mt-20 lg:flex h-700 lg:gap-11 lg:mt-36">
+      <section className="hidden w-full mt-16 lg:flex h-700 lg:gap-11 lg:mt-32">
         {/* <img className="" src={DesktopPanelImage3} /> */}
         <img className="w-full" src={DesktopPanelImage1} />
         {/* <img className=" " src={DesktopPanelImage2} /> */}

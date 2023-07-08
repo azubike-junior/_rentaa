@@ -32,12 +32,12 @@ const AccessPossibilities: React.FC = () => {
       </div>
 
       {/* for extra-small screen size (remains hidden in other screens) */}
-      <div className="xxs:block hidden text-center text-base font-dosis">
-        <p data-aos="fade-right" data-aos-duration="2000" className="font-dosis">
+      <div className="xxs:block hidden text-center">
+        <p data-aos="fade-right" data-aos-duration="2000" className="font-dosis text-lg">
           Access a <span className="text-secondary">world</span> of creative{" "}
           <span className="text-secondary">possibilities</span>
         </p>
-        <p className="xss:block xs:hidden text-center xxs:text-sm leading-6 w-150 mx-auto font-normal mt-4">
+        <p className="xss:block xs:hidden text-center xxs:text-sm leading-6 w-150 mx-auto font-dm-sans font-thin mt-4">
           We’re building <span className="font-bold">faster</span> and{" "}
           <span className="font-bold">stress-free</span> ways to rent gadgets
           from, and to anyone without any hassle. Giving you complete{" "}
@@ -104,9 +104,9 @@ const AccessPossibilities: React.FC = () => {
       <figure
         data-aos="fade-up"
         data-aos-duration="2000"
-        className="lg:hidden xxs:w-48 xs:mx-auto xs:w-72 xs:h-72 w-90 mx-auto xl:w-500 xl:h-600 lg:m-0 md:w-96 md:h-96"
+        className="lg:hidden xxs:w-48 xs:mx-auto xs:w-72 xs:h-72 w-90 mx-auto xl:w-500 xl:h-600 lg:m-0 md:w-96 md:h-96 z-10 mb-36"
       >
-        <img className="w-400 mt-10 md:mt-24 z-10" src={iphone} />
+        <img className="w-400 mt-10 md:mb-24 z-10" src={iphone} />
       </figure>
     </section>
   );

@@ -1,23 +1,22 @@
-import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import RentaaLogo from "../../images/rentaa_white.svg";
-import star from "../../images/star.svg";
-import menu from "../../images/menu.svg";
-import { toggleSidebar } from "../../services/Mutations/Modal";
-import { useDispatch } from "react-redux";
-import Button from "../Button";
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import menu from '../../images/menu.svg'
+import RentaaLogo from '../../images/rentaa_white.svg'
+import { toggleSidebar } from '../../services/Mutations/Modal'
+import Button from '../Button'
 
 const LandingPageNavBar: React.FC = () => {
-  const location = useLocation();
-  const pathName = location.pathname;
+  const location = useLocation()
+  const pathName = location.pathname
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <>
       <nav className="hidden mx-auto px-6 py-5 lg:block lg:max-w-[1500px]">
         <div className="flex flex-row justify-between items-center mx-2">
           <div className="flex flex-row items-center">
-            <NavLink to="/">  
+            <NavLink to="/">
               <figure className="mr-24">
                 <img className="sm:h-6 md:h-9" src={RentaaLogo} />
               </figure>
@@ -46,7 +45,7 @@ const LandingPageNavBar: React.FC = () => {
             </ul>
           </div>
 
-           {pathName !== "/login" && (
+          {pathName !== '/login' && (
             <Link to="/login">
               <Button
                 type="button"
@@ -54,9 +53,9 @@ const LandingPageNavBar: React.FC = () => {
                 className="text-secondary text-sm  md:text-base border border-secondary rounded px-5 lg:py-3 md:px-9 md:py-2 mt-5 md:mt-3 lg:block"
               />
             </Link>
-          )} 
+          )}
 
-          {pathName === "/login" && (
+          {pathName === '/login' && (
             <Link to="/sign_up">
               <Button
                 type="button"
@@ -84,26 +83,12 @@ const LandingPageNavBar: React.FC = () => {
             alt=""
             className="w-7 md:w-10 cursor-pointer"
             onClick={() => {
-              dispatch(toggleSidebar());
+              dispatch(toggleSidebar())
             }}
           />
         </div>
-        {/* <ul className="flex flex-row mx-auto xs:w-72 w-80 xxs:w-56 sm:w-400 justify-between mt-5">
-          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
-            Home
-          </li>
-          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
-            Our Story
-          </li>
-          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
-            Contact Us
-          </li>
-          <li className="transition-all duration-300 text-xs text-bgAsh hover:text-black cursor-pointer">
-            FAQs
-          </li>
-        </ul> */}
       </nav>
     </>
-  );
-};
-export default LandingPageNavBar;
+  )
+}
+export default LandingPageNavBar
