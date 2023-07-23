@@ -1,4 +1,4 @@
-import ImagePanel from "../../components/ImagePanel";
+// import ImagePanel from "../../components/ImagePanel";
 import LandingPageNavBar from "../../components/LandingPageNavBar";
 import Newsletter from "../../components/Newsletter";
 import OurMission from "../../components/OurMission";
@@ -13,11 +13,11 @@ const OurStory: React.FC = () => {
 
   return (
     <div className="snap-y snap-mandatory pt-2 overflow-scroll">
-      <Sidebar/>
+      <Sidebar />
       <LandingPageNavBar />
       <OurMission />
       <OurOrigins />
-      <ImagePanel />
+      {/* <ImagePanel /> */}
       <WhatWeOffer />
       <Newsletter />
     </div>
