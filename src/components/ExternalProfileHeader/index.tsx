@@ -30,7 +30,7 @@ export default function ExternalProfileHeader({
 
   const decodedUser: ITokenDecode = jwt_decode(access);
 
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: any }>();
 
   const { profile } = data;
 
