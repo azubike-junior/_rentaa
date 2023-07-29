@@ -2,8 +2,8 @@ import React from 'react'
 // Import Swiper React components
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import slide1 from '../../images/slider1.svg'
-import slide2 from '../../images/slider2.svg'
+import slide1 from '../../images/slider1.png'
+import slide2 from '../../images/slider2.png'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -56,7 +56,6 @@ const OurOrigins: React.FC = () => {
           <SwiperSlide>
             <img src={slide1} alt="" />
           </SwiperSlide>
-
         </Swiper>
       </div>
     </>
