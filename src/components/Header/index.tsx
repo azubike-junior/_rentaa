@@ -6,17 +6,14 @@ import bookmark from '../../images/bookmark.svg'
 import notifyIcon from '../../images/notification.svg'
 import rentaa from '../../images/rentaa_white.svg'
 import searchIcon from '../../images/searchIcon.svg'
-import { getProfileAvatar } from '../../services/Queries/getProfileAvatar'
 import { RootState, useAppDispatch } from '../../store/store'
 import Button from '../Button'
 // import { motion } from "framer-motion/dist/framer-motion";
 import { motion } from 'framer-motion'
-import jwtDecode from 'jwt-decode'
+import { getUserById2 } from '../../services/Queries/getUser2'
 import config from '../../utils/config'
 import { getGadgets } from './../../services/Queries/getGadgets'
 import Notification from './../Notification/index'
-import { getUserById2 } from '../../services/Queries/getUser2'
-import { getUserById } from '../../services/Queries/getUser'
 
 export default function Header() {
   const location = useLocation()
@@ -60,6 +57,9 @@ export default function Header() {
    * same approach from the ProfileHeader Component is used to set the avatar image
    * in the header
    */
+
+  console.log(">>>>>images");
+  
 
   useEffect(() => {
     dispatch(getGadgets())
@@ -137,7 +137,7 @@ export default function Header() {
             >
               <img
                 className="w-6 mt-1 h-6  md:h-8 lg:h-9 lg:w-9 border rounded-full"
-                src={!image ? avatar : image}
+                src={image?.includes('null') ? avatar : image}
                 alt="notify"
               />
             </span>

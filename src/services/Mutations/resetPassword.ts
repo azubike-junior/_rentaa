@@ -40,7 +40,7 @@ export const resetPassword = createAsyncThunk(
       // console.log(">>>>>response", response);
 
       if (response.status === 201) {
-        navigate("/forget_password_success_response");
+        navigate("/login");
         return response.data;
       }
       if (response.data.status === 404) {

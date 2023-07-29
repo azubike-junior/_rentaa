@@ -9,16 +9,18 @@ interface User {
   exp: number;
 }
 
-let accessToken: string = JSON.parse(
-  localStorage.getItem("accessToken") || "{}"
-)
-  ? JSON.parse(localStorage.getItem("accessToken") || "{}")
-  : "";
+// let accessToken: string = JSON.parse(
+//   localStorage.getItem("accessToken") || "{}"
+// )
+//   ? JSON.parse(localStorage.getItem("accessToken") || "{}")
+//   : "";
 // let refresh_token: string = JSON.parse(
 //   localStorage.getItem("refresh_token") || "{}"
 // )
   // ? JSON.parse(localStorage.getItem("refresh_token") || "{}")
   // : "";
+
+  let accessToken = localStorage.getItem("accessToken") || ""
 
 export const axiosInstance = axios.create({
   baseURL: baseUrl,
