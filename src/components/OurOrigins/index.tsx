@@ -6,8 +6,8 @@ import slide1 from '../../images/slider1.svg'
 import slide2 from '../../images/slider2.svg'
 
 // Import Swiper styles
-// import 'swiper/css'
-// import 'swiper/css/pagination'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 import './styles.css'
 
