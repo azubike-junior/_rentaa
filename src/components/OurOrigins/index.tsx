@@ -2,8 +2,8 @@ import React from 'react'
 // Import Swiper React components
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import slide1 from '../../images/slider1.svg'
-import slide2 from '../../images/slider2.svg'
+// import slide1 from '../../images/slider1.svg'
+// import slide2 from '../../images/slider2.svg'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -32,7 +32,7 @@ const OurOrigins: React.FC = () => {
         </p>
       </div>
 
-      <div className="w-[350px] md:w-[700px] mx-auto mt-20">
+      {/* <div className="w-[350px] md:w-[700px] mx-auto mt-20">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
@@ -57,9 +57,8 @@ const OurOrigins: React.FC = () => {
             <img src={slide1} alt="" />
           </SwiperSlide>
 
-          {/* <SwiperSlide>Slide 4</SwiperSlide> */}
         </Swiper>
-      </div>
+      </div> */}
     </>
   )
 }
