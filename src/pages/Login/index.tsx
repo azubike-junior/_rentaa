@@ -14,7 +14,6 @@ import LandingPageNavBar from './../../components/LandingPageNavBar/index';
 
 export default function Login() {
   const [passwordEye, setPasswordEye] = useState(false);
-  const [confirmPasswordEye, setConfirmPasswordEye] = useState(false);
   const { data, error, error2, loading } = useSelector(
     (state: RootState) => state.loginReducer
   );
@@ -85,7 +84,7 @@ export default function Login() {
               errors={errors?.password}
               onClick={handlePasswordClick}
               message="Password must be more than 8 chars"
-              show
+              show 
             />
 
             <Button

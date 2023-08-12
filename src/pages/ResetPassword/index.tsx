@@ -1,21 +1,25 @@
-import Button from "../../components/Button";
-import { HookInput, InputField } from "../../components/BasicInputField/index";
-import FormTitle from "../../components/FormTitle/index";
-import Header from "../../components/Header";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { forgetPassword } from "../../services/Mutations/forgetPassword";
-import { RootState, useAppDispatch } from "../../store/store";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { InputField } from "../../components/BasicInputField/index";
+import Button from "../../components/Button";
+import FormTitle from "../../components/FormTitle/index";
 import Loader from "../../components/Loader";
+import { RootState, useAppDispatch } from "../../store/store";
 import { resetPassword } from './../../services/Mutations/resetPassword';
 
 export interface IResetPasswordProp {
   password: string;
 }
 export default function ResetPassword() {
+  const [passwordEye, setPasswordEye] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const handlePasswordClick = () => {
+    setPasswordEye(!passwordEye);
+  };
 
   const { token } = useParams<{ token: string }>();
 
@@ -77,9 +81,13 @@ export default function ResetPassword() {
               errors={errors?.password}
               label="Password"
               className="lg:w-600 pt-10"
+              type={passwordEye ? "text" : "password"}
+              onClick={handlePasswordClick}
               name="password"
+              minLength={8}
               required
               message="Please enter Password"
+              show 
             />
 
             <Button

@@ -1,9 +1,5 @@
 import React from 'react'
 // Import Swiper React components
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import slide1 from '../../images/slider1.png'
-import slide2 from '../../images/slider2.png'
 import Slider from '../Slider'
 
 // Import Swiper styles
@@ -25,7 +21,7 @@ const OurOrigins: React.FC = () => {
           Having identified a problem of e-waste management in Nigeria as well
           as rising costs of gadgets, we decided to solve that problem by
           creating a platform with our users at the centre of it. Our sole focus
-          is in how best we can serve this ripe market in Nigeria and make a
+          is in how best we can serve this rip e market in Nigeria and make a
           world of difference in the process.
         </p>
       </div>
