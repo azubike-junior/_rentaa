@@ -6,7 +6,8 @@ import { baseUrl } from "../../utils/helper";
 
 interface DataProps {
   email: any;
-  navigate: any;
+  navigate?: any;
+  toast?: any
 }
 
 interface initState {
@@ -27,7 +28,7 @@ const initialState: initState = {
 
 export const forgetPassword = createAsyncThunk(
   "forgetPassword",
-  async ({ email, navigate }: DataProps, { rejectWithValue }) => {
+  async ({ email, navigate, toast }: DataProps, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${baseUrl}/auth/forgot-password`, {
         email,
@@ -35,6 +36,12 @@ export const forgetPassword = createAsyncThunk(
 
       if (response.status === 201) {
         navigate("/forget_password_success_response");
+        toast({
+          title: "Email Sent ",
+          description: "An Email has been sent to your inbox",
+          status: 'success',
+          position: 'top'
+        })
         return response.data;
       }
       if (response.data.status === 404) {

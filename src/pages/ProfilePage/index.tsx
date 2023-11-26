@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ChangePasswordModal from '../../components/ChangePasswordModal'
 import ChangePasswordSuccessModal from '../../components/changePasswordSuccessModal'
@@ -23,9 +23,12 @@ const ProfilePage = () => {
     (state: RootState) => state.getGadgetReducer,
   )
 
+  const [openLogout, setOpenLogout] = useState(false)
+
   let { data: reviewsData } = useSelector(
     (state: RootState) => state.findReviewsSlice,
   )
+
 
   // console.log('>>>>>>>>dtaaaaaa', reviewsData)
 
@@ -109,10 +112,11 @@ const ProfilePage = () => {
             gadgetLoading={gadgetLoading}
             image={image}
             data={data}
+            setOpenLogout={setOpenLogout}
           />
         </section>
         <section className="hidden lg:block flex flex-col gap-9">
-          <SettingsSection />
+          <SettingsSection setOpenLogout={setOpenLogout} />
           <ReviewsSection reviews={reviewsData} />
         </section>
 
@@ -120,21 +124,23 @@ const ProfilePage = () => {
           <ReviewSection reviews={reviewsData} />
         </section>
 
-        <Modal isOpen={editModalOpen}>
+        {/* <Modal isOpen={editModalOpen}>
           <EditProfileModal />
-        </Modal>
-        <Modal isOpen={changePasswordOpen}>
-          <ChangePasswordModal />
-        </Modal>
+        </Modal> */}
+
+
+        <ChangePasswordModal />
+        
+        
         <Modal isOpen={changePasswordSuccessOpen}>
           <ChangePasswordSuccessModal />
         </Modal>
-        <Modal isOpen={editModalOpen}>
+
+        
           <EditProfileModal />
-        </Modal>
-        <Modal isOpen={logoutOpen}>
-          <LogoutModal />
-        </Modal>
+        {/* <Modal isOpen={logoutOpen}> */}
+        <LogoutModal setOpenLogout={setOpenLogout} openLogout={openLogout} />
+        {/* </Modal> */}
       </div>
     </>
   )

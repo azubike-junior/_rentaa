@@ -1,52 +1,45 @@
-import React, { SyntheticEvent, useState } from "react";
-import { v1 as uuid } from "uuid";
-import {
-  HookInput,
-  InputField,
-  SelectInput,
-} from "../../components/BasicInputField";
-import Button from "../../components/Button";
-import addPhoto from "../../images/addPhoto.svg";
-import uploadPhoto from "../../images/photoUpload.svg";
-import NaijaStates from "naija-state-local-government";
-import { useForm } from "react-hook-form";
-import {
-  CategoryValue,
-  gadgetConditions,
-  IProductInputs,
-} from "../../interfaces";
-import { useGetCategoriesQuery } from "../../services/Queries/queries";
-import { MdDeleteForever } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useToast } from '@chakra-ui/react'
+import NaijaStates from 'naija-state-local-government'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { MdDeleteForever } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { v1 as uuid } from 'uuid'
+import { InputField, SelectInput } from '../../components/BasicInputField'
+import Button from '../../components/Button'
+import Loader from '../../components/Loader'
+import addPhoto from '../../images/addPhoto.svg'
+import { gadgetConditions, IProductInputs } from '../../interfaces'
+import { postGadget } from '../../services/Mutations/postGadget'
+import { useGetCategoriesQuery } from '../../services/Queries/queries'
+import { RootState, useAppDispatch } from '../../store/store'
 import {
   FileService,
   getLga,
   getStates,
   validateFileSize,
   validateFileType,
-} from "../../utils/helper";
-import { postGadget } from "../../services/Mutations/postGadget";
-import { useNavigate } from "react-router-dom";
-import { RootState, useAppDispatch } from "../../store/store";
-import Loader from "../../components/Loader";
+} from '../../utils/helper'
 
 interface ImageProp {
-  id: string;
-  image: string;
+  id: string
+  image: string
 }
 
 export default function PostProduct() {
-  const [state, setState] = useState("");
-  const [docs, setDocs] = useState<any>([]);
-  const [photos, setPhotos] = useState<any[]>([]);
-  const [fileError, setFileError] = useState("");
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const id = uuid();
+  const [state, setState] = useState('')
+  const [docs, setDocs] = useState<any>([])
+  const [photos, setPhotos] = useState<any[]>([])
+  const [fileError, setFileError] = useState('')
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const id = uuid()
+  const toast = useToast()
 
   const { data, error, loading } = useSelector(
-    (state: RootState) => state.postGadgetReducer
-  );
+    (state: RootState) => state.postGadgetReducer,
+  )
 
   const {
     register,
@@ -55,61 +48,61 @@ export default function PostProduct() {
     watch,
     formState: { errors },
   } = useForm<IProductInputs>({
-    mode: "onTouched",
+    mode: 'onTouched',
     defaultValues: {
-      contact_info: JSON.parse(localStorage.getItem("userData") || "{}")
+      contact_info: JSON.parse(localStorage.getItem('userData') || '{}')
         .phone_number,
     },
-  });
+  })
 
-  const { data: productCategories } = useGetCategoriesQuery("");
+  const { data: productCategories } = useGetCategoriesQuery('')
   const categories: [] = productCategories?.items?.map((item: any) => {
     return {
       value: item.id,
       text: item.name,
-    };
-  });
+    }
+  })
 
-  let allCategories;
+  let allCategories
 
   if (categories) {
-    allCategories = [{ value: "", text: "-Select-" }, ...categories];
+    allCategories = [{ value: '', text: '-Select-' }, ...categories]
   }
 
   /**
    * Package returns
    */
   const lga = NaijaStates.lgas(
-    getValues("state") ? getValues("state") : "lagos"
-  );
+    getValues('state') ? getValues('state') : 'lagos',
+  )
 
   const handleFiles = async (e: any) => {
-    const file = e.target.files[0];
-    const validFileSize = await validateFileSize(file?.size);
+    const file = e.target.files[0]
+    const validFileSize = await validateFileSize(file?.size)
 
     const validFileType = await validateFileType(
-      FileService.getFileExtension(file?.name)
-    );
+      FileService.getFileExtension(file?.name),
+    )
 
     if (!validFileSize.isValid) {
-      setFileError(validFileSize.errorMessage);
-      return;
+      setFileError(validFileSize.errorMessage)
+      return
     }
 
     if (!validFileType.isValid) {
-      setFileError(validFileType.errorMessage);
-      return;
+      setFileError(validFileType.errorMessage)
+      return
     }
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setPhotos((prev) => [{ image: reader.result, id }, ...prev]);
+        setPhotos((prev) => [{ image: reader.result, id }, ...prev])
       }
-    };
-    reader.readAsDataURL(file);
-    setDocs((prev: any) => [{ file, id }, ...prev]);
-    setFileError("");
-  };
+    }
+    reader.readAsDataURL(file)
+    setDocs((prev: any) => [{ file, id }, ...prev])
+    setFileError('')
+  }
 
   /**
    * deletes image from state(interface)
@@ -117,16 +110,16 @@ export default function PostProduct() {
    *
    */
   const deleteFile = (id: string) => {
-    const newPhotos = photos.filter((photo) => photo.id !== id);
-    const newDocs = docs.filter((doc: any) => doc.id !== id);
-    setPhotos([...newPhotos]);
-    setDocs([...newDocs]);
-  };
+    const newPhotos = photos.filter((photo) => photo.id !== id)
+    const newDocs = docs.filter((doc: any) => doc.id !== id)
+    setPhotos([...newPhotos])
+    setDocs([...newDocs])
+  }
 
   const handleClick = () => {
-    const newState = getValues("state");
-    setState(newState);
-  };
+    const newState = getValues('state')
+    setState(newState)
+  }
 
   /**
    *
@@ -135,7 +128,7 @@ export default function PostProduct() {
    */
   const postProductHandler = (data: IProductInputs) => {
     if (photos.length === 0) {
-      return setFileError("Please upload Gadgets to continue");
+      return setFileError('Please upload Gadgets to continue')
     }
     const {
       category,
@@ -146,27 +139,37 @@ export default function PostProduct() {
       condition,
       contact_info,
       description,
-    } = data;
+    } = data
     // console.log(">>>>data", data);
-    let images = docs.map((item: any) => item.file);
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("categoryId", category);
-    formData.append("price", price);
-    formData.append("state", state);
-    formData.append("lga", lga);
-    formData.append("condition", condition);
-    formData.append("contact_info", contact_info);
-    formData.append("description", description);
+    let images = docs.map((item: any) => item.file)
+
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('categoryId', category)
+    formData.append('price', price)
+    formData.append('state', state)
+    formData.append('lga', lga)
+    formData.append('condition', condition)
+    formData.append('contact_info', contact_info)
+    formData.append('description', description)
     for (let i = 0; i < images.length; i++) {
-      formData.append("photos", images[i]);
+      formData.append('photos', images[i])
     }
     const newData = {
       formData,
       navigate,
-    };
-    dispatch(postGadget(newData));
-  };
+    }
+    if (images.length < 2) {
+      toast({
+        title: 'Error ',
+        description: 'Please make sure you upload atleast two images',
+        status: 'error',
+        position: 'top',
+      })
+      return
+    }
+    dispatch(postGadget(newData))
+  }
 
   return (
     <div className="mx-auto font-dm-sans max-w-7xl my-20 px-4">
@@ -201,7 +204,7 @@ export default function PostProduct() {
               />
               <SelectInput
                 register={register}
-                selectArray={[{ value: "", text: "-Select-" }, ...getStates()]}
+                selectArray={[{ value: '', text: '-Select-' }, ...getStates()]}
                 label="Current State of Residence"
                 className="lg:w-700 pt-12 cursor-pointer bg-transparent"
                 name="state"
@@ -213,7 +216,7 @@ export default function PostProduct() {
               />
               <SelectInput
                 register={register}
-                selectArray={[{ value: "", text: "-Select-" }, ...getLga(lga)]}
+                selectArray={[{ value: '', text: '-Select-' }, ...getLga(lga)]}
                 label="LGA"
                 className="lg:w-700 pt-12 bg-transparent"
                 name="lga"
@@ -234,7 +237,7 @@ export default function PostProduct() {
               <SelectInput
                 register={register}
                 selectArray={gadgetConditions}
-                label="Gadget Condition"
+                label="GADGET CONDITION"
                 className="lg:w-700 pt-12 bg-transparent"
                 name="condition"
                 required
@@ -255,13 +258,15 @@ export default function PostProduct() {
                 message="description must be more than 30 chars and lesser than 400 chars"
               />
               <InputField
+                naira
                 register={register}
-                label="Price/Week"
+                label="Price/Day"
                 className="lg:w-700 pt-12"
                 name="price"
                 required
                 errors={errors?.price}
                 message="price is required"
+                type="number"
               />
               <InputField
                 register={register}
@@ -282,7 +287,7 @@ export default function PostProduct() {
               </p>
               <p className="text-xs text-gray-300 md:text-sm pt-1">
                 Each picture must not be larger than 2MB. We recommend you
-                upload between 2-5 pictures
+                upload atleast two pictures
               </p>
 
               <div className="pt-4 flex">
@@ -294,7 +299,7 @@ export default function PostProduct() {
                   />
                   <input
                     type="file"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                     onChange={handleFiles}
                     name="photos"
                   />
@@ -312,7 +317,7 @@ export default function PostProduct() {
                         className="w-16 h-16 md:h-20 md:w-20 mx-2"
                       />
                     </div>
-                  );
+                  )
                 })}
               </div>
               <p className="text-xs text-gray-300 md:text-sm pt-5">
@@ -320,7 +325,7 @@ export default function PostProduct() {
               </p>
 
               <Button
-                child={loading ? <Loader /> : "Submit"}
+                child={loading ? <Loader /> : 'Submit'}
                 type="submit"
                 className="w-full bg-secondary mt-10 py-3 md:py-8 font-dm-sans md:text-lg text-white rounded"
               />
@@ -329,5 +334,5 @@ export default function PostProduct() {
         </form>
       </div>
     </div>
-  );
+  )
 }

@@ -1,19 +1,21 @@
-import SettingsIcon from "../../images/settingsIcon.svg";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useState } from 'react'
+import SettingsIcon from '../../images/settingsIcon.svg'
 import {
   toggleChangePasswordModal,
+  toggleEditModal,
   toggleLogoutModal,
-  toggleReviewModal,
-} from "../../services/Mutations/Modal";
-import { useDispatch } from "react-redux";
-import { toggleEditModal } from "../../services/Mutations/Modal";
-import { getUserById } from "../../services/Queries/getUser";
-import { useAppDispatch } from "../../store/store";
+} from '../../services/Mutations/Modal'
+import { getUserById } from '../../services/Queries/getUser'
+import { useAppDispatch } from '../../store/store'
 
-const SettingsSection: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const access = localStorage.getItem("accessToken");
-  const [user, setUser] = useState(access);
+interface Props {
+  setOpenLogout: (open: boolean) => void
+}
+
+const SettingsSection = ({ setOpenLogout }: Props) => {
+  const dispatch = useAppDispatch()
+  const access = localStorage.getItem('accessToken')
+  const [user, setUser] = useState(access)
 
   return (
     <>
@@ -27,15 +29,15 @@ const SettingsSection: React.FC = () => {
             <li
               className="text-lightGrey cursor-pointer"
               onClick={() => {
-                dispatch(getUserById({}));
-                dispatch(toggleEditModal());
+                dispatch(getUserById({}))
+                dispatch(toggleEditModal())
               }}
             >
               Edit profile
             </li>
             <li
               onClick={() => {
-                dispatch(toggleChangePasswordModal());
+                dispatch(toggleChangePasswordModal())
               }}
               className="text-lightGrey cursor-pointer"
             >
@@ -53,6 +55,6 @@ const SettingsSection: React.FC = () => {
         </section>
       )}
     </>
-  );
-};
-export default SettingsSection;
+  )
+}
+export default SettingsSection

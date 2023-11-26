@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import BottomLeft from "../../images/bottomLeft.png";
 import BottomRight from "../../images/bottomRight.png";
 import iphone from "../../images/iphone.svg";
+import line from "../../images/line.svg";
 import Button from "../Button";
-import line from "../../images/line.svg"
 
 const AccessPossibilities: React.FC = () => {
   const navigate = useNavigate()
@@ -94,9 +94,9 @@ const AccessPossibilities: React.FC = () => {
             <img src={line} alt="line"  />
               <div className="flex items-center justify-center space-x-6">
               <p className="text-black pt-14 pl-2">Have a gadget for rent?</p>
-              <Link to="/post_product">
+               <a href="/sign_up">
                <Button className="border-secondary border-[1.5px] p-4 px-8 rounded-2xl mt-14 text-secondary" child="Upload Gadget" type="button"/>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

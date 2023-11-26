@@ -1,66 +1,60 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from "react";
-import EmptyGadgetSection from "../../components/EmptyGadgetSection";
-import ReviewSection from "./../../components/ReviewSection";
-import MyGadgets from "./../../components/MyGadgets";
-import ProfileHeader from "./../../components/ProfileHeader";
-import Modal from "./../../components/Modal/index";
-import ViewContactModal from "./../../components/ViewContactModal/index";
-import ReviewModal from "./../../components/ReviewModal/index";
-import EditProfileModal from "./../../components/EditProfileModal/index";
+import { useEffect, useState } from 'react'
+import EmptyGadgetSection from '../../components/EmptyGadgetSection'
+import EditProfileModal from './../../components/EditProfileModal/index'
+import Modal from './../../components/Modal/index'
+import MyGadgets from './../../components/MyGadgets'
+import ProfileHeader from './../../components/ProfileHeader'
+import ReviewSection from './../../components/ReviewSection'
 // import { useGetGadgetsQuery } from "../../services/Queries/gadgets";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../services/Queries/getUser";
-import { RootState, useAppDispatch } from "../../store/store";
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState, useAppDispatch } from '../../store/store'
 // import { getGadgets } from "../../services/Queries/getGadgets";
-import { useParams } from "react-router-dom";
-import { getGadgets } from "./../../services/Queries/getGadgets";
-import { useGetGadgetsQuery } from "../../services/Queries/queries";
-import { IGadgets } from "./../../interfaces/index";
-import ChangePasswordModal from "./../../components/ChangePasswordModal/index";
-import ChangePasswordSuccessModal from "./../../components/changePasswordSuccessModal/index";
-import config from "../../utils/config";
-import LogoutModal from './../../components/LogoutModal/index';
+import config from '../../utils/config'
+import ChangePasswordModal from './../../components/ChangePasswordModal/index'
+import ChangePasswordSuccessModal from './../../components/changePasswordSuccessModal/index'
+import LogoutModal from './../../components/LogoutModal/index'
+import { getGadgets } from './../../services/Queries/getGadgets'
 
 export default function Profile() {
   let { data: gadgets, loading: gadgetLoading } = useSelector(
-    (state: RootState) => state.getGadgetReducer
-  );
+    (state: RootState) => state.getGadgetReducer,
+  )
 
   const {
     REACT_APP_AWS_AMAZON,
     REACT_APP_AWS_REGION,
     REACT_APP_AWS_HTTP,
     REACT_APP_BUCKET_NAME,
-  } = config;
+  } = config
 
   const { loading: userLoading, data } = useSelector(
-    (state: RootState) => state.getUserById
-  );
+    (state: RootState) => state.getUserById,
+  )
 
-  let imageUrls;
-  let gadgetData;
+  let imageUrls
+  let gadgetData
 
   /**
    *
    */
   if (gadgets?.length > 0) {
     gadgetData = gadgets?.map((gadget) => {
-      return { gadgetKey: gadget.photos[0].key, id: gadget.id };
-    });
+      return { gadgetKey: gadget.photos[0].key, id: gadget.id }
+    })
     const href =
       `${REACT_APP_AWS_HTTP}` +
       `${REACT_APP_AWS_REGION}` +
-      `${REACT_APP_AWS_AMAZON}`;
+      `${REACT_APP_AWS_AMAZON}`
 
-    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + "/";
+    const bucketUrl = href + `${REACT_APP_BUCKET_NAME}` + '/'
 
     imageUrls = gadgetData?.map((gadget: any) => {
       return {
         image: bucketUrl + encodeURIComponent(gadget.gadgetKey),
         id: gadget.id,
-      };
-    });
+      }
+    })
   }
 
   const {
@@ -69,10 +63,10 @@ export default function Profile() {
     changePasswordSuccessOpen,
     changePasswordOpen,
     contactModalOpen,
-    logoutOpen
-  } = useSelector((state: RootState) => state.modalReducer);
+    logoutOpen,
+  } = useSelector((state: RootState) => state.modalReducer)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   // useEffect(() => {
   //   const body: any = document.querySelector("body");
@@ -80,26 +74,28 @@ export default function Profile() {
   // }, [editModalOpen]);
 
   useEffect(() => {
-    useAppDispatch(getGadgets());
-  }, []);
+    useAppDispatch(getGadgets())
+  }, [])
 
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-    body.style.overflow = reviewModalOpen ? "hidden" : "auto";
-  }, [reviewModalOpen]);
+  // useEffect(() => {
+  //   const body: any = document.querySelector("body");
+  //   body.style.overflow = reviewModalOpen ? "hidden" : "auto";
+  // }, [reviewModalOpen]);
 
-  useEffect(() => {
-    const body: any = document.querySelector("body");
-    body.style.overflow = contactModalOpen ? "hidden" : "auto";
-  }, [contactModalOpen]);
+  // useEffect(() => {
+  //   const body: any = document.querySelector("body");
+  //   body.style.overflow = contactModalOpen ? "hidden" : "auto";
+  // }, [contactModalOpen]);
 
   // console.log(">>>>>review", data?.profile?.reviews);
 
   // console.log(">>imageUrls", imageUrls)
 
+  const [openLogout, setOpenLogout] = useState(false)
+
   return (
     <div>
-      <ProfileHeader />
+      <ProfileHeader setOpenLogout={setOpenLogout} />
       <div className="container max-w-7xl flex flex-col items-center my-16 mb-32 mx-auto px-2 ">
         <h1 className="text-lg md:text-3xl font-medium md:mb-4 w-full mx-auto px-6">
           My Gadgets
@@ -125,9 +121,9 @@ export default function Profile() {
         <EditProfileModal />
       </Modal>
 
-      <Modal isOpen={logoutOpen}>
-        <LogoutModal />
-      </Modal>
+      {/* <Modal isOpen={logoutOpen}> */}
+      <LogoutModal setOpenLogout={setOpenLogout} openLogout={openLogout} />
+      {/* </Modal> */}
     </div>
-  );
+  )
 }

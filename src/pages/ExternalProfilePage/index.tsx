@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import EditProfileModal from '../../components/EditProfileModal'
@@ -21,6 +21,8 @@ import ReviewModal from './../../components/ReviewModal/index'
 const ExternalProfilePage = () => {
   const access: string = localStorage.getItem('accessToken') || ''
   const decodedUser: ITokenDecode = jwt_decode(access)
+  const [openLogout, setOpenLogout] = useState(false)
+
 
   const dispatch = useAppDispatch()
   // const [image, setImage] = useState()
@@ -107,7 +109,9 @@ const ExternalProfilePage = () => {
         </section>
 
         <section className="hidden lg:block flex flex-col gap-9">
-          {decodedUser?.user_id === id && <SettingsSection />}
+          {decodedUser?.user_id === id && <SettingsSection
+            setOpenLogout={setOpenLogout}
+          />}
           <ReviewsSection reviews={reviewData} />
         </section>
 

@@ -45,21 +45,21 @@ const LandingPageNavBar: React.FC = () => {
             </ul>
           </div>
 
-          {pathName !== '/login' && (
-            <Link to="/login">
+          {pathName !== '/sign_up' && (
+            <Link to="/sign_up">
               <Button
                 type="button"
-                child="Login"
+                child="Sign up"
                 className="text-secondary text-sm  md:text-base border border-secondary rounded px-5 lg:py-3 md:px-9 md:py-2 mt-5 md:mt-3 lg:block"
               />
             </Link>
           )}
 
-          {pathName === '/login' && (
-            <Link to="/sign_up">
+          {pathName === '/sign_up' && (
+            <Link to="/login">
               <Button
                 type="button"
-                child="Signup"
+                child="Login"
                 className="text-secondary text-sm  md:text-base border border-secondary rounded px-5 lg:py-3 md:px-9 md:py-2 mt-5 md:mt-3 lg:block"
               />
             </Link>

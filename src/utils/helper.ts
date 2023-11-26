@@ -157,3 +157,12 @@ console.log(">>>babseUrol", baseUrl)
 
 
 export { validateFileSize, validateFileType };
+  
+  
+  export const currencyMask = (e: React.ChangeEvent<HTMLInputElement>) => {
+  let value = e.target.value;
+   value = value.replace(/\D/g, "");
+  value = value.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+  e.target.value = value;
+  return e;
+}

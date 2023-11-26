@@ -38,6 +38,7 @@ export interface IHookInputProps {
   rest?: any;
   setState?: any;
   optional?: boolean;
+  naira?: boolean
 }
 
 export interface IRegistrationResponse {

@@ -7,3 +7,6 @@ const PrivateRoute = ({ children }: any) => {
 }
 
 export default PrivateRoute
+
+
+

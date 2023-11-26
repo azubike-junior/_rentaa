@@ -9,11 +9,14 @@ import { forgetPassword } from "../../services/Mutations/forgetPassword";
 import { RootState, useAppDispatch } from "../../store/store";
 import Loader from "../../components/Loader";
 import LandingPageNavBar from "../../components/LandingPageNavBar";
+import { useToast } from "@chakra-ui/react";
 
 export interface IForgetPasswordProp {
   email: string;
 }
 export default function ForgetPassword() {
+  const toast = useToast()
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -38,7 +41,9 @@ export default function ForgetPassword() {
     const newData = {
       navigate,
       email,
+      toast
     };
+    localStorage.setItem("email", email)
     dispatch(forgetPassword(newData));
   };
 

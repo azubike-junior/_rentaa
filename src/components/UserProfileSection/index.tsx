@@ -26,7 +26,8 @@ import Button from '../Button'
 import EmptyGadgetSection from '../EmptyGadgetSection'
 import Loader from '../Loader'
 
-const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading, image, data }: any) => {
+
+const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading, image, data,  setOpenLogout }: any) => {
 
   const access = localStorage.getItem('accessToken')
   const [user, setUser] = useState(access)
@@ -151,7 +152,9 @@ const UserProfileSection = ({ gadgets, imageUrls, gadgetLoading, image, data }: 
                   <li
                     className="text-red-700"
                     onClick={() => {
-                      dispatch(toggleLogoutModal())
+                      console.log(">>>>>>>hello");
+                      
+                       setOpenLogout(true)
                     }}
                   >
                     Log out

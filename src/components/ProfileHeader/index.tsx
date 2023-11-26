@@ -19,7 +19,12 @@ import { getProfileAvatar } from "./../../services/Queries/getProfileAvatar";
 import settingIcon from "../../images/settingIcons.svg";
 import Loader from "../Loader";
 
-export default function ProfileHeader() {
+
+interface Props {
+  setOpenLogout: (open: boolean) => void
+}
+
+export default function ProfileHeader({setOpenLogout}: Props) {
   const access = localStorage.getItem("accessToken");
   const [user, setUser] = useState(access);
   const [image, setImage] = useState<any>();
@@ -164,7 +169,10 @@ export default function ProfileHeader() {
                         <li
                           className="text-red-700"
                           onClick={() => {
-                            dispatch(toggleLogoutModal());
+                            // dispatch(toggleLogoutModal());
+                            console.log(">>>>>>>console");
+                            
+                            setOpenLogout(true)
                           }}
                         >
                           Log out

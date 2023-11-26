@@ -2,8 +2,22 @@ import React from "react";
 import verifyImage from "../../images/verifyImage.png";
 import logo from "../../images/rentaa_w.svg";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../store/store";
+import { forgetPassword } from "../../services/Mutations/forgetPassword";
+import { useToast } from '@chakra-ui/react'
 
 export default function VerifyPasswordSuccess() {
+  const toast = useToast()
+  const dispatch = useAppDispatch()
+
+  const postEmailHandler = () => {
+    const email = localStorage.getItem('email')
+    const newData = {
+      email,
+      toast
+    }
+    dispatch(forgetPassword(newData))
+  }
   return (
     <div className="bg-secondary font-dm-sans">
       <div className="flex flex-col items-center 4">
@@ -39,7 +53,7 @@ export default function VerifyPasswordSuccess() {
           <p className="text-center md:text-xl lowercase">
             Didn't get your email?
           </p>
-          <p className="pb-8 text-center md:text-xl lowercase text-secondary ">
+          <p onClick={() => postEmailHandler()} className="pb-8 text-center md:text-xl lowercase text-secondary cursor-pointer">
             Click here to resend
           </p>
         </div>

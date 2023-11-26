@@ -5,7 +5,7 @@ import { baseUrl } from './../../utils/helper';
  * method to get all categories.
  */
 export const queries = createApi({
-  reducerPath: "categoryPath",
+  reducerPath: "queries",
   baseQuery: fetchBaseQuery({
     baseUrl: `${baseUrl}/`,
     prepareHeaders: (headers) => {
